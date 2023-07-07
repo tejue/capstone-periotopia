@@ -1,4 +1,6 @@
-export default function InputNumber({ id, name, min, max }) {
+import { useState } from "react";
+
+export default function InputNumber({ id, name, min, max, onChange, value }) {
   return (
     <input
       id={id}
@@ -8,6 +10,8 @@ export default function InputNumber({ id, name, min, max }) {
       max={max}
       step="1"
       required
+      value={value}
+      onChange={onChange}
     />
   );
 }
