@@ -4,6 +4,24 @@ import ButtonSubmit from "@/components/ButtonSubmit/ButtonSubmit";
 import { useState } from "react";
 
 export default function HomePage() {
+  // const [formData, setFormData] = useState({
+  //   age: "",
+  //   firstMenstruation: "",
+  //   cyclusLength: "",
+  //   menstruationLength: "",
+  // });
+
+  // function handleChange(event) {
+  //   const formElement = event.target.form;
+  //   const formData = new FormData(formElement);
+  //   const data = Object.fromEntries(formData);
+  //   setFormData(data);
+  // }
+
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  // }
+
   const [age, setAge] = useState("");
   const [firstMenstruation, setFirstMenstruation] = useState("");
   const [cyclusLength, setCyclusLength] = useState("");
@@ -31,10 +49,6 @@ export default function HomePage() {
     console.log(age, firstMenstruation, cyclusLength, menstruationLength);
   };
 
-  // const handleSelectChange = (event) => {
-  //   setSelectedValue(event.target.value);
-  // };
-
   return (
     <>
       <h1>Periotopia</h1>
@@ -45,6 +59,8 @@ export default function HomePage() {
           name="age"
           min="8"
           max="100"
+          // onChange={handleChange}
+          // value={formData.age}
           onChange={handleAgeChange}
           value={age}
         />
@@ -58,6 +74,8 @@ export default function HomePage() {
           name="firstMenstruation"
           min="7"
           max="99"
+          // onChange={handleChange}
+          // value={formData.firstMenstruation}
           onChange={handleFirstMenstruationChange}
           value={firstMenstruation}
         />
@@ -72,6 +90,8 @@ export default function HomePage() {
           name="age"
           min="1"
           max="60"
+          // onChange={handleChange}
+          // value={formData.cyclusLength}
           onChange={handleCyclusLength}
           value={cyclusLength}
         />{" "}
@@ -86,6 +106,8 @@ export default function HomePage() {
           name="menstruationLength"
           min="1"
           max="15"
+          // onChange={handleChange}
+          // value={formData.menstruationLength}
           onChange={handleMenstruationLength}
           value={menstruationLength}
         />
