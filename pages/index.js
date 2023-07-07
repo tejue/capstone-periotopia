@@ -2,6 +2,8 @@ import Question from "@/components/Question/Question";
 import InputNumber from "@/components/InputNumber/InputNumber";
 import ButtonSubmit from "@/components/ButtonSubmit/ButtonSubmit";
 import { useState } from "react";
+import PersonalAnswer from "@/components/PersonalAnswer/PersonalAnswer";
+import PeriotopiaInfo from "@/components/PeriotopiaInfo/PeriotopiaInfo";
 
 export default function HomePage() {
   // const [formData, setFormData] = useState({
@@ -113,6 +115,8 @@ export default function HomePage() {
         />
         <ButtonSubmit />
       </form>
+      <PersonalAnswer personalAnswerText="Du menstruierts" year />
+      <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
     </>
   );
 }

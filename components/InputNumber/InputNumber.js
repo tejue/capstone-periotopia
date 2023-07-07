@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function InputNumber({ id, name, min, max, onChange, value }) {
   //const defaultValue = value !== undefined ? value : "";
 
