@@ -1,14 +1,41 @@
-export default function PersonalAnswer({ personalAnswerText }) {
-  const year = Math.round((365 / 28) * 5);
-  const today = Math.round((365 / 28) * 5 * (39 - 13));
-  const menstruationLife = Math.round((365 / 28) * 5 * (59 - 13));
+import styled from "styled-components";
 
+const StyledPersonalAnswer = styled.section`
+  background-color: lightcoral;
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+`;
+
+export default function PersonalAnswer({
+  personalAnswerText,
+  unit,
+  year,
+  today,
+  life,
+}) {
   return (
-    <section>
+    <StyledPersonalAnswer>
       <p>{personalAnswerText}</p>
-      <p>{year} Tage im Jahr</p>
-      <p>davon {today} Tage bis heute</p>
-      <p>{menstruationLife} Tage in deinem Menstruations-Leben</p>
-    </section>
+      <p>
+        {year}
+        <br />
+        <small>{unit} im Jahr</small>
+      </p>
+      <p>
+        <small>davon</small>
+        <br />
+        {today}
+        <br />
+        <small>{unit} bis heute</small>
+      </p>
+      <p>
+        <small>und</small>
+        <br />
+        {life}
+        <br />
+        <small>{unit} in deinem Menstruations-Leben</small>
+      </p>
+    </StyledPersonalAnswer>
   );
 }
