@@ -1,7 +1,7 @@
 import { useState } from "react";
-import PersonalAnswer from "@/components/PersonalAnswer/PersonalAnswer";
-import PeriotopiaInfo from "@/components/PeriotopiaInfo/PeriotopiaInfo";
-import FormGeneral from "@/components/FormGeneral/FormGeneral";
+import PersonalAnswer from "@/components/PersonalAnswer/index";
+import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
+import FormGeneral from "@/components/FormGeneral/index";
 
 export default function HomePage() {
   const [age, setAge] = useState("");

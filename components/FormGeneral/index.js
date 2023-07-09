@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Question from "../Question/Question";
-import InputNumber from "../InputNumber/InputNumber";
-import ButtonSubmit from "../ButtonSubmit/ButtonSubmit";
+import Question from "../Question/index";
+import InputNumber from "../InputNumber/index";
+import ButtonSubmit from "../ButtonSubmit/index";
 
 const StyledForm = styled.form`
   display: flex;
