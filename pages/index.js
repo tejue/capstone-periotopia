@@ -46,6 +46,31 @@ export default function HomePage() {
     setProduct(event.target.value);
   }
 
+  const [packageCosts, setPackageCosts] = useState("");
+  function handlePackageCosts(event) {
+    setPackageCosts(event.target.value);
+  }
+
+  const [taxReduction, setTaxReduction] = useState("");
+  function handleTaxReduction(event) {
+    setTaxReduction(event.target.value);
+  }
+
+  const [taxes, setTaxes] = useState("");
+  function handleTaxes(event) {
+    setTaxes(event.target.value);
+  }
+
+  const [packageContent, setPackageContent] = useState("");
+  function handlePackageContent(event) {
+    setPackageContent(event.target.value);
+  }
+
+  const [changeProdukt, setChangeProdukt] = useState("");
+  function handleChangeProdukt(event) {
+    setChangeProdukt(event.target.value);
+  }
+
   return (
     <>
       <h1>Periotopia</h1>
@@ -70,7 +95,19 @@ export default function HomePage() {
         life={menstruationDaysInLife}
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
-      <FormFinancials onProductChoice={handleProductChoice} />
+      <FormFinancials
+        onProductChoice={handleProductChoice}
+        onPackageCosts={handlePackageCosts}
+        onTaxReduction={handleTaxReduction}
+        onTaxes={handleTaxes}
+        onPackageContent={handlePackageContent}
+        onChangeProdukt={handleChangeProdukt}
+        product={product}
+        packageCosts={packageCosts}
+        taxReduction={taxReduction}
+        taxes={taxes}
+        changeProdukt={changeProdukt}
+      />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"

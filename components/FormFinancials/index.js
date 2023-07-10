@@ -11,9 +11,47 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormFinancials({ onProductChoice }) {
+export default function FormFinancials({
+  onProductChoice,
+  onPackageCosts,
+  onTaxReduction,
+  onTaxes,
+  onPackageContent,
+  onChangeProdukt,
+  product,
+  packageCosts,
+  taxReduction,
+  taxes,
+  changeProdukt,
+}) {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formElement = event.target;
+    const formData = new FormData(formElement);
+    const data = Object.fromEntries(formData);
+
+    const calculatedCostPerYear = Math.round(
+      (365 / parseInt(cyclusLength)) * parseInt(menstruationLength)
+    );
+
+    handleMenstruationDaysPerYear(calculatedCostPerYear);
+
+    const calculatedCostsTillNow = Math.round(
+      calculatedMenstruationDaysPerYear *
+        (parseInt(age) - parseInt(firstMenstruation))
+    );
+
+    handleMenstruationDaysTillNow(calculatedCostsTillNow);
+
+    const calculatedCostsInLife = Math.round(
+      calculatedMenstruationDaysPerYear * 38
+    );
+    handleMenstruationDaysInLife(calculatedCostsInLife);
+  }
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Question
         id="product"
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
@@ -22,7 +60,7 @@ export default function FormFinancials({ onProductChoice }) {
         id="product"
         name="product"
         //value={product}
-        //onChange={onProductChoice}
+        onChange={onProductChoice}
         required
       >
         <option>Tampon</option>
@@ -37,7 +75,7 @@ export default function FormFinancials({ onProductChoice }) {
         name="packageCosts"
         min="0"
         //value={packageCosts}
-        //onChange={}
+        onChange={onPackageCosts}
       />
       Euro
       <Question id="taxReduction" question="Wie wird dein Produkt besteuert?" />
@@ -62,7 +100,7 @@ export default function FormFinancials({ onProductChoice }) {
         name="taxes"
         min="1"
         //value={taxes}
-        //onChange={}
+        onChange={onTaxes}
       />
       %
       <Question
@@ -76,7 +114,7 @@ export default function FormFinancials({ onProductChoice }) {
         //value={product === "Perioden-Cup" ? 1 : ""}
         //max={maxProductContent}
         //value={packageContent}
-        //onChange={}
+        onChange={onPackageContent}
       />
       <Question
         id="changeProdukt"
@@ -87,7 +125,7 @@ export default function FormFinancials({ onProductChoice }) {
         name="changeProdukt"
         min="1"
         //value={changeProdukt}
-        //onChange={}
+        onChange={onChangeProdukt}
       />
       <ButtonSubmit />
     </StyledForm>
