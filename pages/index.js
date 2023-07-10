@@ -2,6 +2,7 @@ import { useState } from "react";
 import PersonalAnswer from "@/components/PersonalAnswer/index";
 import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
 import FormGeneral from "@/components/FormGeneral/index";
+import FormFinancials from "@/components/FormFinancials";
 
 export default function HomePage() {
   const [age, setAge] = useState("");
@@ -40,6 +41,11 @@ export default function HomePage() {
     setMenstruationDaysInLife(calculatedMenstruationDaysInLIfe);
   }
 
+  const [product, setProduct] = useState("");
+  function handleProductChoice(event) {
+    setProduct(event.target.value);
+  }
+
   return (
     <>
       <h1>Periotopia</h1>
@@ -64,6 +70,23 @@ export default function HomePage() {
         life={menstruationDaysInLife}
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
+      <FormFinancials onProductChoice={handleProductChoice} />
+      <PersonalAnswer
+        personalAnswerText="Für deine Menstruationsprodukte zahlst du"
+        unit="Euro"
+        year
+        today
+        life
+      />
+      <PeriotopiaInfo
+        periotopiaInfoText="In Periotopia wären
+      Menstruationsprodukte frei zugänglich. Schottland ist das bisher einzige
+      Land weltweit, in dem Menstruationsartikel in öffentlichen Gebäuden per
+      Gesetz kostenlos bereitgestellt werden müssen. In Deutschland sind es vor
+      allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
+      Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
+      In Deutschland ist sie seit 2020 zumindest reduziert"
+      />
     </>
   );
 }
