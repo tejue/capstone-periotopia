@@ -12,36 +12,32 @@ const StyledForm = styled.form`
 `;
 
 export default function FormGeneral({
-  onAgeChange,
-  onFirstMenstruationChange,
-  onCyclusLengthChange,
-  onMenstruationLengthChange,
-  age,
-  firstMenstruation,
-  cyclusLength,
-  menstruationLength,
+  handleGeneralInfo,
+  generalInfo,
   handleMenstruationDaysPerYear,
   handleMenstruationDaysTillNow,
   handleMenstruationDaysInLife,
 }) {
+  const { age, firstMenstruation, cyclusLength, menstruationLength } =
+    generalInfo;
+
   function handleSubmit(event) {
     event.preventDefault();
 
-    const formElement = event.target;
-    const formData = new FormData(formElement);
-    const data = Object.fromEntries(formData);
+    // const formElement = event.target;
+    // const formData = new FormData(formElement);
+    // const data = Object.fromEntries(formData);
+    // console.log(data);
 
     const calculatedMenstruationDaysPerYear = Math.round(
-      (365 / parseInt(cyclusLength)) * parseInt(menstruationLength)
+      (365 / cyclusLength) * menstruationLength
     );
 
     handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
 
     const calculatedMenstruationDaysTillNow = Math.round(
-      calculatedMenstruationDaysPerYear *
-        (parseInt(age) - parseInt(firstMenstruation))
+      calculatedMenstruationDaysPerYear * (age - firstMenstruation)
     );
-
     handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
 
     const calculatedMenstruationDaysInLife = Math.round(
@@ -50,24 +46,40 @@ export default function FormGeneral({
     handleMenstruationDaysInLife(calculatedMenstruationDaysInLife);
   }
 
+  // const calculateValues = () => {
+  //   const cyclusLength = parseInt(generalInfo.cyclusLength);
+  //   const menstruationLength = parseInt(generalInfo.menstruationLength);
+  //   const age = parseInt(generalInfo.age);
+  //   const firstMenstruation = parseInt(generalInfo.firstMenstruation);
+
+  //   const calculatedMenstruationDaysPerYear = Math.round((365 / cyclusLength) * menstruationLength);
+  //   const calculatedMenstruationDaysTillNow = Math.round(
+  //     calculatedMenstruationDaysPerYear * (age - firstMenstruation)
+  //   );
+  //   const calculatedMenstruationDaysInLife = Math.round(calculatedMenstruationDaysPerYear * 38);
+
+  //   handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
+  //   handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
+  //   handleMenstruationDaysInLife(calculatedMenstruationDaysInLife);
+  // };
+
   const maxAge = 100;
   const minAge = 8;
   const maxCyclusLength = 60;
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <Question id="age" type="number" question="Wie alt bist du?" />
+      <Question id="age" question="Wie alt bist du?" />
       <InputNumber
         id="age"
         name="age"
         min={minAge}
         max={maxAge}
         value={age}
-        onChange={onAgeChange}
+        onChange={handleGeneralInfo}
       />
       <Question
         id="firstMenstruation"
-        type="number"
         question="Wie alt warst du bei deiner ersten Menstruation?"
       />
       <InputNumber
@@ -76,26 +88,24 @@ export default function FormGeneral({
         min={minAge - 1}
         max={age !== "" ? age - 1 : maxAge - 1}
         value={firstMenstruation}
-        onChange={onFirstMenstruationChange}
+        onChange={handleGeneralInfo}
       />
       <Question
         id="cyclusLength"
-        type="cyclusLength"
         question="Wie oft beginnt deine Menstruation?"
       />
       Alle
       <InputNumber
         id="cyclusLength"
-        name="age"
+        name="cyclusLength"
         min="1"
         max={maxCyclusLength}
         value={cyclusLength}
-        onChange={onCyclusLengthChange}
+        onChange={handleGeneralInfo}
       />
       Tage
       <Question
         id="menstruationLength"
-        type="number"
         question="Wieviele Tage dauert deine Menstruation?"
       />
       <InputNumber
@@ -104,7 +114,7 @@ export default function FormGeneral({
         min="1"
         max={cyclusLength !== "" ? cyclusLength - 1 : maxCyclusLength - 1}
         value={menstruationLength}
-        onChange={onMenstruationLengthChange}
+        onChange={handleGeneralInfo}
       />
       <ButtonSubmit />
     </StyledForm>

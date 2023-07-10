@@ -12,42 +12,52 @@ const StyledForm = styled.form`
 `;
 
 export default function FormFinancials({
-  onProductChoice,
-  onPackageCosts,
-  onTaxReduction,
-  onTaxes,
-  onPackageContent,
-  onChangeProdukt,
-  product,
-  packageCosts,
-  taxReduction,
-  taxes,
-  changeProdukt,
+  financials,
+  handleFinancials,
+  handleCostsPerCyclus,
+  handleCostsPerYear,
+  handleCostsTillToday,
+  handleCostsInLife,
+  generalInfo,
 }) {
+  const {
+    product,
+    packageCosts,
+    taxReduction,
+    taxes,
+    packageContent,
+    changeProdukt,
+  } = financials;
+
+  const { age, firstMenstruation, cyclusLength, menstruationLength } =
+    generalInfo;
+
   function handleSubmit(event) {
     event.preventDefault();
 
-    const formElement = event.target;
-    const formData = new FormData(formElement);
-    const data = Object.fromEntries(formData);
+    // const formElement = event.target;
+    // const formData = new FormData(formElement);
+    // const data = Object.fromEntries(formData);
+    // console.log(data);
 
-    const calculatedCostPerYear = Math.round(
-      (365 / parseInt(cyclusLength)) * parseInt(menstruationLength)
+    const calculatedCostsPerCyclus = Math.round(
+      (packageCosts / packageContent) * (changeProdukt * menstruationLength)
     );
+    handleCostsPerCyclus(calculatedCostsPerCyclus);
 
-    handleMenstruationDaysPerYear(calculatedCostPerYear);
-
-    const calculatedCostsTillNow = Math.round(
-      calculatedMenstruationDaysPerYear *
-        (parseInt(age) - parseInt(firstMenstruation))
+    const calculatedCostsPerYear = Math.round(
+      (calculatedCostsPerCyclus / cyclusLength) *
+        ((365 / cyclusLength) * menstruationLength)
     );
+    handleCostsPerYear(calculatedCostsPerYear);
 
-    handleMenstruationDaysTillNow(calculatedCostsTillNow);
-
-    const calculatedCostsInLife = Math.round(
-      calculatedMenstruationDaysPerYear * 38
+    const calculatedCostsTillToday = Math.round(
+      calculatedCostsPerYear * (age - firstMenstruation)
     );
-    handleMenstruationDaysInLife(calculatedCostsInLife);
+    handleCostsTillToday(calculatedCostsTillToday);
+
+    const calculatedCostsInLife = Math.round(calculatedCostsPerYear * 38);
+    handleCostsInLife(calculatedCostsInLife);
   }
 
   return (
@@ -59,8 +69,8 @@ export default function FormFinancials({
       <select
         id="product"
         name="product"
-        //value={product}
-        onChange={onProductChoice}
+        value={product}
+        onChange={handleFinancials}
         required
       >
         <option>Tampon</option>
@@ -74,8 +84,8 @@ export default function FormFinancials({
         id="packageCosts"
         name="packageCosts"
         min="0"
-        //value={packageCosts}
-        onChange={onPackageCosts}
+        value={packageCosts}
+        onChange={handleFinancials}
       />
       Euro
       <Question id="taxReduction" question="Wie wird dein Produkt besteuert?" />
@@ -99,8 +109,8 @@ export default function FormFinancials({
         id="taxes"
         name="taxes"
         min="1"
-        //value={taxes}
-        onChange={onTaxes}
+        value={taxes}
+        onChange={handleFinancials}
       />
       %
       <Question
@@ -111,21 +121,21 @@ export default function FormFinancials({
         id="packageContent"
         name="packageContent"
         min="1"
-        //value={product === "Perioden-Cup" ? 1 : ""}
-        //max={maxProductContent}
-        //value={packageContent}
-        onChange={onPackageContent}
+        value={packageContent}
+        onChange={handleFinancials}
       />
       <Question
         id="changeProdukt"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
+        type="number"
       />
       <InputNumber
         id="changeProdukt"
         name="changeProdukt"
         min="1"
-        //value={changeProdukt}
-        onChange={onChangeProdukt}
+        value={changeProdukt}
+        onChange={handleFinancials}
+        type="number"
       />
       <ButtonSubmit />
     </StyledForm>

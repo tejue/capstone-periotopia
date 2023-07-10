@@ -5,84 +5,79 @@ import FormGeneral from "@/components/FormGeneral/index";
 import FormFinancials from "@/components/FormFinancials";
 
 export default function HomePage() {
-  const [age, setAge] = useState("");
-  const [firstMenstruation, setFirstMenstruation] = useState("");
-  const [cyclusLength, setCyclusLength] = useState("");
-  const [menstruationLength, setMenstruationLength] = useState("");
+  const [generalInfo, setGeneralInfo] = useState({
+    age: "",
+    firstMenstruation: "",
+    cyclusLength: "",
+    menstruationLength: "5",
+  });
+
+  const handleGeneralInfo = (event) => {
+    const { name, value } = event.target;
+    setGeneralInfo((prevGeneralInfo) => ({
+      ...prevGeneralInfo,
+      [name]: value,
+    }));
+  };
+
   const [menstruationDaysPerYear, setMenstruationDaysPerYear] = useState("");
-  const [menstruationDaysTillNow, setMenstruationDaysTillNow] = useState("");
-  const [menstruationDaysInLife, setMenstruationDaysInLife] = useState("");
-
-  function handleAgeChange(event) {
-    setAge(event.target.value);
-  }
-
-  function handleFirstMenstruationChange(event) {
-    setFirstMenstruation(event.target.value);
-  }
-
-  function handleCyclusLengthChange(event) {
-    setCyclusLength(event.target.value);
-  }
-
-  function handleMenstruationLengthChange(event) {
-    setMenstruationLength(event.target.value);
-  }
-
   function handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear) {
     setMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
   }
 
+  const [menstruationDaysTillNow, setMenstruationDaysTillNow] = useState("");
   function handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow) {
     setMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
   }
 
+  const [menstruationDaysInLife, setMenstruationDaysInLife] = useState("");
   function handleMenstruationDaysInLife(calculatedMenstruationDaysInLIfe) {
     setMenstruationDaysInLife(calculatedMenstruationDaysInLIfe);
   }
 
-  const [product, setProduct] = useState("");
-  function handleProductChoice(event) {
-    setProduct(event.target.value);
+  const [financials, setFinancials] = useState({
+    product: "",
+    packageCosts: "",
+    taxReduction: "",
+    taxes: "5",
+    packageContent: "",
+    changeProdukt: "",
+  });
+
+  const handleFinancials = (event) => {
+    const { name, value } = event.target;
+    setFinancials((prevFinancials) => ({
+      ...prevFinancials,
+      [name]: value,
+    }));
+  };
+
+  const [costsPerCyclus, setCostsPerCyclus] = useState("");
+  function handleCostsPerCyclus(calculatedCostsPerCyclus) {
+    setCostsPerCyclus(calculatedCostsPerCyclus);
   }
 
-  const [packageCosts, setPackageCosts] = useState("");
-  function handlePackageCosts(event) {
-    setPackageCosts(event.target.value);
+  const [costsPerYear, setCostsPerYear] = useState("");
+  function handleCostsPerYear(calculatedCostPerYear) {
+    setCostsPerYear(calculatedCostPerYear);
   }
 
-  const [taxReduction, setTaxReduction] = useState("");
-  function handleTaxReduction(event) {
-    setTaxReduction(event.target.value);
+  const [costsTillToday, setCostsTillToday] = useState("");
+  function handleCostsTillToday(calculatedCostTillToday) {
+    setCostsTillToday(calculatedCostTillToday);
   }
 
-  const [taxes, setTaxes] = useState("");
-  function handleTaxes(event) {
-    setTaxes(event.target.value);
-  }
-
-  const [packageContent, setPackageContent] = useState("");
-  function handlePackageContent(event) {
-    setPackageContent(event.target.value);
-  }
-
-  const [changeProdukt, setChangeProdukt] = useState("");
-  function handleChangeProdukt(event) {
-    setChangeProdukt(event.target.value);
+  const [costsInLife, setCostsInLife] = useState("");
+  function handleCostsInLife(calculatedCostinLife) {
+    setCostsInLife(calculatedCostinLife);
   }
 
   return (
     <>
       <h1>Periotopia</h1>
       <FormGeneral
-        onAgeChange={handleAgeChange}
-        onFirstMenstruationChange={handleFirstMenstruationChange}
-        onCyclusLengthChange={handleCyclusLengthChange}
-        onMenstruationLengthChange={handleMenstruationLengthChange}
-        age={age}
-        firstMenstruation={firstMenstruation}
-        cyclusLength={cyclusLength}
-        menstruationLength={menstruationLength}
+        generalInfo={generalInfo}
+        handleGeneralInfo={handleGeneralInfo}
         handleMenstruationDaysPerYear={handleMenstruationDaysPerYear}
         handleMenstruationDaysTillNow={handleMenstruationDaysTillNow}
         handleMenstruationDaysInLife={handleMenstruationDaysInLife}
@@ -96,24 +91,21 @@ export default function HomePage() {
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
       <FormFinancials
-        onProductChoice={handleProductChoice}
-        onPackageCosts={handlePackageCosts}
-        onTaxReduction={handleTaxReduction}
-        onTaxes={handleTaxes}
-        onPackageContent={handlePackageContent}
-        onChangeProdukt={handleChangeProdukt}
-        product={product}
-        packageCosts={packageCosts}
-        taxReduction={taxReduction}
-        taxes={taxes}
-        changeProdukt={changeProdukt}
+        financials={financials}
+        handleFinancials={handleFinancials}
+        handleCostsPerYear={handleCostsPerYear}
+        handleCostsTillToday={handleCostsTillToday}
+        handleCostsInLife={handleCostsInLife}
+        handleCostsPerCyclus={handleCostsPerCyclus}
+        handleGeneralInfo={handleGeneralInfo}
+        generalInfo={generalInfo}
       />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"
-        year
-        today
-        life
+        year={costsPerYear}
+        today={costsTillToday}
+        life={costsInLife}
       />
       <PeriotopiaInfo
         periotopiaInfoText="In Periotopia wären
