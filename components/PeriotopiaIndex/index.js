@@ -6,20 +6,18 @@ const StyledIndex = styled.div`
   background-color: #e0e0e0;
 `;
 
-export default function PeriotopiaIndex({
-  calculatedPeriotopiaIndexFinancials,
-}) {
-  const StyledIndexFilled = styled.div`
-    height: 100%;
-    background-color: lightcoral;
-    width: ${calculatedPeriotopiaIndexFinancials};
-  `;
+const StyledIndexFilled = styled.div`
+  height: 100%;
+  background-color: lightcoral;
+  width: ${(props) => props.width};
+`;
 
+export default function PeriotopiaIndex({ periotopiaIndexFinancials }) {
   return (
     <>
       <h2>Dein Periotopia-Index</h2>
       <StyledIndex>
-        <StyledIndexFilled />
+        <StyledIndexFilled width={periotopiaIndexFinancials} />
       </StyledIndex>
     </>
   );

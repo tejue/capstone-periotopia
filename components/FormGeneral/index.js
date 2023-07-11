@@ -11,64 +11,16 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormGeneral({
-  handleGeneralInfo,
-  generalInfo,
-  handleMenstruationDaysPerYear,
-  handleMenstruationDaysTillNow,
-  handleMenstruationDaysInLife,
-}) {
+export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    // const formElement = event.target;
-    // const formData = new FormData(formElement);
-    // const data = Object.fromEntries(formData);
-    // console.log(data);
-
-    const calculatedMenstruationDaysPerYear = Math.round(
-      (365 / cyclusLength) * menstruationLength
-    );
-
-    handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
-
-    const calculatedMenstruationDaysTillNow = Math.round(
-      calculatedMenstruationDaysPerYear * (age - firstMenstruation)
-    );
-    handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
-
-    const calculatedMenstruationDaysInLife = Math.round(
-      calculatedMenstruationDaysPerYear * 38
-    );
-    handleMenstruationDaysInLife(calculatedMenstruationDaysInLife);
-  }
-
-  // const calculateValues = () => {
-  //   const cyclusLength = parseInt(generalInfo.cyclusLength);
-  //   const menstruationLength = parseInt(generalInfo.menstruationLength);
-  //   const age = parseInt(generalInfo.age);
-  //   const firstMenstruation = parseInt(generalInfo.firstMenstruation);
-
-  //   const calculatedMenstruationDaysPerYear = Math.round((365 / cyclusLength) * menstruationLength);
-  //   const calculatedMenstruationDaysTillNow = Math.round(
-  //     calculatedMenstruationDaysPerYear * (age - firstMenstruation)
-  //   );
-  //   const calculatedMenstruationDaysInLife = Math.round(calculatedMenstruationDaysPerYear * 38);
-
-  //   handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
-  //   handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
-  //   handleMenstruationDaysInLife(calculatedMenstruationDaysInLife);
-  // };
 
   const maxAge = 100;
   const minAge = 8;
   const maxCyclusLength = 60;
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm>
       <Question id="age" question="Wie alt bist du?" />
       <InputNumber
         id="age"

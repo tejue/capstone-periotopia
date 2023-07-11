@@ -21,20 +21,15 @@ export default function HomePage() {
     }));
   };
 
-  const [menstruationDaysPerYear, setMenstruationDaysPerYear] = useState("");
-  function handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear) {
-    setMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
-  }
+  const menstruationDaysPerYear = Math.round(
+    (365 / generalInfo.cyclusLength) * generalInfo.menstruationLength
+  );
 
-  const [menstruationDaysTillNow, setMenstruationDaysTillNow] = useState("");
-  function handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow) {
-    setMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
-  }
+  const menstruationDaysTillNow = Math.round(
+    menstruationDaysPerYear * (generalInfo.age - generalInfo.firstMenstruation)
+  );
 
-  const [menstruationDaysInLife, setMenstruationDaysInLife] = useState("");
-  function handleMenstruationDaysInLife(calculatedMenstruationDaysInLIfe) {
-    setMenstruationDaysInLife(calculatedMenstruationDaysInLIfe);
-  }
+  const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 38);
 
   const [financials, setFinancials] = useState({
     product: "",
@@ -53,26 +48,24 @@ export default function HomePage() {
     }));
   };
 
-  const [costsPerYear, setCostsPerYear] = useState("");
-  function handleCostsPerYear(calculatedCostPerYear) {
-    setCostsPerYear(calculatedCostPerYear);
-  }
+  const costsPerCyclus = Math.round(
+    (financials.packageCosts / financials.packageContent) *
+      financials.changeProdukt *
+      generalInfo.menstruationLength
+  );
 
-  const calulatedTaxesPerYear = costsPerYear * (financials.taxes / 100);
+  const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
+  const taxesPerYear = costsPerYear * (financials.taxes / 100);
 
-  const [costsTillToday, setCostsTillToday] = useState("");
-  function handleCostsTillToday(calculatedCostTillToday) {
-    setCostsTillToday(calculatedCostTillToday);
-  }
-  const calulatedTaxesTillToday = costsTillToday * (financials.taxes / 100);
+  const costsTillToday = Math.round(
+    costsPerYear * (generalInfo.age - generalInfo.firstMenstruation)
+  );
+  const taxesTillToday = costsTillToday * (financials.taxes / 100);
 
-  const [costsInLife, setCostsInLife] = useState("");
-  function handleCostsInLife(calculatedCostinLife) {
-    setCostsInLife(calculatedCostinLife);
-  }
-  const calulatedTaxesInLife = costsInLife * (financials.taxes / 100);
+  const costsInLife = Math.round(costsPerYear * 38);
+  const taxesInLife = costsInLife * (financials.taxes / 100);
 
-  function calculatedPeriotopiaIndexFinancials() {
+  function periotopiaIndexFinancials() {
     if (financials.packageCosts === 0) {
       return "100%";
     } else if (
@@ -96,9 +89,6 @@ export default function HomePage() {
       <FormGeneral
         generalInfo={generalInfo}
         handleGeneralInfo={handleGeneralInfo}
-        handleMenstruationDaysPerYear={handleMenstruationDaysPerYear}
-        handleMenstruationDaysTillNow={handleMenstruationDaysTillNow}
-        handleMenstruationDaysInLife={handleMenstruationDaysInLife}
       />
       <PersonalAnswer
         personalAnswerText="Du menstruierst"
@@ -111,13 +101,6 @@ export default function HomePage() {
       <FormFinancials
         financials={financials}
         handleFinancials={handleFinancials}
-        handleCostsPerYear={handleCostsPerYear}
-        handleCostsTillToday={handleCostsTillToday}
-        handleCostsInLife={handleCostsInLife}
-        //handleCostsPerCyclus={handleCostsPerCyclus}
-        handleGeneralInfo={handleGeneralInfo}
-        generalInfo={generalInfo}
-        menstruationDaysPerYear={menstruationDaysPerYear}
       />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
@@ -125,9 +108,9 @@ export default function HomePage() {
         year={costsPerYear}
         today={costsTillToday}
         life={costsInLife}
-        additionalYear={`davon sind ${calulatedTaxesPerYear} Euro Steuern`}
-        additionalToday={`davon sind ${calulatedTaxesTillToday} Euro Steuern`}
-        additionalLife={`davon sind ${calulatedTaxesInLife} Euro Steuern`}
+        additionalYear={`davon sind ${taxesPerYear} Euro Steuern`}
+        additionalToday={`davon sind ${taxesTillToday} Euro Steuern`}
+        additionalLife={`davon sind ${taxesInLife} Euro Steuern`}
       />
       <PeriotopiaInfo
         periotopiaInfoText="In Periotopia wären
@@ -139,7 +122,7 @@ export default function HomePage() {
       In Deutschland ist sie seit 2020 zumindest reduziert"
       />
       <PeriotopiaIndex
-        calculatedPeriotopiaIndexFinancials={calculatedPeriotopiaIndexFinancials()}
+        periotopiaIndexFinancials={periotopiaIndexFinancials()}
       />
     </>
   );

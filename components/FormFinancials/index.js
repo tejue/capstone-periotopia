@@ -11,16 +11,7 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormFinancials({
-  financials,
-  handleFinancials,
-  handleCostsPerCyclus,
-  handleCostsPerYear,
-  handleCostsTillToday,
-  handleCostsInLife,
-  generalInfo,
-  menstruationDaysPerYear,
-}) {
+export default function FormFinancials({ financials, handleFinancials }) {
   const {
     product,
     packageCosts,
@@ -30,38 +21,8 @@ export default function FormFinancials({
     changeProdukt,
   } = financials;
 
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    // const formElement = event.target;
-    // const formData = new FormData(formElement);
-    // const data = Object.fromEntries(formData);
-    // console.log(data);
-
-    const calculatedCostsPerCyclus = Math.round(
-      (packageCosts / packageContent) * changeProdukt * menstruationLength
-    );
-    //handleCostsPerCyclus(calculatedCostsPerCyclus);
-
-    const calculatedCostsPerYear = Math.round(
-      calculatedCostsPerCyclus * menstruationDaysPerYear
-    );
-    handleCostsPerYear(calculatedCostsPerYear);
-
-    const calculatedCostsTillToday = Math.round(
-      calculatedCostsPerYear * (age - firstMenstruation)
-    );
-    handleCostsTillToday(calculatedCostsTillToday);
-
-    const calculatedCostsInLife = Math.round(calculatedCostsPerYear * 38);
-    handleCostsInLife(calculatedCostsInLife);
-  }
-
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm>
       <Question
         id="product"
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
