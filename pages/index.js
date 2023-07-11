@@ -3,13 +3,14 @@ import PersonalAnswer from "@/components/PersonalAnswer/index";
 import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
 import FormGeneral from "@/components/FormGeneral/index";
 import FormFinancials from "@/components/FormFinancials";
+import PeriotopiaIndex from "@/components/PeriotopiaIndex";
 
 export default function HomePage() {
   const [generalInfo, setGeneralInfo] = useState({
-    age: "39",
-    firstMenstruation: "13",
-    cyclusLength: "28",
-    menstruationLength: "5",
+    age: "",
+    firstMenstruation: "",
+    cyclusLength: "",
+    menstruationLength: "",
   });
 
   const handleGeneralInfo = (event) => {
@@ -52,11 +53,6 @@ export default function HomePage() {
     }));
   };
 
-  // const [costsPerCyclus, setCostsPerCyclus] = useState("");
-  // function handleCostsPerCyclus(calculatedCostsPerCyclus) {
-  //   setCostsPerCyclus(calculatedCostsPerCyclus);
-  // }
-
   const [costsPerYear, setCostsPerYear] = useState("");
   function handleCostsPerYear(calculatedCostPerYear) {
     setCostsPerYear(calculatedCostPerYear);
@@ -75,6 +71,24 @@ export default function HomePage() {
     setCostsInLife(calculatedCostinLife);
   }
   const calulatedTaxesInLife = costsInLife * (financials.taxes / 100);
+
+  function calculatedPeriotopiaIndexFinancials() {
+    if (financials.packageCosts === 0) {
+      return "100%";
+    } else if (
+      financials.packageCosts > 0 &&
+      financials.taxReduction === "keine Steuer"
+    ) {
+      return "66%";
+    } else if (
+      financials.packageCosts > 0 &&
+      financials.taxReduction === "Teilsteuer"
+    ) {
+      return "33%";
+    } else {
+      return "0%";
+    }
+  }
 
   return (
     <>
@@ -123,6 +137,9 @@ export default function HomePage() {
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
+      />
+      <PeriotopiaIndex
+        calculatedPeriotopiaIndexFinancials={calculatedPeriotopiaIndexFinancials()}
       />
     </>
   );

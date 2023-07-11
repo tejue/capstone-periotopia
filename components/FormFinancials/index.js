@@ -90,16 +90,37 @@ export default function FormFinancials({
       Euro
       <Question id="taxReduction" question="Wie wird dein Produkt besteuert?" />
       <label>
-        <input id="taxReduction" name="taxReduction" type="radio" />
+        <input
+          id="taxReduction-full"
+          name="taxReduction"
+          type="radio"
+          value="volle Steuer"
+          checked={taxReduction === "volle Steuer"}
+          onChange={handleFinancials}
+        />
         volle Steuer
       </label>
       <label>
-        <input id="taxReduction" name="taxReduction" type="radio" />
+        <input
+          id="taxReduction-partial"
+          name="taxReduction"
+          type="radio"
+          value="Teilsteuer"
+          checked={taxReduction === "Teilsteuer"}
+          onChange={handleFinancials}
+        />
         Teilsteuer
       </label>
       <label>
-        <input id="taxReduction" name="taxReduction" type="radio" />
-        keine Steuern
+        <input
+          id="taxReduction-none"
+          name="taxReduction"
+          type="radio"
+          value="keine Steuer"
+          checked={taxReduction === "keine Steuer"}
+          onChange={handleFinancials}
+        />
+        keine Steuer
       </label>
       <Question
         id="taxes"
