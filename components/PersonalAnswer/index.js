@@ -13,6 +13,9 @@ export default function PersonalAnswer({
   year,
   today,
   life,
+  additionalYear,
+  additionalToday,
+  additionalLife,
 }) {
   return (
     <StyledPersonalAnswer>
@@ -21,6 +24,8 @@ export default function PersonalAnswer({
         {year}
         <br />
         <small>{unit} im Jahr</small>
+        <br />
+        <small>{additionalYear}</small>
       </p>
       <p>
         <small>davon</small>
@@ -28,6 +33,8 @@ export default function PersonalAnswer({
         {today}
         <br />
         <small>{unit} bis heute</small>
+        <br />
+        <small>{additionalToday}</small>
       </p>
       <p>
         <small>und</small>
@@ -35,6 +42,8 @@ export default function PersonalAnswer({
         {life}
         <br />
         <small>{unit} in deinem Menstruations-Leben</small>
+        <br />
+        <small>{additionalLife}</small>
       </p>
     </StyledPersonalAnswer>
   );

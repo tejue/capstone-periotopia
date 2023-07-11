@@ -6,9 +6,9 @@ import FormFinancials from "@/components/FormFinancials";
 
 export default function HomePage() {
   const [generalInfo, setGeneralInfo] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
+    age: "39",
+    firstMenstruation: "13",
+    cyclusLength: "28",
     menstruationLength: "5",
   });
 
@@ -39,7 +39,7 @@ export default function HomePage() {
     product: "",
     packageCosts: "",
     taxReduction: "",
-    taxes: "5",
+    taxes: "",
     packageContent: "",
     changeProdukt: "",
   });
@@ -52,25 +52,29 @@ export default function HomePage() {
     }));
   };
 
-  const [costsPerCyclus, setCostsPerCyclus] = useState("");
-  function handleCostsPerCyclus(calculatedCostsPerCyclus) {
-    setCostsPerCyclus(calculatedCostsPerCyclus);
-  }
+  // const [costsPerCyclus, setCostsPerCyclus] = useState("");
+  // function handleCostsPerCyclus(calculatedCostsPerCyclus) {
+  //   setCostsPerCyclus(calculatedCostsPerCyclus);
+  // }
 
   const [costsPerYear, setCostsPerYear] = useState("");
   function handleCostsPerYear(calculatedCostPerYear) {
     setCostsPerYear(calculatedCostPerYear);
   }
 
+  const calulatedTaxesPerYear = costsPerYear * (financials.taxes / 100);
+
   const [costsTillToday, setCostsTillToday] = useState("");
   function handleCostsTillToday(calculatedCostTillToday) {
     setCostsTillToday(calculatedCostTillToday);
   }
+  const calulatedTaxesTillToday = costsTillToday * (financials.taxes / 100);
 
   const [costsInLife, setCostsInLife] = useState("");
   function handleCostsInLife(calculatedCostinLife) {
     setCostsInLife(calculatedCostinLife);
   }
+  const calulatedTaxesInLife = costsInLife * (financials.taxes / 100);
 
   return (
     <>
@@ -81,7 +85,7 @@ export default function HomePage() {
         handleMenstruationDaysPerYear={handleMenstruationDaysPerYear}
         handleMenstruationDaysTillNow={handleMenstruationDaysTillNow}
         handleMenstruationDaysInLife={handleMenstruationDaysInLife}
-      ></FormGeneral>
+      />
       <PersonalAnswer
         personalAnswerText="Du menstruierst"
         unit="Tage"
@@ -96,9 +100,10 @@ export default function HomePage() {
         handleCostsPerYear={handleCostsPerYear}
         handleCostsTillToday={handleCostsTillToday}
         handleCostsInLife={handleCostsInLife}
-        handleCostsPerCyclus={handleCostsPerCyclus}
+        //handleCostsPerCyclus={handleCostsPerCyclus}
         handleGeneralInfo={handleGeneralInfo}
         generalInfo={generalInfo}
+        menstruationDaysPerYear={menstruationDaysPerYear}
       />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
@@ -106,6 +111,9 @@ export default function HomePage() {
         year={costsPerYear}
         today={costsTillToday}
         life={costsInLife}
+        additionalYear={`davon sind ${calulatedTaxesPerYear} Euro Steuern`}
+        additionalToday={`davon sind ${calulatedTaxesTillToday} Euro Steuern`}
+        additionalLife={`davon sind ${calulatedTaxesInLife} Euro Steuern`}
       />
       <PeriotopiaInfo
         periotopiaInfoText="In Periotopia wären

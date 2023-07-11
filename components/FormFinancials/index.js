@@ -19,6 +19,7 @@ export default function FormFinancials({
   handleCostsTillToday,
   handleCostsInLife,
   generalInfo,
+  menstruationDaysPerYear,
 }) {
   const {
     product,
@@ -41,13 +42,12 @@ export default function FormFinancials({
     // console.log(data);
 
     const calculatedCostsPerCyclus = Math.round(
-      (packageCosts / packageContent) * (changeProdukt * menstruationLength)
+      (packageCosts / packageContent) * changeProdukt * menstruationLength
     );
-    handleCostsPerCyclus(calculatedCostsPerCyclus);
+    //handleCostsPerCyclus(calculatedCostsPerCyclus);
 
     const calculatedCostsPerYear = Math.round(
-      (calculatedCostsPerCyclus / cyclusLength) *
-        ((365 / cyclusLength) * menstruationLength)
+      calculatedCostsPerCyclus * menstruationDaysPerYear
     );
     handleCostsPerYear(calculatedCostsPerYear);
 
@@ -127,7 +127,6 @@ export default function FormFinancials({
       <Question
         id="changeProdukt"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
-        type="number"
       />
       <InputNumber
         id="changeProdukt"
@@ -135,7 +134,7 @@ export default function FormFinancials({
         min="1"
         value={changeProdukt}
         onChange={handleFinancials}
-        type="number"
+        disabled={!(product === "Tampon" || product === "Binde")}
       />
       <ButtonSubmit />
     </StyledForm>
