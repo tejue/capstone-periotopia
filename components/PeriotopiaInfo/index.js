@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledPeriotopiaInfo = styled.section`
   background-color: lightcoral;
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 20px;
 `;
 

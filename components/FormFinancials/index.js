@@ -1,6 +1,5 @@
 import Question from "../Question";
 import InputNumber from "../InputNumber";
-import ButtonSubmit from "../ButtonSubmit";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -34,6 +33,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
         onChange={handleFinancials}
         required
       >
+        <option>-- Produkt auswählen --</option>
         <option>Tampon</option>
         <option>Binde</option>
         <option>Perioden-Cup</option>
@@ -90,7 +90,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
       <InputNumber
         id="taxes"
         name="taxes"
-        min="1"
+        min="0"
         value={taxes}
         onChange={handleFinancials}
       />
@@ -118,7 +118,6 @@ export default function FormFinancials({ financials, handleFinancials }) {
         onChange={handleFinancials}
         disabled={!(product === "Tampon" || product === "Binde")}
       />
-      <ButtonSubmit />
     </StyledForm>
   );
 }

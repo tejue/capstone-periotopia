@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
-import ButtonSubmit from "../ButtonSubmit/index";
 
 const StyledForm = styled.form`
   display: flex;
@@ -68,7 +67,6 @@ export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
         value={menstruationLength}
         onChange={handleGeneralInfo}
       />
-      <ButtonSubmit />
     </StyledForm>
   );
 }
