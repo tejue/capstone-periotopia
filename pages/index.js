@@ -55,15 +55,15 @@ export default function HomePage() {
   );
 
   const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
-  const taxesPerYear = costsPerYear * (financials.taxes / 100);
+  const taxesPerYear = Math.round(costsPerYear * (financials.taxes / 100));
 
   const costsTillToday = Math.round(
     costsPerYear * (generalInfo.age - generalInfo.firstMenstruation)
   );
-  const taxesTillToday = costsTillToday * (financials.taxes / 100);
+  const taxesTillToday = Math.round(costsTillToday * (financials.taxes / 100));
 
   const costsInLife = Math.round(costsPerYear * 38);
-  const taxesInLife = costsInLife * (financials.taxes / 100);
+  const taxesInLife = Math.round(costsInLife * (financials.taxes / 100));
 
   function periotopiaIndexFinancials() {
     if (financials.packageCosts === 0) {
@@ -93,9 +93,9 @@ export default function HomePage() {
       <PersonalAnswer
         personalAnswerText="Du menstruierst"
         unit="Tage"
-        year={menstruationDaysPerYear}
-        today={menstruationDaysTillNow}
-        life={menstruationDaysInLife}
+        year={menstruationDaysPerYear ?? ""}
+        today={menstruationDaysTillNow || ""}
+        life={menstruationDaysInLife || ""}
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
       <FormFinancials
@@ -105,12 +105,12 @@ export default function HomePage() {
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"
-        year={costsPerYear}
-        today={costsTillToday}
-        life={costsInLife}
-        additionalYear={`davon sind ${taxesPerYear} Euro Steuern`}
-        additionalToday={`davon sind ${taxesTillToday} Euro Steuern`}
-        additionalLife={`davon sind ${taxesInLife} Euro Steuern`}
+        year={costsPerYear || ""}
+        today={costsTillToday || ""}
+        life={costsInLife || ""}
+        additionalYear={`davon sind ${taxesPerYear || ""} Euro Steuern`}
+        additionalToday={`davon sind ${taxesTillToday || ""} Euro Steuern`}
+        additionalLife={`davon sind ${taxesInLife || ""} Euro Steuern`}
       />
       <PeriotopiaInfo
         periotopiaInfoText="In Periotopia wären
