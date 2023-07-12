@@ -74,7 +74,7 @@ export default function HomePage() {
   const taxesInLife = Math.round(costsInLife * (taxes / 100));
 
   function periotopiaIndexFinancials() {
-    if (packageCosts === 0) {
+    if (packageCosts === "0") {
       return "100%";
     } else if (packageCosts > 0 && taxReduction === "keine Steuer") {
       return "66%";
@@ -89,39 +89,55 @@ export default function HomePage() {
     return number != null ? number.toLocaleString("de-DE") : "";
   }
 
+  // const [showAnswer, setShowAnswer] = useState(false);
+  // function handleClick(event) {
+  //   setShowAnswer(!showAnswer);
+  // }
+
   return (
     <>
       <h1>Periotopia</h1>
       <FormGeneral
         generalInfo={generalInfo}
         handleGeneralInfo={handleGeneralInfo}
+        // handleClick={handleClick}
       />
       <PersonalAnswer
+        // showAnswer={showAnswer}
         personalAnswerText="Du menstruierst"
         unit="Tage"
-        year={formatNumber(menstruationDaysPerYear) || ""}
-        today={formatNumber(menstruationDaysTillNow) || ""}
-        life={formatNumber(menstruationDaysInLife) || ""}
+        year={
+          menstruationDaysPerYear ? formatNumber(menstruationDaysPerYear) : ""
+        }
+        today={
+          menstruationDaysPerYear ? formatNumber(menstruationDaysTillNow) : ""
+        }
+        life={
+          menstruationDaysInLife ? formatNumber(menstruationDaysInLife) : ""
+        }
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
+
       <FormFinancials
         financials={financials}
         handleFinancials={handleFinancials}
+        // handleClick={handleClick}
       />
       <PersonalAnswer
+        // showAnswer={showAnswer}
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"
-        year={formatNumber(costsPerYear) ?? ""}
-        today={formatNumber(costsTillToday) ?? ""}
-        life={formatNumber(costsInLife) ?? ""}
+        year={costsPerYear ? formatNumber(costsPerYear) : ""}
+        today={costsTillToday ? formatNumber(costsTillToday) : ""}
+        life={costsInLife ? formatNumber(costsInLife) : ""}
         additionalYear={`davon sind ${
-          formatNumber(taxesPerYear) ?? ""
+          taxesPerYear ? formatNumber(taxesPerYear) : ""
         } Euro Steuern`}
         additionalToday={`davon sind ${
-          formatNumber(taxesTillToday) ?? ""
+          taxesTillToday ? formatNumber(taxesTillToday) : ""
         } Euro Steuern`}
         additionalLife={`davon sind ${
-          formatNumber(taxesInLife) ?? ""
+          taxesInLife ? formatNumber(taxesInLife) : ""
         } Euro Steuern`}
       />
       <PeriotopiaInfo

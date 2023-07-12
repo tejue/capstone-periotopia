@@ -1,6 +1,7 @@
+import styled from "styled-components";
 import Question from "../Question";
 import InputNumber from "../InputNumber";
-import styled from "styled-components";
+import Button from "../Button";
 
 const StyledForm = styled.form`
   display: flex;
