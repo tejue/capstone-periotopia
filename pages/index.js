@@ -2,68 +2,147 @@ import { useState } from "react";
 import PersonalAnswer from "@/components/PersonalAnswer/index";
 import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
 import FormGeneral from "@/components/FormGeneral/index";
+import FormFinancials from "@/components/FormFinancials";
+import PeriotopiaIndex from "@/components/PeriotopiaIndex";
 
 export default function HomePage() {
-  const [age, setAge] = useState("");
-  const [firstMenstruation, setFirstMenstruation] = useState("");
-  const [cyclusLength, setCyclusLength] = useState("");
-  const [menstruationLength, setMenstruationLength] = useState("");
-  const [menstruationDaysPerYear, setMenstruationDaysPerYear] = useState("");
-  const [menstruationDaysTillNow, setMenstruationDaysTillNow] = useState("");
-  const [menstruationDaysInLife, setMenstruationDaysInLife] = useState("");
+  const [generalInfo, setGeneralInfo] = useState({
+    age: "",
+    firstMenstruation: "",
+    cyclusLength: "",
+    menstruationLength: "",
+  });
 
-  function handleAgeChange(event) {
-    setAge(event.target.value);
+  const { age, firstMenstruation, cyclusLength, menstruationLength } =
+    generalInfo;
+
+  const handleGeneralInfo = (event) => {
+    const { name, value } = event.target;
+    setGeneralInfo((prevGeneralInfo) => ({
+      ...prevGeneralInfo,
+      [name]: value,
+    }));
+  };
+
+  const menstruationDaysPerYear = Math.round(
+    (365 / cyclusLength) * menstruationLength
+  );
+
+  const menstruationDaysTillNow = Math.round(
+    menstruationDaysPerYear * (age - firstMenstruation)
+  );
+
+  const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 38);
+
+  const [financials, setFinancials] = useState({
+    product: "",
+    packageCosts: "",
+    taxReduction: "",
+    taxes: "",
+    packageContent: "",
+    changeProdukt: "",
+  });
+
+  const {
+    product,
+    packageCosts,
+    taxReduction,
+    taxes,
+    packageContent,
+    changeProduct,
+  } = financials;
+
+  const handleFinancials = (event) => {
+    const { name, value } = event.target;
+    setFinancials((prevFinancials) => ({
+      ...prevFinancials,
+      [name]: value,
+    }));
+  };
+
+  const costsPerCyclus = Math.round(
+    (packageCosts / packageContent) * changeProduct * menstruationLength
+  );
+
+  const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
+  const taxesPerYear = Math.round(costsPerYear * (taxes / 100));
+
+  const costsTillToday = Math.round(costsPerYear * (age - firstMenstruation));
+  const taxesTillToday = Math.round(costsTillToday * (taxes / 100));
+
+  const costsInLife = Math.round(costsPerYear * 38);
+  const taxesInLife = Math.round(costsInLife * (taxes / 100));
+
+  function periotopiaIndexFinancials() {
+    if (packageCosts === "0") {
+      return "100%";
+    } else if (packageCosts > "0" && taxReduction === "keine Steuer") {
+      return "66%";
+    } else if (packageCosts > "0" && taxReduction === "Teilsteuer") {
+      return "33%";
+    } else {
+      return "0%";
+    }
   }
 
-  function handleFirstMenstruationChange(event) {
-    setFirstMenstruation(event.target.value);
-  }
-
-  function handleCyclusLengthChange(event) {
-    setCyclusLength(event.target.value);
-  }
-
-  function handleMenstruationLengthChange(event) {
-    setMenstruationLength(event.target.value);
-  }
-
-  function handleMenstruationDaysPerYear(calculatedMenstruationDaysPerYear) {
-    setMenstruationDaysPerYear(calculatedMenstruationDaysPerYear);
-  }
-
-  function handleMenstruationDaysTillNow(calculatedMenstruationDaysTillNow) {
-    setMenstruationDaysTillNow(calculatedMenstruationDaysTillNow);
-  }
-
-  function handleMenstruationDaysInLife(calculatedMenstruationDaysInLIfe) {
-    setMenstruationDaysInLife(calculatedMenstruationDaysInLIfe);
+  function formatNumber(number) {
+    return number != null ? number.toLocaleString("de-DE") : "";
   }
 
   return (
     <>
       <h1>Periotopia</h1>
       <FormGeneral
-        onAgeChange={handleAgeChange}
-        onFirstMenstruationChange={handleFirstMenstruationChange}
-        onCyclusLengthChange={handleCyclusLengthChange}
-        onMenstruationLengthChange={handleMenstruationLengthChange}
-        age={age}
-        firstMenstruation={firstMenstruation}
-        cyclusLength={cyclusLength}
-        menstruationLength={menstruationLength}
-        handleMenstruationDaysPerYear={handleMenstruationDaysPerYear}
-        handleMenstruationDaysTillNow={handleMenstruationDaysTillNow}
-        handleMenstruationDaysInLife={handleMenstruationDaysInLife}
-      ></FormGeneral>
+        generalInfo={generalInfo}
+        handleGeneralInfo={handleGeneralInfo}
+      />
       <PersonalAnswer
         personalAnswerText="Du menstruierst"
         unit="Tage"
-        year={menstruationDaysPerYear}
-        today={menstruationDaysTillNow}
-        life={menstruationDaysInLife}
+        year={
+          menstruationDaysPerYear ? formatNumber(menstruationDaysPerYear) : ""
+        }
+        today={
+          menstruationDaysPerYear ? formatNumber(menstruationDaysTillNow) : ""
+        }
+        life={
+          menstruationDaysInLife ? formatNumber(menstruationDaysInLife) : ""
+        }
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
+
+      <FormFinancials
+        financials={financials}
+        handleFinancials={handleFinancials}
+      />
+      <PersonalAnswer
+        personalAnswerText="Für deine Menstruationsprodukte zahlst du"
+        unit="Euro"
+        year={costsPerYear ? formatNumber(costsPerYear) : ""}
+        today={costsTillToday ? formatNumber(costsTillToday) : ""}
+        life={costsInLife ? formatNumber(costsInLife) : ""}
+        additionalYear={`davon sind ${
+          taxesPerYear ? formatNumber(taxesPerYear) : ""
+        } Euro Steuern`}
+        additionalToday={`davon sind ${
+          taxesTillToday ? formatNumber(taxesTillToday) : ""
+        } Euro Steuern`}
+        additionalLife={`davon sind ${
+          taxesInLife ? formatNumber(taxesInLife) : ""
+        } Euro Steuern`}
+      />
+      <PeriotopiaInfo
+        periotopiaInfoText="In Periotopia wären
+      Menstruationsprodukte frei zugänglich. Schottland ist das bisher einzige
+      Land weltweit, in dem Menstruationsartikel in öffentlichen Gebäuden per
+      Gesetz kostenlos bereitgestellt werden müssen. In Deutschland sind es vor
+      allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
+      Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
+      In Deutschland ist sie seit 2020 zumindest reduziert"
+      />
+      <PeriotopiaIndex
+        periotopiaIndexFinancials={periotopiaIndexFinancials()}
+      />
     </>
   );
 }

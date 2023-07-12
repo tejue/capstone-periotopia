@@ -13,29 +13,40 @@ export default function PersonalAnswer({
   year,
   today,
   life,
+  additionalYear,
+  additionalToday,
+  additionalLife,
 }) {
   return (
-    <StyledPersonalAnswer>
-      <p>{personalAnswerText}</p>
-      <p>
-        {year}
-        <br />
-        <small>{unit} im Jahr</small>
-      </p>
-      <p>
-        <small>davon</small>
-        <br />
-        {today}
-        <br />
-        <small>{unit} bis heute</small>
-      </p>
-      <p>
-        <small>und</small>
-        <br />
-        {life}
-        <br />
-        <small>{unit} in deinem Menstruations-Leben</small>
-      </p>
-    </StyledPersonalAnswer>
+    <>
+      <StyledPersonalAnswer>
+        <p>{personalAnswerText}</p>
+        <p>
+          {year}
+          <br />
+          <small>{unit} im Jahr</small>
+          <br />
+          <small>{additionalYear}</small>
+        </p>
+        <p>
+          <small>davon</small>
+          <br />
+          {today}
+          <br />
+          <small>{unit} bis heute</small>
+          <br />
+          <small>{additionalToday}</small>
+        </p>
+        <p>
+          <small>und</small>
+          <br />
+          {life}
+          <br />
+          <small>{unit} in deinem Menstruations-Leben</small>
+          <br />
+          <small>{additionalLife}</small>
+        </p>
+      </StyledPersonalAnswer>
+    </>
   );
 }
