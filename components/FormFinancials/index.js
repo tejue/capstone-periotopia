@@ -10,6 +10,11 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
+const StyledFieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+`;
+
 export default function FormFinancials({ financials, handleFinancials }) {
   const {
     product,
@@ -49,43 +54,45 @@ export default function FormFinancials({ financials, handleFinancials }) {
         onChange={handleFinancials}
       />
       Euro
-      <Question id="taxReduction" question="Wie wird dein Produkt besteuert?" />
-      <label>
-        <input
-          id="taxReduction-full"
-          name="taxReduction"
-          type="radio"
-          value="volle Steuer"
-          checked={taxReduction === "volle Steuer"}
-          onChange={handleFinancials}
-          disabled={packageCosts === "0"}
-        />
-        volle Steuer
-      </label>
-      <label>
-        <input
-          id="taxReduction-partial"
-          name="taxReduction"
-          type="radio"
-          value="Teilsteuer"
-          checked={taxReduction === "Teilsteuer"}
-          onChange={handleFinancials}
-          disabled={packageCosts === "0"}
-        />
-        Teilsteuer
-      </label>
-      <label>
-        <input
-          id="taxReduction-none"
-          name="taxReduction"
-          type="radio"
-          value="keine Steuer"
-          checked={taxReduction === "keine Steuer"}
-          onChange={handleFinancials}
-          disabled={packageCosts === "0"}
-        />
-        keine Steuer
-      </label>
+      <StyledFieldset>
+        <legend>Wie wird dein Produkt besteuert?</legend>
+        <label htmlFor="taxReduction-full">
+          <input
+            id="taxReduction-full"
+            name="taxReduction"
+            type="radio"
+            value="volle Steuer"
+            checked={taxReduction === "volle Steuer"}
+            onChange={handleFinancials}
+            disabled={packageCosts === "0"}
+          />
+          volle Steuer
+        </label>
+        <label htmlFor="taxReduction-partial">
+          <input
+            id="taxReduction-partial"
+            name="taxReduction"
+            type="radio"
+            value="Teilsteuer"
+            checked={taxReduction === "Teilsteuer"}
+            onChange={handleFinancials}
+            disabled={packageCosts === "0"}
+          />
+          Teilsteuer
+        </label>
+        <label htmlFor="taxReduction-none">
+          <input
+            id="taxReduction-none"
+            name="taxReduction"
+            type="radio"
+            value="keine Steuer"
+            checked={taxReduction === "keine Steuer"}
+            onChange={handleFinancials}
+            disabled={packageCosts === "0"}
+          />
+          keine Steuer
+        </label>
+      </StyledFieldset>
       <Question
         id="taxes"
         question="Wieviel Steuern zahlst du beim Kauf einer Packung?"

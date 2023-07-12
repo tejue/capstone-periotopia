@@ -49,7 +49,7 @@ export default function HomePage() {
     taxReduction,
     taxes,
     packageContent,
-    changeProdukt,
+    changeProduct,
   } = financials;
 
   const handleFinancials = (event) => {
@@ -61,7 +61,7 @@ export default function HomePage() {
   };
 
   const costsPerCyclus = Math.round(
-    (packageCosts / packageContent) * changeProdukt * menstruationLength
+    (packageCosts / packageContent) * changeProduct * menstruationLength
   );
 
   const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
@@ -76,9 +76,9 @@ export default function HomePage() {
   function periotopiaIndexFinancials() {
     if (packageCosts === "0") {
       return "100%";
-    } else if (packageCosts > 0 && taxReduction === "keine Steuer") {
+    } else if (packageCosts > "0" && taxReduction === "keine Steuer") {
       return "66%";
-    } else if (packageCosts > 0 && taxReduction === "Teilsteuer") {
+    } else if (packageCosts > "0" && taxReduction === "Teilsteuer") {
       return "33%";
     } else {
       return "0%";
