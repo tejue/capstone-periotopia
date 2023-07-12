@@ -89,21 +89,14 @@ export default function HomePage() {
     return number != null ? number.toLocaleString("de-DE") : "";
   }
 
-  // const [showAnswer, setShowAnswer] = useState(false);
-  // function handleClick(event) {
-  //   setShowAnswer(!showAnswer);
-  // }
-
   return (
     <>
       <h1>Periotopia</h1>
       <FormGeneral
         generalInfo={generalInfo}
         handleGeneralInfo={handleGeneralInfo}
-        // handleClick={handleClick}
       />
       <PersonalAnswer
-        // showAnswer={showAnswer}
         personalAnswerText="Du menstruierst"
         unit="Tage"
         year={
@@ -121,10 +114,8 @@ export default function HomePage() {
       <FormFinancials
         financials={financials}
         handleFinancials={handleFinancials}
-        // handleClick={handleClick}
       />
       <PersonalAnswer
-        // showAnswer={showAnswer}
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"
         year={costsPerYear ? formatNumber(costsPerYear) : ""}

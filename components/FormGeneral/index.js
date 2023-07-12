@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
-import Button from "../Button/index";
 
 const StyledForm = styled.form`
   display: flex;
@@ -11,11 +10,7 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormGeneral({
-  handleGeneralInfo,
-  generalInfo,
-  handleClick,
-}) {
+export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
 
@@ -74,7 +69,6 @@ export default function FormGeneral({
           onChange={handleGeneralInfo}
         />
       </StyledForm>
-      {/* <Button onClick={handleClick} /> */}
     </>
   );
 }

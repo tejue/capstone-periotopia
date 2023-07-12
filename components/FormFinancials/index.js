@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question";
 import InputNumber from "../InputNumber";
-import Button from "../Button";
 
 const StyledForm = styled.form`
   display: flex;
@@ -128,7 +127,6 @@ export default function FormFinancials({ financials, handleFinancials }) {
         min="1"
         value={changeProdukt}
         onChange={handleFinancials}
-        disabled={!(product === "Tampon" || product === "Binde")}
       />
     </StyledForm>
   );

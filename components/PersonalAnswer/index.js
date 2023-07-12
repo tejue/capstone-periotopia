@@ -16,11 +16,9 @@ export default function PersonalAnswer({
   additionalYear,
   additionalToday,
   additionalLife,
-  // showAnswer,
 }) {
   return (
     <>
-      {/* {showAnswer && ( */}
       <StyledPersonalAnswer>
         <p>{personalAnswerText}</p>
         <p>
@@ -49,7 +47,6 @@ export default function PersonalAnswer({
           <small>{additionalLife}</small>
         </p>
       </StyledPersonalAnswer>
-      {/* )} */}
     </>
   );
 }
