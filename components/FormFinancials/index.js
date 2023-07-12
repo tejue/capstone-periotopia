@@ -59,6 +59,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
           value="volle Steuer"
           checked={taxReduction === "volle Steuer"}
           onChange={handleFinancials}
+          disabled={packageCosts === "0"}
         />
         volle Steuer
       </label>
@@ -70,6 +71,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
           value="Teilsteuer"
           checked={taxReduction === "Teilsteuer"}
           onChange={handleFinancials}
+          disabled={packageCosts === "0"}
         />
         Teilsteuer
       </label>
@@ -81,6 +83,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
           value="keine Steuer"
           checked={taxReduction === "keine Steuer"}
           onChange={handleFinancials}
+          disabled={packageCosts === "0"}
         />
         keine Steuer
       </label>
@@ -104,7 +107,15 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="packageContent"
         name="packageContent"
         min="1"
-        value={packageContent}
+        value={
+          product === "Tampon" || product === "Binde"
+            ? packageContent
+            : product === "Perioden-Disc" ||
+              product === "Perioden-Cup" ||
+              product === "Perioden-Schlüppi"
+            ? "1"
+            : ""
+        }
         onChange={handleFinancials}
       />
       <Question
