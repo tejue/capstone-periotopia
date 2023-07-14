@@ -15,9 +15,9 @@ export default function FormGeneral({ handleGeneralInfo }) {
   // const { age, firstMenstruation, cyclusLength, menstruationLength } =
   //   generalInfo;
 
-  const maxAge = 100;
-  const minAge = 8;
-  const maxCyclusLength = 60;
+  const maxAge = "100";
+  const minAge = "8";
+  const maxCyclusLength = "60";
 
   const [currentValue, setCurrentValue] = useState({
     age: "",

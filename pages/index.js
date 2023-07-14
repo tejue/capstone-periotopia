@@ -35,38 +35,31 @@ export default function HomePage() {
   const [financials, setFinancials] = useState({
     product: "",
     packageCosts: "",
-    taxReduction: "",
+    taxAmount: "",
     taxes: "",
     packageContent: "",
     changeProduct: "",
   });
+  console.log("FETT FINANZIELLES", financials);
 
   const {
     product,
     packageCosts,
-    taxReduction,
+    taxAmount,
     taxes,
     packageContent,
     changeProduct,
   } = financials;
 
-  // function handleFinancials(event) {
-  //   const { name, value } = event.target;
-  //   setFinancials((prevFinancials) => ({
-  //     ...prevFinancials,
-  //     [name]: value,
-  //   }));
-  // }
-
   function handleFinancials(data) {
-    setFinancials(() => ({
-      ...data,
-    }));
+    setFinancials(data);
   }
+  console.log("financials", financials);
 
   const costsPerCyclus = Math.round(
     (packageCosts / packageContent) * (changeProduct * menstruationLength)
   );
+  console.log("COSTPER", costsPerCyclus);
 
   const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
   const taxesPerYear = Math.round(costsPerYear * (taxes / 100));
@@ -80,9 +73,9 @@ export default function HomePage() {
   function periotopiaIndexFinancials() {
     if (packageCosts === "0") {
       return "100%";
-    } else if (packageCosts > "0" && taxReduction === "keine Steuer") {
+    } else if (packageCosts > "0" && taxAmount === "none") {
       return "66%";
-    } else if (packageCosts > "0" && taxReduction === "Teilsteuer") {
+    } else if (packageCosts > "0" && taxAmount === "partial") {
       return "33%";
     } else {
       return "0%";
