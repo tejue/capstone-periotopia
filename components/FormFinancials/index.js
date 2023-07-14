@@ -16,43 +16,11 @@ const StyledFieldset = styled.fieldset`
   flex-direction: column;
 `;
 
-export default function FormFinancials({ financials, handleFinancials }) {
-  // const {
-  //   product,
-  //   packageCosts,
-  //   taxReduction,
-  //   taxes,
-  //   packageContent,
-  //   changeProduct,
-  // } = financials;
-
-  const [currentValue, setCurrentValue] = useState({
-    product: "",
-    packageCosts: "",
-    taxes: "",
-  });
-
-  console.log("DER CURRENT VALUE", currentValue);
+export default function FormFinancials({ handleFinancials }) {
+  const [currentValue, setCurrentValue] = useState("");
 
   function handleUserInput(event, fieldName) {
     setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
-
-    // if (fieldName === "product") {
-    //   setCurrentValue({ ...currentValue, product: event.target.value });
-    // }
-
-    // if (fieldName === "packageCosts") {
-    //   setCurrentValue({
-    //     ...currentValue,
-    //     packageCosts: event.target.value,
-    //   });
-    // }
-
-    // if (fieldName === "taxes") {
-    //   setCurrentValue({
-    //     ...currentValue,
-    //     taxes: event.target.value,
-    //   });
   }
 
   function handleSubmit(event) {
@@ -93,36 +61,39 @@ export default function FormFinancials({ financials, handleFinancials }) {
       Euro
       <StyledFieldset>
         <legend>Wie wird dein Produkt besteuert?</legend>
-        <label htmlFor="taxReductionFull">
+        <label htmlFor="taxAmountFull">
           <input
-            id="taxReductionFull"
+            id="taxAmountFull"
             name="taxAmount"
             type="radio"
             value="full"
             checked={currentValue.taxAmount === "full"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
+            disabled={currentValue.packageCosts === "0"}
           />
           volle Steuer
         </label>
-        <label htmlFor="taxReductionPartial">
+        <label htmlFor="taxAmountPartial">
           <input
-            id="taxReductionPartial"
+            id="taxAmountPartial"
             name="taxAmount"
             type="radio"
             value="partial"
             checked={currentValue.taxAmount === "partial"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
+            disabled={currentValue.packageCosts === "0"}
           />
-          Teilsteuer
+          reduzierte Steuer
         </label>
-        <label htmlFor="taxReductionNone">
+        <label htmlFor="taxAmountNone">
           <input
-            id="taxReductionNone"
+            id="taxAmountNone"
             name="taxAmount"
             type="radio"
             value="none"
             checked={currentValue.taxAmount === "none"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
+            disabled={currentValue.packageCosts === "0"}
           />
           keine Steuer
         </label>
@@ -135,7 +106,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="taxes"
         name="taxes"
         min="0"
-        value={currentValue.taxes}
+        value={currentValue.packageCosts === "0" ? "0" : currentValue.taxes}
         onChange={(event) => handleUserInput(event, "taxes")}
       />
       %
@@ -143,20 +114,7 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="packageContent"
         question="Wieviele Produkte sind in einer Packung enthalten?"
       />
-      <InputNumber
-        id="packageContent"
-        name="packageContent"
-        min="1"
-        // value={
-        //   product === "Tampon" || product === "Binde"
-        //     ? packageContent
-        //     : product === "Perioden-Disc" ||
-        //       product === "Perioden-Cup" ||
-        //       product === "Perioden-Schlüppi"
-        //     ? "1"
-        //     : ""
-        // }
-      />
+      <InputNumber id="packageContent" name="packageContent" min="1" />
       <Question
         id="changeProduct"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
