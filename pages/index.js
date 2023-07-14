@@ -16,13 +16,11 @@ export default function HomePage() {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
 
-  const handleGeneralInfo = (event) => {
-    const { name, value } = event.target;
-    setGeneralInfo((prevGeneralInfo) => ({
-      ...prevGeneralInfo,
-      [name]: value,
-    }));
-  };
+  function handleGeneralInfo(data) {
+    setGeneralInfo({
+      ...data,
+    });
+  }
 
   const menstruationDaysPerYear = Math.round(
     (365 / cyclusLength) * menstruationLength
@@ -40,7 +38,7 @@ export default function HomePage() {
     taxReduction: "",
     taxes: "",
     packageContent: "",
-    changeProdukt: "",
+    changeProduct: "",
   });
 
   const {
@@ -52,16 +50,22 @@ export default function HomePage() {
     changeProduct,
   } = financials;
 
-  const handleFinancials = (event) => {
-    const { name, value } = event.target;
-    setFinancials((prevFinancials) => ({
-      ...prevFinancials,
-      [name]: value,
+  // function handleFinancials(event) {
+  //   const { name, value } = event.target;
+  //   setFinancials((prevFinancials) => ({
+  //     ...prevFinancials,
+  //     [name]: value,
+  //   }));
+  // }
+
+  function handleFinancials(data) {
+    setFinancials(() => ({
+      ...data,
     }));
-  };
+  }
 
   const costsPerCyclus = Math.round(
-    (packageCosts / packageContent) * changeProduct * menstruationLength
+    (packageCosts / packageContent) * (changeProduct * menstruationLength)
   );
 
   const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);

@@ -22,11 +22,23 @@ export default function FormFinancials({ financials, handleFinancials }) {
     taxReduction,
     taxes,
     packageContent,
-    changeProdukt,
+    changeProduct,
   } = financials;
 
+  // function handleChange(event) {
+  //   const { name, value } = event.target;
+  // }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    handleFinancials(data);
+  }
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Question
         id="product"
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
@@ -34,8 +46,8 @@ export default function FormFinancials({ financials, handleFinancials }) {
       <select
         id="product"
         name="product"
-        value={product}
-        onChange={handleFinancials}
+        // value={product}
+        // onChange={handleFinancials}
         required
       >
         <option>-- Produkt auswählen --</option>
@@ -50,8 +62,8 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="packageCosts"
         name="packageCosts"
         min="0"
-        value={packageCosts}
-        onChange={handleFinancials}
+        // value={packageCosts}
+        // onChange={handleFinancials}
       />
       Euro
       <StyledFieldset>
@@ -61,9 +73,9 @@ export default function FormFinancials({ financials, handleFinancials }) {
             id="taxReduction-full"
             name="taxReduction"
             type="radio"
-            value="volle Steuer"
+            // value="volle Steuer"
             checked={taxReduction === "volle Steuer"}
-            onChange={handleFinancials}
+            // onChange={handleFinancials}
             disabled={packageCosts === "0"}
           />
           volle Steuer
@@ -73,9 +85,9 @@ export default function FormFinancials({ financials, handleFinancials }) {
             id="taxReduction-partial"
             name="taxReduction"
             type="radio"
-            value="Teilsteuer"
+            // value="Teilsteuer"
             checked={taxReduction === "Teilsteuer"}
-            onChange={handleFinancials}
+            // onChange={handleFinancials}
             disabled={packageCosts === "0"}
           />
           Teilsteuer
@@ -85,9 +97,9 @@ export default function FormFinancials({ financials, handleFinancials }) {
             id="taxReduction-none"
             name="taxReduction"
             type="radio"
-            value="keine Steuer"
+            // value="keine Steuer"
             checked={taxReduction === "keine Steuer"}
-            onChange={handleFinancials}
+            // onChange={handleFinancials}
             disabled={packageCosts === "0"}
           />
           keine Steuer
@@ -101,8 +113,8 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="taxes"
         name="taxes"
         min="0"
-        value={taxes}
-        onChange={handleFinancials}
+        // value={taxes}
+        // onChange={handleFinancials}
       />
       %
       <Question
@@ -113,28 +125,29 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="packageContent"
         name="packageContent"
         min="1"
-        value={
-          product === "Tampon" || product === "Binde"
-            ? packageContent
-            : product === "Perioden-Disc" ||
-              product === "Perioden-Cup" ||
-              product === "Perioden-Schlüppi"
-            ? "1"
-            : ""
-        }
-        onChange={handleFinancials}
+        // value={
+        //   product === "Tampon" || product === "Binde"
+        //     ? packageContent
+        //     : product === "Perioden-Disc" ||
+        //       product === "Perioden-Cup" ||
+        //       product === "Perioden-Schlüppi"
+        //     ? "1"
+        //     : ""
+        // }
+        // onChange={handleFinancials}
       />
       <Question
-        id="changeProdukt"
+        id="changeProduct"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
       />
       <InputNumber
-        id="changeProdukt"
-        name="changeProdukt"
+        id="changeProduct"
+        name="changeProduct"
         min="1"
-        value={changeProdukt}
-        onChange={handleFinancials}
+        // value={changeProduct}
+        // onChange={handleFinancials}
       />
+      <button type="submit">Schau dir deinen Periotopia-Index</button>
     </StyledForm>
   );
 }
