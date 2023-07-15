@@ -112,6 +112,7 @@ export default function FormFinancials({ handleFinancials }) {
         id="taxes"
         name="taxes"
         min="0"
+        max="60"
         value={
           currentValue.packageCosts === "0" || currentValue.taxAmount === "none"
             ? "0"
