@@ -14,7 +14,7 @@ const StyledForm = styled.form`
 export default function FormGeneral({ handleGeneralInfo }) {
   const maxAge = 100;
   const minAge = 8;
-  const maxCyclusLength = 60;
+  //const maxCyclusLength = 60;
 
   const [currentValue, setCurrentValue] = useState({
     age: "",
@@ -46,9 +46,6 @@ export default function FormGeneral({ handleGeneralInfo }) {
           value={currentValue.age}
           onChange={(event) => handleUserInput(event, "age")}
         />
-        {/* {currentValue.age < minAge || currentValue.age > maxAge
-          ? "Bitte gib eine Zahl zwischen 8 und 100 ein"
-          : null} */}
         <Question
           id="firstMenstruation"
           question="Wie alt warst du bei deiner ersten Menstruation?"
@@ -58,12 +55,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="firstMenstruation"
           min={minAge - 1}
           max={currentValue.age}
-          // value={currentValue.firstMenstruation}
-          // onChange={(event) => handleUserInput(event, "firstMenstruation")}
         />
-        {/* {currentValue.firstMenstruation > currentValue.age
-          ? "Es scheint, dass deine Menstruation noch nicht bekommen hast. Bitte gib mindestens dein aktuelles Alter ein"
-          : ""} */}
         <Question
           id="cyclusLength"
           question="Wie oft beginnt deine Menstruation?"
@@ -73,7 +65,6 @@ export default function FormGeneral({ handleGeneralInfo }) {
           id="cyclusLength"
           name="cyclusLength"
           min="1"
-          max={maxCyclusLength}
           value={currentValue.cyclusLength}
           onChange={(event) => handleUserInput(event, "cyclusLength")}
         />
@@ -87,11 +78,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="menstruationLength"
           min="1"
           max={currentValue.cyclusLength - 1}
-          // onChange={(event) => handleUserInput(event, "menstruationLength")}
         />
-        {/* {currentValue.menstruationLength >= currentValue.cyclusLength
-          ? "Deine Menstruation muss mindestens 1 Tage weniger als dein Zykluslänge sein"
-          : null} */}
         <button type="submit">Schau dir dein Ergebnis an</button>
       </StyledForm>
     </>

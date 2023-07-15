@@ -72,7 +72,9 @@ export default function FormFinancials({ handleFinancials }) {
             value="full"
             checked={currentValue.taxAmount === "full"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
-            disabled={currentValue.packageCosts === "0"}
+            disabled={
+              currentValue.packageCosts === "0" || currentValue.taxes === "0"
+            }
           />
           volle Steuer
         </label>
@@ -84,7 +86,9 @@ export default function FormFinancials({ handleFinancials }) {
             value="partial"
             checked={currentValue.taxAmount === "partial"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
-            disabled={currentValue.packageCosts === "0"}
+            disabled={
+              currentValue.packageCosts === "0" || currentValue.taxes === "0"
+            }
           />
           reduzierte Steuer
         </label>
@@ -96,7 +100,6 @@ export default function FormFinancials({ handleFinancials }) {
             value="none"
             checked={currentValue.taxAmount === "none"}
             onChange={(event) => handleUserInput(event, "taxAmount")}
-            disabled={currentValue.packageCosts === "0"}
           />
           keine Steuer
         </label>
@@ -109,7 +112,11 @@ export default function FormFinancials({ handleFinancials }) {
         id="taxes"
         name="taxes"
         min="0"
-        value={currentValue.packageCosts === "0" ? "0" : currentValue.taxes}
+        value={
+          currentValue.packageCosts === "0" || currentValue.taxAmount === "none"
+            ? "0"
+            : currentValue.taxes
+        }
         onChange={(event) => handleUserInput(event, "taxes")}
       />
       %

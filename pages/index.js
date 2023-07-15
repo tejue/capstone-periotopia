@@ -28,10 +28,12 @@ export default function HomePage() {
   );
 
   const menstruationDaysTillNow = Math.round(
-    menstruationDaysPerYear * (age - firstMenstruation)
+    age - firstMenstruation < 39
+      ? menstruationDaysPerYear * (age - firstMenstruation)
+      : menstruationDaysPerYear * 39
   );
 
-  const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 38);
+  const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 39);
 
   //Calculation PersonalAnswer Financials
   const [financials, setFinancials] = useState({
@@ -82,16 +84,15 @@ export default function HomePage() {
   const taxesInLife = costsInLife * (taxes / 100);
 
   function formatNumber(number) {
-    if (number != null && number >= 0) {
-      return Math.abs(number) % 1 !== 0
-        ? number.toLocaleString("de-DE", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })
-        : Math.trunc(number).toLocaleString("de-DE");
-    } else {
+    if (number == null || number < 0) {
       return "";
+    } else if (Math.abs(number) % 1 !== 0) {
+      return number.toLocaleString("de-DE", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
     }
+    return Math.trunc(number).toLocaleString("de-DE");
   }
 
   //Calculation Periotopia-Index
