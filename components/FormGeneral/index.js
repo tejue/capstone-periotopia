@@ -16,7 +16,10 @@ export default function FormGeneral({ handleGeneralInfo }) {
   const minAge = 8;
   const maxCyclusLength = 60;
 
-  const [currentValue, setCurrentValue] = useState("");
+  const [currentValue, setCurrentValue] = useState({
+    age: "",
+    cyclusLength: "",
+  });
 
   function handleUserInput(event, fieldName) {
     setCurrentValue({ ...currentValue, [fieldName]: event.target.value });

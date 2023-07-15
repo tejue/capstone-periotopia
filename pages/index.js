@@ -58,31 +58,40 @@ export default function HomePage() {
 
   function costsPerYearCalc() {
     if (product === "tampon" || product === "pad") {
-      return Math.round(
+      return (
         (packageCosts / packageContent) *
-          (changeProduct * menstruationLength) *
-          menstruationDaysPerYear
+        (changeProduct * menstruationLength) *
+        menstruationDaysPerYear
       );
     } else if (product === "cup" || product === "disc") {
-      return Math.round(packageCosts / (packageContent / packageContent / 5));
+      return packageCosts / 5 / (packageContent / packageContent);
     } else if (product === "schlueppi") {
-      return Math.round(
+      return (
         (packageCosts / packageContent / 2) *
-          (changeProduct * menstruationLength)
+        (changeProduct * menstruationLength)
       );
     } else return 0;
   }
   const costsPerYear = costsPerYearCalc();
-  const taxesPerYear = Math.round(costsPerYear * (taxes / 100));
+  const taxesPerYear = costsPerYear * (taxes / 100);
 
-  const costsTillToday = Math.round(costsPerYear * (age - firstMenstruation));
-  const taxesTillToday = Math.round(costsTillToday * (taxes / 100));
+  const costsTillToday = costsPerYear * (age - firstMenstruation);
+  const taxesTillToday = costsTillToday * (taxes / 100);
 
-  const costsInLife = Math.round(costsPerYear * 38);
-  const taxesInLife = Math.round(costsInLife * (taxes / 100));
+  const costsInLife = costsPerYear * 38;
+  const taxesInLife = costsInLife * (taxes / 100);
 
   function formatNumber(number) {
-    return number != null ? number.toLocaleString("de-DE") : "";
+    if (number != null && number >= 0) {
+      return Math.abs(number) % 1 !== 0
+        ? number.toLocaleString("de-DE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        : Math.trunc(number).toLocaleString("de-DE");
+    } else {
+      return "";
+    }
   }
 
   //Calculation Periotopia-Index
@@ -101,10 +110,7 @@ export default function HomePage() {
   return (
     <>
       <h1>Periotopia</h1>
-      <FormGeneral
-        generalInfo={generalInfo}
-        handleGeneralInfo={handleGeneralInfo}
-      />
+      <FormGeneral handleGeneralInfo={handleGeneralInfo} />
       <PersonalAnswer
         personalAnswerText="Du menstruierst"
         unit="Tage"
@@ -120,10 +126,7 @@ export default function HomePage() {
       />
       <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
 
-      <FormFinancials
-        financials={financials}
-        handleFinancials={handleFinancials}
-      />
+      <FormFinancials handleFinancials={handleFinancials} />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"

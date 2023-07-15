@@ -17,7 +17,10 @@ const StyledFieldset = styled.fieldset`
 `;
 
 export default function FormFinancials({ handleFinancials }) {
-  const [currentValue, setCurrentValue] = useState("");
+  const [currentValue, setCurrentValue] = useState({
+    packageCosts: "",
+    taxes: "",
+  });
 
   function handleUserInput(event, fieldName) {
     setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
