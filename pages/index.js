@@ -6,6 +6,7 @@ import FormFinancials from "@/components/FormFinancials";
 import PeriotopiaIndex from "@/components/PeriotopiaIndex";
 
 export default function HomePage() {
+  //Calculation PersonalAnswer GeneralInfo
   const [generalInfo, setGeneralInfo] = useState({
     age: "",
     firstMenstruation: "",
@@ -32,6 +33,7 @@ export default function HomePage() {
 
   const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 38);
 
+  //Calculation PersonalAnswer Financials
   const [financials, setFinancials] = useState({
     product: "",
     packageCosts: "",
@@ -40,7 +42,6 @@ export default function HomePage() {
     packageContent: "",
     changeProduct: "",
   });
-  console.log("FETT FINANZIELLES", financials);
 
   const {
     product,
@@ -54,14 +55,24 @@ export default function HomePage() {
   function handleFinancials(data) {
     setFinancials(data);
   }
-  console.log("financials", financials);
 
-  const costsPerCyclus = Math.round(
-    (packageCosts / packageContent) * (changeProduct * menstruationLength)
-  );
-  console.log("COSTPER", costsPerCyclus);
-
-  const costsPerYear = Math.round(costsPerCyclus * menstruationDaysPerYear);
+  function costsPerYearCalc() {
+    if (product === "tampon" || product === "pad") {
+      return Math.round(
+        (packageCosts / packageContent) *
+          (changeProduct * menstruationLength) *
+          menstruationDaysPerYear
+      );
+    } else if (product === "cup" || product === "disc") {
+      return Math.round(packageCosts / (packageContent / packageContent / 5));
+    } else if (product === "schlueppi") {
+      return Math.round(
+        (packageCosts / packageContent / 2) *
+          (changeProduct * menstruationLength)
+      );
+    } else return 0;
+  }
+  const costsPerYear = costsPerYearCalc();
   const taxesPerYear = Math.round(costsPerYear * (taxes / 100));
 
   const costsTillToday = Math.round(costsPerYear * (age - firstMenstruation));
@@ -70,6 +81,11 @@ export default function HomePage() {
   const costsInLife = Math.round(costsPerYear * 38);
   const taxesInLife = Math.round(costsInLife * (taxes / 100));
 
+  function formatNumber(number) {
+    return number != null ? number.toLocaleString("de-DE") : "";
+  }
+
+  //Calculation Periotopia-Index
   function periotopiaIndexFinancials() {
     if (packageCosts === "0") {
       return "100%";
@@ -80,10 +96,6 @@ export default function HomePage() {
     } else {
       return "0%";
     }
-  }
-
-  function formatNumber(number) {
-    return number != null ? number.toLocaleString("de-DE") : "";
   }
 
   return (

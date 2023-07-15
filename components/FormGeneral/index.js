@@ -12,40 +12,14 @@ const StyledForm = styled.form`
 `;
 
 export default function FormGeneral({ handleGeneralInfo }) {
-  // const { age, firstMenstruation, cyclusLength, menstruationLength } =
-  //   generalInfo;
+  const maxAge = 100;
+  const minAge = 8;
+  const maxCyclusLength = 60;
 
-  const maxAge = "100";
-  const minAge = "8";
-  const maxCyclusLength = "60";
-
-  const [currentValue, setCurrentValue] = useState({
-    age: "",
-    cyclusLength: "",
-  });
+  const [currentValue, setCurrentValue] = useState("");
 
   function handleUserInput(event, fieldName) {
-    if (fieldName === "age") {
-      setCurrentValue({ ...currentValue, age: event.target.value });
-    }
-    // if (fieldName === "firstMenstruation") {
-    //   setCurrentValue({
-    //     ...currentValue,
-    //     firstMenstruation: event.target.value,
-    //   });
-    // }
-    if (fieldName === "cyclusLength") {
-      setCurrentValue({
-        ...currentValue,
-        cyclusLength: event.target.value,
-      });
-    }
-    // if (fieldName === "menstruationLength") {
-    //   setCurrentValue({
-    //     ...currentValue,
-    //     menstruationLength: event.target.value,
-    //   });
-    // }
+    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
   }
 
   function handleSubmit(event) {
@@ -66,6 +40,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="age"
           min={minAge}
           max={maxAge}
+          value={currentValue.age}
           onChange={(event) => handleUserInput(event, "age")}
         />
         {/* {currentValue.age < minAge || currentValue.age > maxAge
@@ -80,6 +55,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="firstMenstruation"
           min={minAge - 1}
           max={currentValue.age}
+          // value={currentValue.firstMenstruation}
           // onChange={(event) => handleUserInput(event, "firstMenstruation")}
         />
         {/* {currentValue.firstMenstruation > currentValue.age
@@ -95,6 +71,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="cyclusLength"
           min="1"
           max={maxCyclusLength}
+          value={currentValue.cyclusLength}
           onChange={(event) => handleUserInput(event, "cyclusLength")}
         />
         Tage
@@ -106,7 +83,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           id="menstruationLength"
           name="menstruationLength"
           min="1"
-          max={currentValue.cyclusLength--}
+          max={currentValue.cyclusLength - 1}
           // onChange={(event) => handleUserInput(event, "menstruationLength")}
         />
         {/* {currentValue.menstruationLength >= currentValue.cyclusLength
