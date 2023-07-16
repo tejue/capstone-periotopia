@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
+import { useState } from "react";
 
 const StyledForm = styled.form`
   display: flex;
@@ -10,25 +11,40 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
+export default function FormGeneral({ handleGeneralInfo }) {
   const maxAge = 100;
   const minAge = 8;
-  const maxCyclusLength = 60;
+  //const maxCyclusLength = 60;
+
+  const [currentValue, setCurrentValue] = useState({
+    age: "",
+    cyclusLength: "",
+  });
+
+  function handleUserInput(event, fieldName) {
+    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    handleGeneralInfo(data);
+  }
 
   return (
     <>
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit}>
         <Question id="age" question="Wie alt bist du?" />
         <InputNumber
           id="age"
           name="age"
           min={minAge}
           max={maxAge}
-          value={age}
-          onChange={handleGeneralInfo}
+          value={currentValue.age}
+          onChange={(event) => handleUserInput(event, "age")}
         />
         <Question
           id="firstMenstruation"
@@ -38,9 +54,7 @@ export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
           id="firstMenstruation"
           name="firstMenstruation"
           min={minAge - 1}
-          max={age !== "" ? age - 1 : maxAge - 1}
-          value={firstMenstruation}
-          onChange={handleGeneralInfo}
+          max={currentValue.age}
         />
         <Question
           id="cyclusLength"
@@ -51,9 +65,8 @@ export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
           id="cyclusLength"
           name="cyclusLength"
           min="1"
-          max={maxCyclusLength}
-          value={cyclusLength}
-          onChange={handleGeneralInfo}
+          value={currentValue.cyclusLength}
+          onChange={(event) => handleUserInput(event, "cyclusLength")}
         />
         Tage
         <Question
@@ -64,10 +77,9 @@ export default function FormGeneral({ handleGeneralInfo, generalInfo }) {
           id="menstruationLength"
           name="menstruationLength"
           min="1"
-          max={cyclusLength !== "" ? cyclusLength - 1 : maxCyclusLength - 1}
-          value={menstruationLength}
-          onChange={handleGeneralInfo}
+          max={currentValue.cyclusLength - 1}
         />
+        <button type="submit">Schau dir dein Ergebnis an</button>
       </StyledForm>
     </>
   );

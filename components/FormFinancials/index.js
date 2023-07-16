@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Question from "../Question";
 import InputNumber from "../InputNumber";
+import { useState } from "react";
 
 const StyledForm = styled.form`
   display: flex;
@@ -15,18 +16,26 @@ const StyledFieldset = styled.fieldset`
   flex-direction: column;
 `;
 
-export default function FormFinancials({ financials, handleFinancials }) {
-  const {
-    product,
-    packageCosts,
-    taxReduction,
-    taxes,
-    packageContent,
-    changeProdukt,
-  } = financials;
+export default function FormFinancials({ handleFinancials }) {
+  const [currentValue, setCurrentValue] = useState({
+    packageCosts: "",
+    taxes: "",
+  });
 
+  function handleUserInput(event, fieldName) {
+    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    handleFinancials(data);
+  }
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Question
         id="product"
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
@@ -34,61 +43,63 @@ export default function FormFinancials({ financials, handleFinancials }) {
       <select
         id="product"
         name="product"
-        value={product}
-        onChange={handleFinancials}
-        required
+        value={currentValue.product}
+        onChange={(event) => handleUserInput(event, "product")}
       >
-        <option>-- Produkt auswählen --</option>
-        <option>Tampon</option>
-        <option>Binde</option>
-        <option>Perioden-Cup</option>
-        <option>Perioden-Disc</option>
-        <option>Perioden-Schlüppi</option>
+        <option value="">-- Produkt auswählen --</option>
+        <option value="tampon">Tampon</option>
+        <option value="pad">Binde</option>
+        <option value="cup">Perioden-Cup</option>
+        <option value="disc">Perioden-Disc</option>
+        <option value="schlueppi">Perioden-Schlüppi</option>
       </select>
       <Question id="packageCosts" question="Wieviel kostet eine Packung?" />
       <InputNumber
         id="packageCosts"
         name="packageCosts"
         min="0"
-        value={packageCosts}
-        onChange={handleFinancials}
+        value={currentValue.packageCosts}
+        onChange={(event) => handleUserInput(event, "packageCosts")}
       />
       Euro
       <StyledFieldset>
         <legend>Wie wird dein Produkt besteuert?</legend>
-        <label htmlFor="taxReduction-full">
+        <label htmlFor="taxAmountFull">
           <input
-            id="taxReduction-full"
-            name="taxReduction"
+            id="taxAmountFull"
+            name="taxAmount"
             type="radio"
-            value="volle Steuer"
-            checked={taxReduction === "volle Steuer"}
-            onChange={handleFinancials}
-            disabled={packageCosts === "0"}
+            value="full"
+            checked={currentValue.taxAmount === "full"}
+            onChange={(event) => handleUserInput(event, "taxAmount")}
+            disabled={
+              currentValue.packageCosts === "0" || currentValue.taxes === "0"
+            }
           />
           volle Steuer
         </label>
-        <label htmlFor="taxReduction-partial">
+        <label htmlFor="taxAmountPartial">
           <input
-            id="taxReduction-partial"
-            name="taxReduction"
+            id="taxAmountPartial"
+            name="taxAmount"
             type="radio"
-            value="Teilsteuer"
-            checked={taxReduction === "Teilsteuer"}
-            onChange={handleFinancials}
-            disabled={packageCosts === "0"}
+            value="partial"
+            checked={currentValue.taxAmount === "partial"}
+            onChange={(event) => handleUserInput(event, "taxAmount")}
+            disabled={
+              currentValue.packageCosts === "0" || currentValue.taxes === "0"
+            }
           />
-          Teilsteuer
+          reduzierte Steuer
         </label>
-        <label htmlFor="taxReduction-none">
+        <label htmlFor="taxAmountNone">
           <input
-            id="taxReduction-none"
-            name="taxReduction"
+            id="taxAmountNone"
+            name="taxAmount"
             type="radio"
-            value="keine Steuer"
-            checked={taxReduction === "keine Steuer"}
-            onChange={handleFinancials}
-            disabled={packageCosts === "0"}
+            value="none"
+            checked={currentValue.taxAmount === "none"}
+            onChange={(event) => handleUserInput(event, "taxAmount")}
           />
           keine Steuer
         </label>
@@ -101,40 +112,26 @@ export default function FormFinancials({ financials, handleFinancials }) {
         id="taxes"
         name="taxes"
         min="0"
-        value={taxes}
-        onChange={handleFinancials}
+        max="60"
+        value={
+          currentValue.packageCosts === "0" || currentValue.taxAmount === "none"
+            ? "0"
+            : currentValue.taxes
+        }
+        onChange={(event) => handleUserInput(event, "taxes")}
       />
       %
       <Question
         id="packageContent"
         question="Wieviele Produkte sind in einer Packung enthalten?"
       />
-      <InputNumber
-        id="packageContent"
-        name="packageContent"
-        min="1"
-        value={
-          product === "Tampon" || product === "Binde"
-            ? packageContent
-            : product === "Perioden-Disc" ||
-              product === "Perioden-Cup" ||
-              product === "Perioden-Schlüppi"
-            ? "1"
-            : ""
-        }
-        onChange={handleFinancials}
-      />
+      <InputNumber id="packageContent" name="packageContent" min="1" />
       <Question
-        id="changeProdukt"
+        id="changeProduct"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
       />
-      <InputNumber
-        id="changeProdukt"
-        name="changeProdukt"
-        min="1"
-        value={changeProdukt}
-        onChange={handleFinancials}
-      />
+      <InputNumber id="changeProduct" name="changeProduct" min="1" />
+      <button type="submit">Schau dir deinen Periotopia-Index</button>
     </StyledForm>
   );
 }
