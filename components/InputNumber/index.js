@@ -7,8 +7,6 @@ export default function InputNumber({
   value,
   ...inputProps
 }) {
-  //const defaultValue = value !== undefined ? value : "";
-
   return (
     <input
       id={id}
