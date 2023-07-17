@@ -3,6 +3,7 @@ import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
 import { useState } from "react";
 import Answer from "../Answer";
+import ShowAnswerButton from "../ShowAnswerButton/ShowAnswerButton";
 
 const StyledForm = styled.form`
   display: flex;
@@ -85,7 +86,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
           min="1"
           max={currentValue.cyclusLength - 1}
         />
-        <button type="submit">Schau dir dein Ergebnis an</button>
+        <ShowAnswerButton>Schau dir dein Ergebnis an</ShowAnswerButton>
       </StyledForm>
     </>
   );
