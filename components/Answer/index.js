@@ -9,8 +9,8 @@ export default function Answer({
   life,
   periotopiaInfoText,
   periotopiaIndexFinancials,
-  onClickQuestion,
-  onClickNextQuestion,
+  onPrevPage,
+  nextPage,
   unit,
   additionalYear,
   additionalToday,
@@ -46,11 +46,7 @@ export default function Answer({
           die Fragen richtig und vollständig aus
         </p>
       )}
-
-      <NavButton
-        onClickQuestion={onClickQuestion}
-        onClickNextQuestion={onClickNextQuestion}
-      />
+      <NavButton onPrevPage={onPrevPage} nextPage={nextPage} />
     </>
   );
 }

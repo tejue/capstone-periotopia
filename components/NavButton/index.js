@@ -6,11 +6,11 @@ const NavButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export default function NavButton({ onClickQuestion, onClickNextQuestion }) {
+export default function NavButton({ onPrevPage, nextPage }) {
   return (
     <NavButtonWrapper>
-      <button onClick={onClickQuestion}>zurück</button>
-      <Link href="/financials">weiter</Link>
+      <button onClick={onPrevPage}>zurück</button>
+      {nextPage && <Link href={nextPage}>weiter</Link>}
     </NavButtonWrapper>
   );
 }

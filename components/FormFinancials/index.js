@@ -29,11 +29,14 @@ export default function FormFinancials({
   additionalLife,
   periotopiaInfoText,
   periotopiaIndexFinancials,
-  onClickNextQuestion,
 }) {
   const [currentValue, setCurrentValue] = useState({
+    product: "",
     packageCosts: "",
+    taxAmount: "",
     taxes: "",
+    packageContent: "",
+    changeProduct: "",
   });
 
   function handleUserInput(event, fieldName) {
@@ -52,7 +55,7 @@ export default function FormFinancials({
     setSubmittedForm(true);
   }
 
-  function handleClickQuestion() {
+  function handlePrevPage() {
     setSubmittedForm(false);
   }
 
@@ -152,12 +155,24 @@ export default function FormFinancials({
             id="packageContent"
             question="Wieviele Produkte sind in einer Packung enthalten?"
           />
-          <InputNumber id="packageContent" name="packageContent" min="1" />
+          <InputNumber
+            id="packageContent"
+            name="packageContent"
+            min="1"
+            value={currentValue.packageContent}
+            onChange={(event) => handleUserInput(event, "packageContent")}
+          />
           <Question
             id="changeProduct"
             question="Wie oft wechselst du dein Produkt an einem Tag?"
           />
-          <InputNumber id="changeProduct" name="changeProduct" min="1" />
+          <InputNumber
+            id="changeProduct"
+            name="changeProduct"
+            min="1"
+            value={currentValue.changeProduct}
+            onChange={(event) => handleUserInput(event, "changeProduct")}
+          />
           <button type="submit">Schau dir deinen Periotopia-Index</button>
         </StyledForm>
       )}
@@ -173,8 +188,7 @@ export default function FormFinancials({
           additionalToday={additionalToday}
           periotopiaInfoText={periotopiaInfoText}
           periotopiaIndexFinancials={periotopiaIndexFinancials}
-          onClickQuestion={handleClickQuestion}
-          onClickNextQuestion={onClickNextQuestion}
+          onPrevPage={handlePrevPage}
         />
       )}
     </>

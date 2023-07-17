@@ -21,8 +21,6 @@ export default function FormGeneral({
   today,
   life,
   periotopiaInfoText,
-  onClickQuestion,
-  onClickNextQuestion,
 }) {
   const maxAge = 100;
   const minAge = 8;
@@ -50,7 +48,7 @@ export default function FormGeneral({
     setSubmittedForm(true);
   }
 
-  function handleClickQuestion() {
+  function handlePrevPage() {
     setSubmittedForm(false);
   }
 
@@ -115,8 +113,8 @@ export default function FormGeneral({
           today={today}
           life={life}
           periotopiaInfoText={periotopiaInfoText}
-          onClickQuestion={handleClickQuestion}
-          onClickNextQuestion={onClickNextQuestion}
+          onPrevPage={handlePrevPage}
+          nextPage="/financials"
         />
       )}
     </>
