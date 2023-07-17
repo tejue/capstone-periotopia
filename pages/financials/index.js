@@ -6,9 +6,6 @@ export default function FinancialsPage({
   generalInfo,
   formatNumber,
   menstruationDaysPerYear,
-  handleSubmittedForm,
-  submittedForm,
-  handlePrevPage,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -71,6 +68,15 @@ export default function FinancialsPage({
     } else {
       return "0%";
     }
+  }
+
+  const [submittedForm, setSubmittedForm] = useState(false);
+  function handleSubmittedForm(value) {
+    setSubmittedForm(value);
+  }
+
+  function handlePrevPage() {
+    setSubmittedForm(false);
   }
 
   return (

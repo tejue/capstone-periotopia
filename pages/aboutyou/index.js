@@ -1,14 +1,12 @@
 import FormGeneral from "@/components/FormGeneral/index";
 import Answer from "@/components/Answer";
+import { useState } from "react";
 
 export default function GeneralInfoPage({
   handleGeneralInfo,
   generalInfo,
   formatNumber,
   menstruationDaysPerYear,
-  handleSubmittedForm,
-  submittedForm,
-  handlePrevPage,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -20,6 +18,15 @@ export default function GeneralInfoPage({
   );
 
   const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 39);
+
+  const [submittedForm, setSubmittedForm] = useState(false);
+  function handleSubmittedForm(value) {
+    setSubmittedForm(value);
+  }
+
+  function handlePrevPage() {
+    setSubmittedForm(false);
+  }
 
   return (
     <>
