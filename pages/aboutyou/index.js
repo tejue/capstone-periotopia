@@ -4,6 +4,7 @@ import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
 import FormGeneral from "@/components/FormGeneral/index";
 import FormFinancials from "@/components/FormFinancials";
 import PeriotopiaIndex from "@/components/PeriotopiaIndex";
+import Answer from "@/components/Answer";
 
 export default function Questionnaire() {
   //Calculation PersonalAnswer GeneralInfo
@@ -110,16 +111,24 @@ export default function Questionnaire() {
     <>
       <h2>Periotopia</h2>
       <FormGeneral handleGeneralInfo={handleGeneralInfo} />
-      <PersonalAnswer
+      <Answer
+        personalAnswerText="Du menstruierst"
+        unit="Tage"
+        year={formatNumber(menstruationDaysPerYear)}
+        today={formatNumber(menstruationDaysTillNow)}
+        life={formatNumber(menstruationDaysInLife)}
+        periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
+      />
+      {/* <PersonalAnswer
         personalAnswerText="Du menstruierst"
         unit="Tage"
         year={formatNumber(menstruationDaysPerYear)}
         today={formatNumber(menstruationDaysTillNow)}
         life={formatNumber(menstruationDaysInLife)}
       />
-      <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." />
+      <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." /> */}
 
-      <FormFinancials handleFinancials={handleFinancials} />
+      {/* <FormFinancials handleFinancials={handleFinancials} />
       <PersonalAnswer
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
         unit="Euro"
@@ -142,8 +151,8 @@ export default function Questionnaire() {
       In Deutschland ist sie seit 2020 zumindest reduziert"
       />
       <PeriotopiaIndex
-        periotopiaIndexFinancials={periotopiaIndexFinancials()}
-      />
+        periotopiaIndexFinancials={periotopiaIndexFinancials()} */}
+      {/* /> */}
     </>
   );
 }
