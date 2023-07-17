@@ -12,6 +12,9 @@ export default function Answer({
   onClickQuestion,
   onClickNextQuestion,
   unit,
+  additionalYear,
+  additionalToday,
+  additionalLife,
 }) {
   const acceptableValue = year >= 0 && today >= 0 && life >= 0;
 
@@ -19,7 +22,15 @@ export default function Answer({
     <>
       {acceptableValue ? (
         <>
-          <PersonalAnswer year={year} today={today} life={life} unit={unit} />
+          <PersonalAnswer
+            year={year}
+            today={today}
+            life={life}
+            unit={unit}
+            {...(additionalYear !== undefined && { additionalYear })}
+            {...(additionalToday !== undefined && { additionalToday })}
+            {...(additionalLife !== undefined && { additionalLife })}
+          />
           <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
           {periotopiaIndexFinancials && (
             <PeriotopiaIndex
