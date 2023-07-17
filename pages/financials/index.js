@@ -1,10 +1,14 @@
 import { useState } from "react";
 import FormFinancials from "@/components/FormFinancials";
+import Answer from "@/components/Answer";
 
 export default function FinancialsPage({
   generalInfo,
   formatNumber,
   menstruationDaysPerYear,
+  handleSubmittedForm,
+  submittedForm,
+  handlePrevPage,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -57,7 +61,7 @@ export default function FinancialsPage({
   const costsInLife = costsPerYear * 39;
   const taxesInLife = costsInLife * (taxes / 100);
 
-  function periotopiaIndexFinancials() {
+  function periotopiaIndex() {
     if (packageCosts === "0") {
       return "100%";
     } else if (packageCosts > "0" && taxAmount === "none") {
@@ -72,27 +76,39 @@ export default function FinancialsPage({
   return (
     <>
       <h2>Periotopia</h2>
-      <FormFinancials
-        handleFinancials={handleFinancials}
-        personalAnswerText="Für deine Menstruationsprodukte zahlst du"
-        unit="Euro"
-        year={formatNumber(costsPerYear)}
-        today={formatNumber(costsTillToday)}
-        life={formatNumber(costsInLife)}
-        additionalYear={`davon sind ${formatNumber(taxesPerYear)} Euro Steuern`}
-        additionalToday={`davon sind ${formatNumber(
-          taxesTillToday
-        )} Euro Steuern`}
-        additionalLife={`davon sind ${formatNumber(taxesInLife)} Euro Steuern`}
-        periotopiaInfoText="In Periotopia wären
+      {!submittedForm && (
+        <FormFinancials
+          handleFinancials={handleFinancials}
+          handleSubmittedForm={handleSubmittedForm}
+        />
+      )}
+      {submittedForm && (
+        <Answer
+          personalAnswerText="Für deine Menstruationsprodukte zahlst du"
+          unit="Euro"
+          year={formatNumber(costsPerYear)}
+          today={formatNumber(costsTillToday)}
+          life={formatNumber(costsInLife)}
+          additionalYear={`davon sind ${formatNumber(
+            taxesPerYear
+          )} Euro Steuern`}
+          additionalToday={`davon sind ${formatNumber(
+            taxesTillToday
+          )} Euro Steuern`}
+          additionalLife={`davon sind ${formatNumber(
+            taxesInLife
+          )} Euro Steuern`}
+          periotopiaInfoText="In Periotopia wären
       Menstruationsprodukte frei zugänglich. Schottland ist das bisher einzige
       Land weltweit, in dem Menstruationsartikel in öffentlichen Gebäuden per
       Gesetz kostenlos bereitgestellt werden müssen. In Deutschland sind es vor
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-        periotopiaIndexFinancials={periotopiaIndexFinancials()}
-      />
+          periotopiaIndex={periotopiaIndex()}
+          onPrevPage={handlePrevPage}
+        />
+      )}
     </>
   );
 }

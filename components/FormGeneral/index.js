@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
 import { useState } from "react";
-import Answer from "../Answer";
 import ShowAnswerButton from "../ShowAnswerButton/index";
 
 const StyledForm = styled.form`
@@ -15,12 +14,7 @@ const StyledForm = styled.form`
 
 export default function FormGeneral({
   handleGeneralInfo,
-  personalAnswerText,
-  unit,
-  year,
-  today,
-  life,
-  periotopiaInfoText,
+  handleSubmittedForm,
 }) {
   const maxAge = 100;
   const minAge = 8;
@@ -36,8 +30,6 @@ export default function FormGeneral({
     setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
   }
 
-  const [submittedForm, setSubmittedForm] = useState(false);
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -45,78 +37,60 @@ export default function FormGeneral({
     const data = Object.fromEntries(formData);
 
     handleGeneralInfo(data);
-    setSubmittedForm(true);
-  }
-
-  function handlePrevPage() {
-    setSubmittedForm(false);
+    handleSubmittedForm(true);
   }
 
   return (
     <>
-      {!submittedForm && (
-        <StyledForm onSubmit={handleSubmit}>
-          <Question id="age" question="Wie alt bist du?" />
-          <InputNumber
-            id="age"
-            name="age"
-            min={minAge}
-            max={maxAge}
-            value={currentValue.age}
-            onChange={(event) => handleUserInput(event, "age")}
-          />
-          <Question
-            id="firstMenstruation"
-            question="Wie alt warst du bei deiner ersten Menstruation?"
-          />
-          <InputNumber
-            id="firstMenstruation"
-            name="firstMenstruation"
-            min={minAge - 1}
-            max={currentValue.age}
-            value={currentValue.firstMenstruation}
-            onChange={(event) => handleUserInput(event, "firstMenstruation")}
-          />
-          <Question
-            id="cyclusLength"
-            question="Wie oft beginnt deine Menstruation?"
-          />
-          Alle
-          <InputNumber
-            id="cyclusLength"
-            name="cyclusLength"
-            min="1"
-            value={currentValue.cyclusLength}
-            onChange={(event) => handleUserInput(event, "cyclusLength")}
-          />
-          Tage
-          <Question
-            id="menstruationLength"
-            question="Wieviele Tage dauert deine Menstruation?"
-          />
-          <InputNumber
-            id="menstruationLength"
-            name="menstruationLength"
-            min="1"
-            max={currentValue.cyclusLength - 1}
-            value={currentValue.menstruationLength}
-            onChange={(event) => handleUserInput(event, "menstruationLength")}
-          />
-          <ShowAnswerButton />
-        </StyledForm>
-      )}
-      {submittedForm && (
-        <Answer
-          personalAnswerText={personalAnswerText}
-          unit={unit}
-          year={year}
-          today={today}
-          life={life}
-          periotopiaInfoText={periotopiaInfoText}
-          onPrevPage={handlePrevPage}
-          nextPage="/financials"
+      <StyledForm onSubmit={handleSubmit}>
+        <Question id="age" question="Wie alt bist du?" />
+        <InputNumber
+          id="age"
+          name="age"
+          min={minAge}
+          max={maxAge}
+          value={currentValue.age}
+          onChange={(event) => handleUserInput(event, "age")}
         />
-      )}
+        <Question
+          id="firstMenstruation"
+          question="Wie alt warst du bei deiner ersten Menstruation?"
+        />
+        <InputNumber
+          id="firstMenstruation"
+          name="firstMenstruation"
+          min={minAge - 1}
+          max={currentValue.age}
+          value={currentValue.firstMenstruation}
+          onChange={(event) => handleUserInput(event, "firstMenstruation")}
+        />
+        <Question
+          id="cyclusLength"
+          question="Wie oft beginnt deine Menstruation?"
+        />
+        Alle
+        <InputNumber
+          id="cyclusLength"
+          name="cyclusLength"
+          min="1"
+          value={currentValue.cyclusLength}
+          onChange={(event) => handleUserInput(event, "cyclusLength")}
+        />
+        Tage
+        <Question
+          id="menstruationLength"
+          question="Wieviele Tage dauert deine Menstruation?"
+        />
+        <InputNumber
+          id="menstruationLength"
+          name="menstruationLength"
+          min="1"
+          max={currentValue.cyclusLength - 1}
+          value={currentValue.menstruationLength}
+          onChange={(event) => handleUserInput(event, "menstruationLength")}
+        />
+        <ShowAnswerButton />
+      </StyledForm>
     </>
   );
 }

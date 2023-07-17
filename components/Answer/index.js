@@ -8,7 +8,7 @@ export default function Answer({
   today,
   life,
   periotopiaInfoText,
-  periotopiaIndexFinancials,
+  periotopiaIndex,
   onPrevPage,
   nextPage,
   unit,
@@ -21,31 +21,29 @@ export default function Answer({
 
   return (
     <>
-      {acceptableValue ? (
-        <>
-          <PersonalAnswer
-            personalAnswerText={personalAnswerText}
-            year={year}
-            today={today}
-            life={life}
-            unit={unit}
-            {...(additionalYear !== undefined && { additionalYear })}
-            {...(additionalToday !== undefined && { additionalToday })}
-            {...(additionalLife !== undefined && { additionalLife })}
-          />
-          <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
-          {periotopiaIndexFinancials && (
-            <PeriotopiaIndex
-              periotopiaIndexFinancials={periotopiaIndexFinancials}
-            />
-          )}
-        </>
-      ) : (
-        <p>
-          Es scheint etwas schief gelaufen zu sein. Bitte gehe zurück und fülle
-          die Fragen richtig und vollständig aus
-        </p>
-      )}
+      {/* {acceptableValue ? ( */}
+      <>
+        <PersonalAnswer
+          personalAnswerText={personalAnswerText}
+          year={year}
+          today={today}
+          life={life}
+          unit={unit}
+          {...(additionalYear !== undefined && { additionalYear })}
+          {...(additionalToday !== undefined && { additionalToday })}
+          {...(additionalLife !== undefined && { additionalLife })}
+        />
+        <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
+        {periotopiaIndex && (
+          <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
+        )}
+      </>
+      {/* // ) : (
+      //   <p>
+      //     Es scheint etwas schief gelaufen zu sein. Bitte gehe zurück und fülle
+      //     die Fragen richtig und vollständig aus
+      //   </p>
+      // )} */}
       <NavButton onPrevPage={onPrevPage} nextPage={nextPage} />
     </>
   );

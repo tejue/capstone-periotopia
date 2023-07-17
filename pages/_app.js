@@ -32,6 +32,15 @@ export default function App({ Component, pageProps }) {
     return Math.trunc(number).toLocaleString("de-DE");
   }
 
+  const [submittedForm, setSubmittedForm] = useState(false);
+  function handleSubmittedForm(value) {
+    setSubmittedForm(value);
+  }
+
+  function handlePrevPage() {
+    setSubmittedForm(false);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -41,6 +50,9 @@ export default function App({ Component, pageProps }) {
         generalInfo={generalInfo}
         formatNumber={formatNumber}
         menstruationDaysPerYear={menstruationDaysPerYear}
+        handleSubmittedForm={handleSubmittedForm}
+        submittedForm={submittedForm}
+        handlePrevPage={handlePrevPage}
       />
     </>
   );

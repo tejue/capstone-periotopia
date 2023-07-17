@@ -18,12 +18,12 @@ const StyledIndexFilled = styled.div`
   width: ${(props) => props.width};
 `;
 
-export default function PeriotopiaIndex({ periotopiaIndexFinancials }) {
+export default function PeriotopiaIndex({ periotopiaIndex }) {
   return (
     <StyledPeriotopiaIndex>
       <h2>Dein Periotopia-Index</h2>
       <StyledIndex>
-        <StyledIndexFilled width={periotopiaIndexFinancials} />
+        <StyledIndexFilled width={periotopiaIndex} />
       </StyledIndex>
     </StyledPeriotopiaIndex>
   );
