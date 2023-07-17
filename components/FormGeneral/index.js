@@ -14,7 +14,6 @@ const StyledForm = styled.form`
 export default function FormGeneral({ handleGeneralInfo }) {
   const maxAge = 100;
   const minAge = 8;
-  //const maxCyclusLength = 60;
 
   const [currentValue, setCurrentValue] = useState({
     age: "",
