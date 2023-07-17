@@ -110,8 +110,8 @@ export default function Questionnaire() {
   return (
     <>
       <h2>Periotopia</h2>
-      <FormGeneral handleGeneralInfo={handleGeneralInfo} />
-      <Answer
+      <FormGeneral
+        handleGeneralInfo={handleGeneralInfo}
         personalAnswerText="Du menstruierst"
         unit="Tage"
         year={formatNumber(menstruationDaysPerYear)}
@@ -119,14 +119,6 @@ export default function Questionnaire() {
         life={formatNumber(menstruationDaysInLife)}
         periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
       />
-      {/* <PersonalAnswer
-        personalAnswerText="Du menstruierst"
-        unit="Tage"
-        year={formatNumber(menstruationDaysPerYear)}
-        today={formatNumber(menstruationDaysTillNow)}
-        life={formatNumber(menstruationDaysInLife)}
-      />
-      <PeriotopiaInfo periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..." /> */}
 
       {/* <FormFinancials handleFinancials={handleFinancials} />
       <PersonalAnswer
