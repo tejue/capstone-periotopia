@@ -9,7 +9,9 @@ export default function Answer({
   periotopiaInfoText,
   periotopiaIndexFinancials,
 }) {
-  return (
+  const acceptableValue = year >= 0 && today >= 0 && life >= 0;
+
+  return acceptableValue ? (
     <>
       <PersonalAnswer year={year} today={today} life={life} />
       <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
@@ -19,5 +21,5 @@ export default function Answer({
         />
       )}
     </>
-  );
+  ) : null;
 }

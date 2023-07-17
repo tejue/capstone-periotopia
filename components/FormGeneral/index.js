@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
 import { useState } from "react";
+import Answer from "../Answer";
 
 const StyledForm = styled.form`
   display: flex;
@@ -24,6 +25,8 @@ export default function FormGeneral({ handleGeneralInfo }) {
     setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
   }
 
+  const [submittedForm, setSubmittedForm] = useState(false);
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -31,8 +34,12 @@ export default function FormGeneral({ handleGeneralInfo }) {
     const data = Object.fromEntries(formData);
 
     handleGeneralInfo(data);
+    setSubmittedForm(true);
   }
 
+  if (submittedForm) {
+    return <Answer />;
+  }
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
