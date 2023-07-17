@@ -23,14 +23,12 @@ export default function FormFinancials({
   unit,
   year,
   additionalYear,
-
   today,
   additionalToday,
   life,
   additionalLife,
   periotopiaInfoText,
   periotopiaIndexFinancials,
-  onClickQuestion,
   onClickNextQuestion,
 }) {
   const [currentValue, setCurrentValue] = useState({
@@ -58,7 +56,6 @@ export default function FormFinancials({
     setSubmittedForm(false);
   }
 
-  console.log("HIERJETZT", additionalYear);
   return (
     <>
       {!submittedForm && (

@@ -15,35 +15,37 @@ export default function Answer({
   additionalYear,
   additionalToday,
   additionalLife,
+  personalAnswerText,
 }) {
-  const acceptableValue = year >= 0 && today >= 0 && life >= 0;
+  // const acceptableValue = year >= 0 && today >= 0 && life >= 0;
 
   return (
     <>
-      {acceptableValue ? (
-        <>
-          <PersonalAnswer
-            year={year}
-            today={today}
-            life={life}
-            unit={unit}
-            {...(additionalYear !== undefined && { additionalYear })}
-            {...(additionalToday !== undefined && { additionalToday })}
-            {...(additionalLife !== undefined && { additionalLife })}
+      {/* {acceptableValue ? ( */}
+      <>
+        <PersonalAnswer
+          personalAnswerText={personalAnswerText}
+          year={year}
+          today={today}
+          life={life}
+          unit={unit}
+          {...(additionalYear !== undefined && { additionalYear })}
+          {...(additionalToday !== undefined && { additionalToday })}
+          {...(additionalLife !== undefined && { additionalLife })}
+        />
+        <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
+        {periotopiaIndexFinancials && (
+          <PeriotopiaIndex
+            periotopiaIndexFinancials={periotopiaIndexFinancials}
           />
-          <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
-          {periotopiaIndexFinancials && (
-            <PeriotopiaIndex
-              periotopiaIndexFinancials={periotopiaIndexFinancials}
-            />
-          )}
-        </>
-      ) : (
-        <p>
-          Es scheint etwas schief gelaufen zu sein. Bitte gehe zurück und fülle
-          die Fragen richtig und vollständig aus
-        </p>
-      )}
+        )}
+      </>
+      {/* // ) : (
+      //   <p>
+      //     Es scheint etwas schief gelaufen zu sein. Bitte gehe zurück und fülle
+      //     die Fragen richtig und vollständig aus
+      //   </p>
+      // )} */}
 
       <NavButton
         onClickQuestion={onClickQuestion}

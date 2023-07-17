@@ -1,42 +1,14 @@
 import { useState } from "react";
-import PersonalAnswer from "@/components/PersonalAnswer/index";
-import PeriotopiaInfo from "@/components/PeriotopiaInfo/index";
-import FormGeneral from "@/components/FormGeneral/index";
 import FormFinancials from "@/components/FormFinancials";
-import PeriotopiaIndex from "@/components/PeriotopiaIndex";
-import Answer from "@/components/Answer";
 
-export default function Questionnaire() {
-  //Calculation PersonalAnswer GeneralInfo
-  const [generalInfo, setGeneralInfo] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
-  });
-
+export default function FinancialsPage({
+  generalInfo,
+  formatNumber,
+  menstruationDaysPerYear,
+}) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
 
-  function handleGeneralInfo(data) {
-    setGeneralInfo({
-      ...data,
-    });
-  }
-
-  const menstruationDaysPerYear = Math.round(
-    (365 / cyclusLength) * menstruationLength
-  );
-
-  const menstruationDaysTillNow = Math.round(
-    age - firstMenstruation < 39
-      ? menstruationDaysPerYear * (age - firstMenstruation)
-      : menstruationDaysPerYear * 39
-  );
-
-  const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 39);
-
-  //Calculation PersonalAnswer Financials
   const [financials, setFinancials] = useState({
     product: "",
     packageCosts: "",
@@ -75,6 +47,7 @@ export default function Questionnaire() {
       );
     } else return NaN;
   }
+
   const costsPerYear = costsPerYearCalc();
   const taxesPerYear = costsPerYear * (taxes / 100);
 
@@ -84,17 +57,6 @@ export default function Questionnaire() {
   const costsInLife = costsPerYear * 39;
   const taxesInLife = costsInLife * (taxes / 100);
 
-  function formatNumber(number) {
-    if (Math.abs(number) % 1 !== 0) {
-      return number.toLocaleString("de-DE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-    }
-    return Math.trunc(number).toLocaleString("de-DE");
-  }
-
-  //Calculation Periotopia-Index
   function periotopiaIndexFinancials() {
     if (packageCosts === "0") {
       return "100%";
@@ -107,21 +69,9 @@ export default function Questionnaire() {
     }
   }
 
-  console.log("HIERJETZT", menstruationDaysInLife);
-
   return (
     <>
       <h2>Periotopia</h2>
-      {/* <FormGeneral
-        handleGeneralInfo={handleGeneralInfo}
-        personalAnswerText="Du menstruierst"
-        unit="Tage"
-        year={formatNumber(menstruationDaysPerYear)}
-        today={formatNumber(menstruationDaysTillNow)}
-        life={formatNumber(menstruationDaysInLife)}
-        periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
-      /> */}
-
       <FormFinancials
         handleFinancials={handleFinancials}
         personalAnswerText="Für deine Menstruationsprodukte zahlst du"
