@@ -23,16 +23,20 @@ export default function ResultCard({
   };
 
   return (
-    <StyledResultCard>
-      <h3>Dein Periotopia-Index</h3>
-      <p>
-        Finanzen:
-        <br /> Für deine Menstruationsprodukte zahlst du{" "}
-        {formatNumber(costsPerYear)} Euro pro Jahr und{" "}
-        {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt damit:{" "}
-        {numberPerInd}/10
-      </p>
-      <PeriotopiaIndex periotopiaIndex={perInd} />
-    </StyledResultCard>
+    costsPerYear >= 0 && (
+      <StyledResultCard>
+        <h3>Dein Periotopia-Index</h3>
+        {costsPerYear >= 0 && (
+          <p>
+            Finanzen:
+            <br /> Für deine Menstruationsprodukte zahlst du{" "}
+            {formatNumber(costsPerYear)} Euro pro Jahr und{" "}
+            {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt
+            damit: {numberPerInd}/10
+          </p>
+        )}
+        <PeriotopiaIndex periotopiaIndex={perInd} />
+      </StyledResultCard>
+    )
   );
 }

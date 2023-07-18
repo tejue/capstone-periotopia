@@ -10,13 +10,13 @@ export default function HomePage({
   return (
     <>
       <h1>Periotopia Overview</h1>
+      <NewIndex />
       <ResultCard
         formatNumber={formatNumber}
         costsPerYear={costsPerYear}
         perInd={perInd}
         taxAmount={taxAmount}
       />
-      <NewIndex />
     </>
   );
 }
