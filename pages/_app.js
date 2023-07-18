@@ -22,6 +22,19 @@ export default function App({ Component, pageProps }) {
     (365 / cyclusLength) * menstruationLength
   );
 
+  const [financials, setFinancials] = useState({
+    product: "",
+    packageCosts: "",
+    taxAmount: "",
+    taxes: "",
+    packageContent: "",
+    changeProduct: "",
+  });
+
+  function handleFinancials(data) {
+    setFinancials(data);
+  }
+
   function formatNumber(number) {
     if (Math.abs(number) % 1 !== 0) {
       return number.toLocaleString("de-DE", {
@@ -39,6 +52,8 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleGeneralInfo={handleGeneralInfo}
         generalInfo={generalInfo}
+        handleFinancials={handleFinancials}
+        financials={financials}
         formatNumber={formatNumber}
         menstruationDaysPerYear={menstruationDaysPerYear}
       />

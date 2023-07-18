@@ -4,20 +4,13 @@ import Answer from "@/components/Answer";
 
 export default function FinancialsPage({
   generalInfo,
+  financials,
+  handleFinancials,
   formatNumber,
   menstruationDaysPerYear,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
-
-  const [financials, setFinancials] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
-  });
 
   const {
     product,
@@ -27,10 +20,6 @@ export default function FinancialsPage({
     packageContent,
     changeProduct,
   } = financials;
-
-  function handleFinancials(data) {
-    setFinancials(data);
-  }
 
   function costsPerYearCalc() {
     if (product === "tampon" || product === "pad") {
