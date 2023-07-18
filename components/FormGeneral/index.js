@@ -21,13 +21,6 @@ export default function FormGeneral({
   const maxAge = 100;
   const minAge = 8;
 
-  // const [currentValue, setCurrentValue] = useState({
-  //   age: "",
-  //   firstMenstruation: "",
-  //   cyclusLength: "",
-  //   menstruationLength: "",
-  // });
-
   function handleUserInput(event, fieldName) {
     const newValue = { ...currentValue, [fieldName]: event.target.value };
     updateCurrentValue(newValue);
@@ -40,7 +33,6 @@ export default function FormGeneral({
     const data = Object.fromEntries(formData);
 
     handleGeneralInfo(data);
-    // setCurrentValue(initialFormState);
     handleSubmittedForm(true);
   }
 
