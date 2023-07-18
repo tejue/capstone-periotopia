@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
-import { useState } from "react";
 import ShowAnswerButton from "../ShowAnswerButton/index";
 
 const StyledForm = styled.form`

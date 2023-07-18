@@ -4,7 +4,7 @@ import ResultCard from "@/components/ResultCard/index";
 export default function HomePage({
   costsPerYear,
   formatNumber,
-  perInd,
+  periotopiaIndex,
   taxAmount,
 }) {
   return (
@@ -14,7 +14,7 @@ export default function HomePage({
       <ResultCard
         formatNumber={formatNumber}
         costsPerYear={costsPerYear}
-        perInd={perInd}
+        periotopiaIndex={periotopiaIndex}
         taxAmount={taxAmount}
       />
     </>

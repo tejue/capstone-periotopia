@@ -45,24 +45,6 @@ export default function FinancialsPage({
     setSubmittedForm(false);
   }
 
-  // function costsPerYearCalc() {
-  //   if (product === "tampon" || product === "pad") {
-  //     return (
-  //       (packageCosts / packageContent) *
-  //       (changeProduct * menstruationLength) *
-  //       menstruationDaysPerYear
-  //     );
-  //   } else if (product === "cup" || product === "disc") {
-  //     return packageCosts / 5 / (packageContent / packageContent);
-  //   } else if (product === "schlueppi") {
-  //     return (
-  //       (packageCosts / packageContent / 2) *
-  //       (changeProduct * menstruationLength)
-  //     );
-  //   } else return NaN;
-  // }
-
-  //const costsPerYear = costsPerYearCalc();
   const taxesPerYear = costsPerYear * (taxes / 100);
 
   const costsTillToday = costsPerYear * (age - firstMenstruation);
@@ -70,18 +52,6 @@ export default function FinancialsPage({
 
   const costsInLife = costsPerYear * 39;
   const taxesInLife = costsInLife * (taxes / 100);
-
-  // function periotopiaIndex() {
-  //   if (packageCosts === "0") {
-  //     return "100%";
-  //   } else if (packageCosts > "0" && taxAmount === "none") {
-  //     return "66%";
-  //   } else if (packageCosts > "0" && taxAmount === "partial") {
-  //     return "33%";
-  //   } else {
-  //     return "0%";
-  //   }
-  // }
 
   return (
     <>

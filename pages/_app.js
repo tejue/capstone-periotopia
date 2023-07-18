@@ -2,15 +2,8 @@ import GlobalStyle from "../styles";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
-// const [rooms, setRooms] = useLocalStorageState("rooms", {
-//   defaultValue: [],
-// });
-// function handleCreateRoom(newRoom) {
-//   newRoom = { ...newRoom, id: uid() };
-//   setRooms([newRoom, ...rooms]);
-// }
-
 export default function App({ Component, pageProps }) {
+  //-----keeping this for training sessions during coding-----
   // const [generalInfo, setGeneralInfo] = useState({
   //   age: "",
   //   firstMenstruation: "",
@@ -40,6 +33,7 @@ export default function App({ Component, pageProps }) {
     (365 / cyclusLength) * menstruationLength
   );
 
+  //-----keeping this just for training sessions during coding-----
   // const [financials, setFinancials] = useState({
   //   product: "",
   //   packageCosts: "",
@@ -104,7 +98,7 @@ export default function App({ Component, pageProps }) {
     return Math.trunc(number).toLocaleString("de-DE");
   }
 
-  function periotopiaIndex() {
+  function periotopiaIndexCalc() {
     if (packageCosts === "0") {
       return "100%";
     } else if (packageCosts > "0" && taxAmount === "none") {
@@ -116,7 +110,7 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  const perInd = periotopiaIndex();
+  const periotopiaIndex = periotopiaIndexCalc();
 
   return (
     <>
@@ -130,7 +124,7 @@ export default function App({ Component, pageProps }) {
         formatNumber={formatNumber}
         menstruationDaysPerYear={menstruationDaysPerYear}
         costsPerYear={costsPerYear}
-        perInd={perInd}
+        periotopiaIndex={periotopiaIndex}
         taxAmount={taxAmount}
       />
     </>

@@ -12,10 +12,12 @@ const StyledResultCard = styled.div`
 export default function ResultCard({
   costsPerYear,
   formatNumber,
-  perInd,
+  periotopiaIndex,
   taxAmount: financialsTaxAmount,
 }) {
-  const numberPerInd = parseInt(perInd.toString().replace("%", "") / 10);
+  const numberperiotopiaIndex = parseInt(
+    periotopiaIndex.toString().replace("%", "") / 10
+  );
   const taxAmount = {
     full: "volle Steuer",
     none: "keine Steuer",
@@ -32,10 +34,10 @@ export default function ResultCard({
             <br /> Für deine Menstruationsprodukte zahlst du{" "}
             {formatNumber(costsPerYear)} Euro pro Jahr und{" "}
             {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt
-            damit: {numberPerInd}/10
+            damit: {numberperiotopiaIndex}/10
           </p>
         )}
-        <PeriotopiaIndex periotopiaIndex={perInd} />
+        <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
       </StyledResultCard>
     )
   );
