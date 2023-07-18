@@ -11,21 +11,21 @@ import useLocalStorageState from "use-local-storage-state";
 // }
 
 export default function App({ Component, pageProps }) {
-  const [generalInfo, setGeneralInfo] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
-  });
-
-  // const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
-  //   defaultValue: {
-  //     age: "",
-  //     firstMenstruation: "",
-  //     cyclusLength: "",
-  //     menstruationLength: "",
-  //   },
+  // const [generalInfo, setGeneralInfo] = useState({
+  //   age: "",
+  //   firstMenstruation: "",
+  //   cyclusLength: "",
+  //   menstruationLength: "",
   // });
+
+  const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
+    defaultValue: {
+      age: "Hallo",
+      firstMenstruation: "",
+      cyclusLength: "",
+      menstruationLength: "",
+    },
+  });
 
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -40,13 +40,26 @@ export default function App({ Component, pageProps }) {
     (365 / cyclusLength) * menstruationLength
   );
 
-  const [financials, setFinancials] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
+  // const [financials, setFinancials] = useState({
+  //   product: "",
+  //   packageCosts: "",
+  //   taxAmount: "",
+  //   taxes: "",
+  //   packageContent: "",
+  //   changeProduct: "",
+  // });
+
+  const [financials, setFinancials] = useLocalStorageState("financials", {
+    defaultValue: [
+      {
+        product: "",
+        packageCosts: "",
+        taxAmount: "",
+        taxes: "",
+        packageContent: "",
+        changeProduct: "",
+      },
+    ],
   });
 
   const {
