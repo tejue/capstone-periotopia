@@ -1,4 +1,4 @@
-import NewIndex from "@/components/NewIndex/newindex";
+import NewIndex from "@/components/NewIndex/index";
 
 export default function HomePage() {
   return (

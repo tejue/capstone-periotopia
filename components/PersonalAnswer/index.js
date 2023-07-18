@@ -17,9 +17,7 @@ export default function PersonalAnswer({
   additionalToday,
   additionalLife,
 }) {
-  const acceptableValue = year >= 0 && today >= 0 && life >= 0;
-
-  return acceptableValue ? (
+  return (
     <>
       <StyledPersonalAnswer>
         <p>{personalAnswerText}</p>
@@ -50,5 +48,5 @@ export default function PersonalAnswer({
         </p>
       </StyledPersonalAnswer>
     </>
-  ) : null;
+  );
 }

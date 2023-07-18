@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Question from "../Question";
 import InputNumber from "../InputNumber";
 import { useState } from "react";
+import ShowAnswerButton from "../ShowAnswerButton";
 
 const StyledForm = styled.form`
   display: flex;
@@ -16,10 +17,17 @@ const StyledFieldset = styled.fieldset`
   flex-direction: column;
 `;
 
-export default function FormFinancials({ handleFinancials }) {
+export default function FormFinancials({
+  handleFinancials,
+  handleSubmittedForm,
+}) {
   const [currentValue, setCurrentValue] = useState({
+    product: "",
     packageCosts: "",
+    taxAmount: "",
     taxes: "",
+    packageContent: "",
+    changeProduct: "",
   });
 
   function handleUserInput(event, fieldName) {
@@ -33,7 +41,9 @@ export default function FormFinancials({ handleFinancials }) {
     const data = Object.fromEntries(formData);
 
     handleFinancials(data);
+    handleSubmittedForm(true);
   }
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Question
@@ -125,13 +135,25 @@ export default function FormFinancials({ handleFinancials }) {
         id="packageContent"
         question="Wieviele Produkte sind in einer Packung enthalten?"
       />
-      <InputNumber id="packageContent" name="packageContent" min="1" />
+      <InputNumber
+        id="packageContent"
+        name="packageContent"
+        min="1"
+        value={currentValue.packageContent}
+        onChange={(event) => handleUserInput(event, "packageContent")}
+      />
       <Question
         id="changeProduct"
         question="Wie oft wechselst du dein Produkt an einem Tag?"
       />
-      <InputNumber id="changeProduct" name="changeProduct" min="1" />
-      <button type="submit">Schau dir deinen Periotopia-Index</button>
+      <InputNumber
+        id="changeProduct"
+        name="changeProduct"
+        min="1"
+        value={currentValue.changeProduct}
+        onChange={(event) => handleUserInput(event, "changeProduct")}
+      />
+      <ShowAnswerButton />
     </StyledForm>
   );
 }

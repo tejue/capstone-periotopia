@@ -26,7 +26,7 @@ export default function NewIndex() {
     <StyledNewIndex>
       <p>Ermittle einen Periotopia-Index</p>
       <StyledLink
-        href="/questionnaire"
+        href="/aboutyou"
         aria-label="Link to questionnaire for new periotopia-index"
       >
         +

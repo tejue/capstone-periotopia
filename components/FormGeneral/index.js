@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
 import { useState } from "react";
+import ShowAnswerButton from "../ShowAnswerButton/index";
 
 const StyledForm = styled.form`
   display: flex;
@@ -11,13 +12,18 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormGeneral({ handleGeneralInfo }) {
+export default function FormGeneral({
+  handleGeneralInfo,
+  handleSubmittedForm,
+}) {
   const maxAge = 100;
   const minAge = 8;
 
   const [currentValue, setCurrentValue] = useState({
     age: "",
+    firstMenstruation: "",
     cyclusLength: "",
+    menstruationLength: "",
   });
 
   function handleUserInput(event, fieldName) {
@@ -31,6 +37,7 @@ export default function FormGeneral({ handleGeneralInfo }) {
     const data = Object.fromEntries(formData);
 
     handleGeneralInfo(data);
+    handleSubmittedForm(true);
   }
 
   return (
@@ -54,6 +61,8 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="firstMenstruation"
           min={minAge - 1}
           max={currentValue.age}
+          value={currentValue.firstMenstruation}
+          onChange={(event) => handleUserInput(event, "firstMenstruation")}
         />
         <Question
           id="cyclusLength"
@@ -77,8 +86,10 @@ export default function FormGeneral({ handleGeneralInfo }) {
           name="menstruationLength"
           min="1"
           max={currentValue.cyclusLength - 1}
+          value={currentValue.menstruationLength}
+          onChange={(event) => handleUserInput(event, "menstruationLength")}
         />
-        <button type="submit">Schau dir dein Ergebnis an</button>
+        <ShowAnswerButton />
       </StyledForm>
     </>
   );
