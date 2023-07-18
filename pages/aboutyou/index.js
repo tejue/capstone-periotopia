@@ -19,7 +19,18 @@ export default function GeneralInfoPage({
 
   const menstruationDaysInLife = Math.round(menstruationDaysPerYear * 39);
 
+  const [currentValue, setCurrentValue] = useState({
+    age: "",
+    firstMenstruation: "",
+    cyclusLength: "",
+    menstruationLength: "",
+  });
+  function updateCurrentValue(newValue) {
+    setCurrentValue(newValue);
+  }
+
   const [submittedForm, setSubmittedForm] = useState(false);
+
   function handleSubmittedForm(value) {
     setSubmittedForm(value);
   }
@@ -35,6 +46,8 @@ export default function GeneralInfoPage({
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}
           handleSubmittedForm={handleSubmittedForm}
+          currentValue={currentValue}
+          updateCurrentValue={updateCurrentValue}
         />
       )}
       {submittedForm && (

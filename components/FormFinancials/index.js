@@ -20,18 +20,22 @@ const StyledFieldset = styled.fieldset`
 export default function FormFinancials({
   handleFinancials,
   handleSubmittedForm,
+  currentValue,
+  updateCurrentValue,
 }) {
-  const [currentValue, setCurrentValue] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
-  });
+  // const [currentValue, setCurrentValue] = useState({
+  //   product: "",
+  //   packageCosts: "",
+  //   taxAmount: "",
+  //   taxes: "",
+  //   packageContent: "",
+  //   changeProduct: "",
+  // });
 
   function handleUserInput(event, fieldName) {
-    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+    const newValue = { ...currentValue, [fieldName]: event.target.value };
+    updateCurrentValue(newValue);
+    // setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
   }
 
   function handleSubmit(event) {

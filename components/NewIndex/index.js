@@ -7,6 +7,7 @@ const StyledNewIndex = styled.div`
   align-items: center;
   background-color: lightcoral;
   padding: 20px;
+  margin-top: 20px;
 `;
 
 const StyledLink = styled(Link)`

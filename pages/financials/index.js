@@ -8,6 +8,7 @@ export default function FinancialsPage({
   handleFinancials,
   formatNumber,
   menstruationDaysPerYear,
+  costsPerYear,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -21,24 +22,46 @@ export default function FinancialsPage({
     changeProduct,
   } = financials;
 
-  function costsPerYearCalc() {
-    if (product === "tampon" || product === "pad") {
-      return (
-        (packageCosts / packageContent) *
-        (changeProduct * menstruationLength) *
-        menstruationDaysPerYear
-      );
-    } else if (product === "cup" || product === "disc") {
-      return packageCosts / 5 / (packageContent / packageContent);
-    } else if (product === "schlueppi") {
-      return (
-        (packageCosts / packageContent / 2) *
-        (changeProduct * menstruationLength)
-      );
-    } else return NaN;
+  const [currentValue, setCurrentValue] = useState({
+    product: "",
+    packageCosts: "",
+    taxAmount: "",
+    taxes: "",
+    packageContent: "",
+    changeProduct: "",
+  });
+  function updateCurrentValue(newValue) {
+    setCurrentValue(newValue);
   }
 
-  const costsPerYear = costsPerYearCalc();
+  const [submittedForm, setSubmittedForm] = useState(false);
+
+  function handleSubmittedForm(value) {
+    setSubmittedForm(value);
+  }
+
+  function handlePrevPage() {
+    setSubmittedForm(false);
+  }
+
+  // function costsPerYearCalc() {
+  //   if (product === "tampon" || product === "pad") {
+  //     return (
+  //       (packageCosts / packageContent) *
+  //       (changeProduct * menstruationLength) *
+  //       menstruationDaysPerYear
+  //     );
+  //   } else if (product === "cup" || product === "disc") {
+  //     return packageCosts / 5 / (packageContent / packageContent);
+  //   } else if (product === "schlueppi") {
+  //     return (
+  //       (packageCosts / packageContent / 2) *
+  //       (changeProduct * menstruationLength)
+  //     );
+  //   } else return NaN;
+  // }
+
+  //const costsPerYear = costsPerYearCalc();
   const taxesPerYear = costsPerYear * (taxes / 100);
 
   const costsTillToday = costsPerYear * (age - firstMenstruation);
@@ -59,15 +82,6 @@ export default function FinancialsPage({
     }
   }
 
-  const [submittedForm, setSubmittedForm] = useState(false);
-  function handleSubmittedForm(value) {
-    setSubmittedForm(value);
-  }
-
-  function handlePrevPage() {
-    setSubmittedForm(false);
-  }
-
   return (
     <>
       <h2>Periotopia</h2>
@@ -75,6 +89,8 @@ export default function FinancialsPage({
         <FormFinancials
           handleFinancials={handleFinancials}
           handleSubmittedForm={handleSubmittedForm}
+          currentValue={currentValue}
+          updateCurrentValue={updateCurrentValue}
         />
       )}
       {submittedForm && (
@@ -102,6 +118,7 @@ export default function FinancialsPage({
       In Deutschland ist sie seit 2020 zumindest reduziert"
           periotopiaIndex={periotopiaIndex()}
           onPrevPage={handlePrevPage}
+          nextPage="/"
         />
       )}
     </>

@@ -15,19 +15,22 @@ const StyledForm = styled.form`
 export default function FormGeneral({
   handleGeneralInfo,
   handleSubmittedForm,
+  currentValue,
+  updateCurrentValue,
 }) {
   const maxAge = 100;
   const minAge = 8;
 
-  const [currentValue, setCurrentValue] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
-  });
+  // const [currentValue, setCurrentValue] = useState({
+  //   age: "",
+  //   firstMenstruation: "",
+  //   cyclusLength: "",
+  //   menstruationLength: "",
+  // });
 
   function handleUserInput(event, fieldName) {
-    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+    const newValue = { ...currentValue, [fieldName]: event.target.value };
+    updateCurrentValue(newValue);
   }
 
   function handleSubmit(event) {
@@ -37,6 +40,7 @@ export default function FormGeneral({
     const data = Object.fromEntries(formData);
 
     handleGeneralInfo(data);
+    // setCurrentValue(initialFormState);
     handleSubmittedForm(true);
   }
 

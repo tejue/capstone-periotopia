@@ -1,5 +1,14 @@
 import GlobalStyle from "../styles";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
+
+// const [rooms, setRooms] = useLocalStorageState("rooms", {
+//   defaultValue: [],
+// });
+// function handleCreateRoom(newRoom) {
+//   newRoom = { ...newRoom, id: uid() };
+//   setRooms([newRoom, ...rooms]);
+// }
 
 export default function App({ Component, pageProps }) {
   const [generalInfo, setGeneralInfo] = useState({
@@ -8,6 +17,15 @@ export default function App({ Component, pageProps }) {
     cyclusLength: "",
     menstruationLength: "",
   });
+
+  // const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
+  //   defaultValue: {
+  //     age: "",
+  //     firstMenstruation: "",
+  //     cyclusLength: "",
+  //     menstruationLength: "",
+  //   },
+  // });
 
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -31,9 +49,37 @@ export default function App({ Component, pageProps }) {
     changeProduct: "",
   });
 
+  const {
+    product,
+    packageCosts,
+    taxAmount,
+    taxes,
+    packageContent,
+    changeProduct,
+  } = financials;
+
   function handleFinancials(data) {
     setFinancials(data);
   }
+
+  function costsPerYearCalc() {
+    if (product === "tampon" || product === "pad") {
+      return (
+        (packageCosts / packageContent) *
+        (changeProduct * menstruationLength) *
+        menstruationDaysPerYear
+      );
+    } else if (product === "cup" || product === "disc") {
+      return packageCosts / 5 / (packageContent / packageContent);
+    } else if (product === "schlueppi") {
+      return (
+        (packageCosts / packageContent / 2) *
+        (changeProduct * menstruationLength)
+      );
+    } else return NaN;
+  }
+
+  const costsPerYear = costsPerYearCalc();
 
   function formatNumber(number) {
     if (Math.abs(number) % 1 !== 0) {
@@ -56,6 +102,7 @@ export default function App({ Component, pageProps }) {
         financials={financials}
         formatNumber={formatNumber}
         menstruationDaysPerYear={menstruationDaysPerYear}
+        costsPerYear={costsPerYear}
       />
     </>
   );
