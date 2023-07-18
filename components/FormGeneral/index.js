@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question/index";
 import InputNumber from "../InputNumber/index";
-import { useState } from "react";
 import ShowAnswerButton from "../ShowAnswerButton/index";
 
 const StyledForm = styled.form`
@@ -15,19 +14,15 @@ const StyledForm = styled.form`
 export default function FormGeneral({
   handleGeneralInfo,
   handleSubmittedForm,
+  currentValue,
+  updateCurrentValue,
 }) {
   const maxAge = 100;
   const minAge = 8;
 
-  const [currentValue, setCurrentValue] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
-  });
-
   function handleUserInput(event, fieldName) {
-    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+    const newValue = { ...currentValue, [fieldName]: event.target.value };
+    updateCurrentValue(newValue);
   }
 
   function handleSubmit(event) {

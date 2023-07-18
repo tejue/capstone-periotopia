@@ -8,6 +8,8 @@ export default function FinancialsPage({
   handleFinancials,
   formatNumber,
   menstruationDaysPerYear,
+  costsPerYear,
+  perInd,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -21,45 +23,20 @@ export default function FinancialsPage({
     changeProduct,
   } = financials;
 
-  function costsPerYearCalc() {
-    if (product === "tampon" || product === "pad") {
-      return (
-        (packageCosts / packageContent) *
-        (changeProduct * menstruationLength) *
-        menstruationDaysPerYear
-      );
-    } else if (product === "cup" || product === "disc") {
-      return packageCosts / 5 / (packageContent / packageContent);
-    } else if (product === "schlueppi") {
-      return (
-        (packageCosts / packageContent / 2) *
-        (changeProduct * menstruationLength)
-      );
-    } else return NaN;
-  }
-
-  const costsPerYear = costsPerYearCalc();
-  const taxesPerYear = costsPerYear * (taxes / 100);
-
-  const costsTillToday = costsPerYear * (age - firstMenstruation);
-  const taxesTillToday = costsTillToday * (taxes / 100);
-
-  const costsInLife = costsPerYear * 39;
-  const taxesInLife = costsInLife * (taxes / 100);
-
-  function periotopiaIndex() {
-    if (packageCosts === "0") {
-      return "100%";
-    } else if (packageCosts > "0" && taxAmount === "none") {
-      return "66%";
-    } else if (packageCosts > "0" && taxAmount === "partial") {
-      return "33%";
-    } else {
-      return "0%";
-    }
+  const [currentValue, setCurrentValue] = useState({
+    product: "",
+    packageCosts: "",
+    taxAmount: "",
+    taxes: "",
+    packageContent: "",
+    changeProduct: "",
+  });
+  function updateCurrentValue(newValue) {
+    setCurrentValue(newValue);
   }
 
   const [submittedForm, setSubmittedForm] = useState(false);
+
   function handleSubmittedForm(value) {
     setSubmittedForm(value);
   }
@@ -68,6 +45,17 @@ export default function FinancialsPage({
     setSubmittedForm(false);
   }
 
+  const taxesPerYear = costsPerYear * (taxes / 100);
+
+  const costsTillToday = costsPerYear * (age - firstMenstruation);
+  const taxesTillToday = costsTillToday * (taxes / 100);
+
+  const costsInLife = costsPerYear * 39;
+  const taxesInLife = costsInLife * (taxes / 100);
+
+  const acceptableValue =
+    costsPerYear >= 0 && costsTillToday >= 0 && costsInLife >= 0;
+
   return (
     <>
       <h2>Periotopia</h2>
@@ -75,8 +63,11 @@ export default function FinancialsPage({
         <FormFinancials
           handleFinancials={handleFinancials}
           handleSubmittedForm={handleSubmittedForm}
+          currentValue={currentValue}
+          updateCurrentValue={updateCurrentValue}
         />
       )}
+
       {submittedForm && (
         <Answer
           personalAnswerText="Für deine Menstruationsprodukte zahlst du"
@@ -100,8 +91,9 @@ export default function FinancialsPage({
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-          periotopiaIndex={periotopiaIndex()}
+          periotopiaIndex={perInd}
           onPrevPage={handlePrevPage}
+          nextPage="/"
         />
       )}
     </>

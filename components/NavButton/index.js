@@ -10,7 +10,7 @@ export default function NavButton({ onPrevPage, nextPage }) {
   return (
     <NavButtonWrapper>
       <button onClick={onPrevPage}>zurück</button>
-      {nextPage && <Link href={nextPage}>weiter</Link>}
+      <Link href={nextPage}>weiter</Link>
     </NavButtonWrapper>
   );
 }

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Question from "../Question";
 import InputNumber from "../InputNumber";
-import { useState } from "react";
 import ShowAnswerButton from "../ShowAnswerButton";
 
 const StyledForm = styled.form`
@@ -20,18 +19,12 @@ const StyledFieldset = styled.fieldset`
 export default function FormFinancials({
   handleFinancials,
   handleSubmittedForm,
+  currentValue,
+  updateCurrentValue,
 }) {
-  const [currentValue, setCurrentValue] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
-  });
-
   function handleUserInput(event, fieldName) {
-    setCurrentValue({ ...currentValue, [fieldName]: event.target.value });
+    const newValue = { ...currentValue, [fieldName]: event.target.value };
+    updateCurrentValue(newValue);
   }
 
   function handleSubmit(event) {
