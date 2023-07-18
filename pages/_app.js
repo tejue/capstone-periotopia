@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
 
   const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
     defaultValue: {
-      age: "Hallo",
+      age: "",
       firstMenstruation: "",
       cyclusLength: "",
       menstruationLength: "",

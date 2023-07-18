@@ -53,6 +53,9 @@ export default function FinancialsPage({
   const costsInLife = costsPerYear * 39;
   const taxesInLife = costsInLife * (taxes / 100);
 
+  const acceptableValue =
+    costsPerYear >= 0 && costsTillToday >= 0 && costsInLife >= 0;
+
   return (
     <>
       <h2>Periotopia</h2>
@@ -64,6 +67,7 @@ export default function FinancialsPage({
           updateCurrentValue={updateCurrentValue}
         />
       )}
+
       {submittedForm && (
         <Answer
           personalAnswerText="Für deine Menstruationsprodukte zahlst du"
