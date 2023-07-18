@@ -8,15 +8,30 @@ const StyledResultCard = styled.div`
   padding: 20px;
 `;
 
-export default function ResultCard({ costsPerYear, formatNumber }) {
-  console.log(costsPerYear);
+export default function ResultCard({
+  costsPerYear,
+  formatNumber,
+  perInd,
+  taxAmount: financialsTaxAmount,
+}) {
+  const numberPerInd = parseInt(perInd.toString().replace("%", "") / 10);
+  const taxAmount = {
+    full: "volle Steuer",
+    none: "keine Steuer",
+    partial: "reduzierte Steuer",
+  };
+
   return (
     <StyledResultCard>
       <h3>Dein Periotopia-Index</h3>
       <p>
-        Finanzen: Für deine Menstruationsprodukte zahlst du{" "}
-        {formatNumber(costsPerYear)} Euro pro Jahr
+        Finanzen:
+        <br /> Für deine Menstruationsprodukte zahlst du{" "}
+        {formatNumber(costsPerYear)} Euro pro Jahr und{" "}
+        {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt damit:{" "}
+        {numberPerInd}/10
       </p>
+
       <h4>Periotopia-Index</h4>
     </StyledResultCard>
   );

@@ -9,6 +9,7 @@ export default function FinancialsPage({
   formatNumber,
   menstruationDaysPerYear,
   costsPerYear,
+  perInd,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -70,17 +71,17 @@ export default function FinancialsPage({
   const costsInLife = costsPerYear * 39;
   const taxesInLife = costsInLife * (taxes / 100);
 
-  function periotopiaIndex() {
-    if (packageCosts === "0") {
-      return "100%";
-    } else if (packageCosts > "0" && taxAmount === "none") {
-      return "66%";
-    } else if (packageCosts > "0" && taxAmount === "partial") {
-      return "33%";
-    } else {
-      return "0%";
-    }
-  }
+  // function periotopiaIndex() {
+  //   if (packageCosts === "0") {
+  //     return "100%";
+  //   } else if (packageCosts > "0" && taxAmount === "none") {
+  //     return "66%";
+  //   } else if (packageCosts > "0" && taxAmount === "partial") {
+  //     return "33%";
+  //   } else {
+  //     return "0%";
+  //   }
+  // }
 
   return (
     <>
@@ -116,7 +117,7 @@ export default function FinancialsPage({
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-          periotopiaIndex={periotopiaIndex()}
+          periotopiaIndex={perInd}
           onPrevPage={handlePrevPage}
           nextPage="/"
         />

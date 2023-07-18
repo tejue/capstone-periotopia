@@ -91,6 +91,20 @@ export default function App({ Component, pageProps }) {
     return Math.trunc(number).toLocaleString("de-DE");
   }
 
+  function periotopiaIndex() {
+    if (packageCosts === "0") {
+      return "100%";
+    } else if (packageCosts > "0" && taxAmount === "none") {
+      return "66%";
+    } else if (packageCosts > "0" && taxAmount === "partial") {
+      return "33%";
+    } else {
+      return "0%";
+    }
+  }
+
+  const perInd = periotopiaIndex();
+
   return (
     <>
       <GlobalStyle />
@@ -103,6 +117,8 @@ export default function App({ Component, pageProps }) {
         formatNumber={formatNumber}
         menstruationDaysPerYear={menstruationDaysPerYear}
         costsPerYear={costsPerYear}
+        perInd={perInd}
+        taxAmount={taxAmount}
       />
     </>
   );
