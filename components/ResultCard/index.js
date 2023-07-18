@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PeriotopiaIndex from "../PeriotopiaIndex";
 
 const StyledResultCard = styled.div`
   display: flex;
@@ -31,8 +32,7 @@ export default function ResultCard({
         {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt damit:{" "}
         {numberPerInd}/10
       </p>
-
-      <h4>Periotopia-Index</h4>
+      <PeriotopiaIndex periotopiaIndex={perInd} />
     </StyledResultCard>
   );
 }
