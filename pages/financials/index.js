@@ -9,7 +9,7 @@ export default function FinancialsPage({
   formatNumber,
   menstruationDaysPerYear,
   costsPerYear,
-  perInd,
+  periotopiaIndex,
 }) {
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -91,7 +91,7 @@ export default function FinancialsPage({
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-          periotopiaIndex={perInd}
+          periotopiaIndex={periotopiaIndex}
           onPrevPage={handlePrevPage}
           nextPage="/"
         />
