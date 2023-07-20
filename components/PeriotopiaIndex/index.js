@@ -21,7 +21,6 @@ const StyledIndexFilled = styled.div`
 export default function PeriotopiaIndex({ periotopiaIndex }) {
   return (
     <StyledPeriotopiaIndex>
-      <h2>Dein Periotopia-Index</h2>
       <StyledIndex>
         <StyledIndexFilled width={periotopiaIndex} />
       </StyledIndex>

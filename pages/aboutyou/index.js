@@ -1,6 +1,8 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import FormGeneral from "@/components/FormGeneral/index";
 import Answer from "@/components/Answer";
-import { useState } from "react";
+import NavButton from "@/components/NavButton";
 
 export default function GeneralInfoPage({
   handleGeneralInfo,
@@ -8,6 +10,8 @@ export default function GeneralInfoPage({
   formatNumber,
   menstruationDaysPerYear,
 }) {
+  const router = useRouter();
+
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
 
@@ -39,6 +43,10 @@ export default function GeneralInfoPage({
     setSubmittedForm(false);
   }
 
+  function handleNextPage() {
+    router.push("/financials");
+  }
+
   return (
     <>
       <h2>Periotopia</h2>
@@ -51,16 +59,17 @@ export default function GeneralInfoPage({
         />
       )}
       {submittedForm && (
-        <Answer
-          personalAnswerText="Du menstruierst"
-          unit="Tage"
-          year={formatNumber(menstruationDaysPerYear)}
-          today={formatNumber(menstruationDaysTillNow)}
-          life={formatNumber(menstruationDaysInLife)}
-          periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
-          onPrevPage={handlePrevPage}
-          nextPage="/financials"
-        />
+        <>
+          <Answer
+            personalAnswerText="Du menstruierst"
+            unit="Tage"
+            year={formatNumber(menstruationDaysPerYear)}
+            today={formatNumber(menstruationDaysTillNow)}
+            life={formatNumber(menstruationDaysInLife)}
+            periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
+          />
+          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
+        </>
       )}
     </>
   );

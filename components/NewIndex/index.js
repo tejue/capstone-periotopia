@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
-export default function NewIndex() {
+export default function NewIndex({ costsPerYear, periotopiaIndex, taxAmount }) {
   return (
     <StyledNewIndex>
       <p>Ermittle einen Periotopia-Index</p>

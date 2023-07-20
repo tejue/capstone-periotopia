@@ -1,22 +1,22 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
 
-export default function HomePage({
-  costsPerYear,
-  formatNumber,
-  periotopiaIndex,
-  taxAmount,
-}) {
+export default function HomePage({ formatNumber, results }) {
   return (
     <>
       <h1>Periotopia Overview</h1>
       <NewIndex />
-      <ResultCard
-        formatNumber={formatNumber}
-        costsPerYear={costsPerYear}
-        periotopiaIndex={periotopiaIndex}
-        taxAmount={taxAmount}
-      />
+      {results.map(({ id, costsPerYear, periotopiaIndex, taxAmount }) => {
+        return (
+          <ResultCard
+            key={id}
+            formatNumber={formatNumber}
+            costsPerYearID={costsPerYear}
+            periotopiaIndexID={periotopiaIndex}
+            taxAmountID={taxAmount}
+          />
+        );
+      })}
     </>
   );
 }

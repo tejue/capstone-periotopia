@@ -1,24 +1,25 @@
 import GlobalStyle from "../styles";
 import { useState } from "react";
-import useLocalStorageState from "use-local-storage-state";
+// import useLocalStorageState from "use-local-storage-state";
+import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  //-----keeping this for training sessions during coding-----
-  // const [generalInfo, setGeneralInfo] = useState({
-  //   age: "",
-  //   firstMenstruation: "",
-  //   cyclusLength: "",
-  //   menstruationLength: "",
-  // });
-
-  const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
-    defaultValue: {
-      age: "",
-      firstMenstruation: "",
-      cyclusLength: "",
-      menstruationLength: "",
-    },
+  //-----keeping both for training sessions during coding-----
+  const [generalInfo, setGeneralInfo] = useState({
+    age: "",
+    firstMenstruation: "",
+    cyclusLength: "",
+    menstruationLength: "",
   });
+
+  // const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
+  //   defaultValue: {
+  //     age: "",
+  //     firstMenstruation: "",
+  //     cyclusLength: "",
+  //     menstruationLength: "",
+  //   },
+  // });
 
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -33,28 +34,28 @@ export default function App({ Component, pageProps }) {
     (365 / cyclusLength) * menstruationLength
   );
 
-  //-----keeping this just for training sessions during coding-----
-  // const [financials, setFinancials] = useState({
-  //   product: "",
-  //   packageCosts: "",
-  //   taxAmount: "",
-  //   taxes: "",
-  //   packageContent: "",
-  //   changeProduct: "",
-  // });
-
-  const [financials, setFinancials] = useLocalStorageState("financials", {
-    defaultValue: [
-      {
-        product: "",
-        packageCosts: "",
-        taxAmount: "",
-        taxes: "",
-        packageContent: "",
-        changeProduct: "",
-      },
-    ],
+  //-----keeping both for training sessions during coding-----
+  const [financials, setFinancials] = useState({
+    product: "",
+    packageCosts: "",
+    taxAmount: "",
+    taxes: "",
+    packageContent: "",
+    changeProduct: "",
   });
+
+  // const [financials, setFinancials] = useLocalStorageState("financials", {
+  //   defaultValue: [
+  //     {
+  //       product: "",
+  //       packageCosts: "",
+  //       taxAmount: "",
+  //       taxes: "",
+  //       packageContent: "",
+  //       changeProduct: "",
+  //     },
+  //   ],
+  // });
 
   const {
     product,
@@ -112,6 +113,21 @@ export default function App({ Component, pageProps }) {
 
   const periotopiaIndex = periotopiaIndexCalc();
 
+  const [results, setResults] = useState([]);
+
+  function handleAddResult(newResult) {
+    newResult = { ...newResult, id: uid() };
+    setResults([
+      ...results,
+      {
+        ...newResult,
+        costsPerYear: costsPerYear,
+        periotopiaIndex: periotopiaIndex,
+        taxAmount: taxAmount,
+      },
+    ]);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -125,7 +141,8 @@ export default function App({ Component, pageProps }) {
         menstruationDaysPerYear={menstruationDaysPerYear}
         costsPerYear={costsPerYear}
         periotopiaIndex={periotopiaIndex}
-        taxAmount={taxAmount}
+        results={results}
+        handleAddResult={handleAddResult}
       />
     </>
   );
