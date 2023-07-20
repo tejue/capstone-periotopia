@@ -1,8 +1,6 @@
 import PersonalAnswer from "../PersonalAnswer";
 import PeriotopiaInfo from "../PeriotopiaInfo";
 import PeriotopiaIndex from "../PeriotopiaIndex";
-import NavButton from "../NavButton";
-import Link from "next/link";
 
 export default function Answer({
   year,
@@ -10,8 +8,6 @@ export default function Answer({
   life,
   periotopiaInfoText,
   periotopiaIndex,
-  onPrevPage,
-  nextPage,
   unit,
   additionalYear,
   additionalToday,
@@ -31,8 +27,12 @@ export default function Answer({
         {...(additionalLife !== undefined && { additionalLife })}
       />
       <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
-      {periotopiaIndex && <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />}
-      {/* <NavButton onPrevPage={onPrevPage} nextPage={nextPage} /> */}
+      {periotopiaIndex && (
+        <div>
+          <h2>Dein Periotopia-Index</h2>
+          <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
+        </div>
+      )}
     </>
   );
 }

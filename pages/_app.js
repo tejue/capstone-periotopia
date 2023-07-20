@@ -1,10 +1,10 @@
 import GlobalStyle from "../styles";
 import { useState } from "react";
-import useLocalStorageState from "use-local-storage-state";
+// import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  //-----keeping this for training sessions during coding-----
+  //-----keeping both for training sessions during coding-----
   const [generalInfo, setGeneralInfo] = useState({
     age: "",
     firstMenstruation: "",
@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }) {
     (365 / cyclusLength) * menstruationLength
   );
 
-  //-----keeping this just for training sessions during coding-----
+  //-----keeping both for training sessions during coding-----
   const [financials, setFinancials] = useState({
     product: "",
     packageCosts: "",
@@ -141,7 +141,6 @@ export default function App({ Component, pageProps }) {
         menstruationDaysPerYear={menstruationDaysPerYear}
         costsPerYear={costsPerYear}
         periotopiaIndex={periotopiaIndex}
-        taxAmount={taxAmount}
         results={results}
         handleAddResult={handleAddResult}
       />
