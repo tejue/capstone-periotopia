@@ -2,6 +2,7 @@ import PersonalAnswer from "../PersonalAnswer";
 import PeriotopiaInfo from "../PeriotopiaInfo";
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import NavButton from "../NavButton";
+import Link from "next/link";
 
 export default function Answer({
   year,
@@ -31,7 +32,7 @@ export default function Answer({
       />
       <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
       {periotopiaIndex && <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />}
-      <NavButton onPrevPage={onPrevPage} nextPage={nextPage} />
+      {/* <NavButton onPrevPage={onPrevPage} nextPage={nextPage} /> */}
     </>
   );
 }

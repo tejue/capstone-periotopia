@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PeriotopiaIndex from "../PeriotopiaIndex";
+import { uid } from "uid";
 
 const StyledResultCard = styled.div`
   display: flex;
@@ -10,35 +11,43 @@ const StyledResultCard = styled.div`
 `;
 
 export default function ResultCard({
-  costsPerYear,
+  costsPerYearID,
   formatNumber,
-  periotopiaIndex,
-  taxAmount: financialsTaxAmount,
+  periotopiaIndexID,
+  taxAmountID: financialsTaxAmountID,
+  results,
 }) {
-  const numberperiotopiaIndex = parseInt(
-    periotopiaIndex.toString().replace("%", "") / 10
-  );
-  const taxAmount = {
+  // const financialsTaxAmount = taxAmount;
+
+  // const numberperiotopiaIndexID = parseInt(
+  //   periotopiaIndexID.toString().replace("%", "") / 10
+  // );
+  const taxAmountID = {
     full: "volle Steuer",
     none: "keine Steuer",
     partial: "reduzierte Steuer",
   };
 
+  console.log("whats this???", costsPerYearID);
+
   return (
-    costsPerYear >= 0 && (
-      <StyledResultCard>
-        <h3>Dein Periotopia-Index</h3>
-        {costsPerYear >= 0 && (
-          <p>
-            Finanzen:
-            <br /> Für deine Menstruationsprodukte zahlst du{" "}
-            {formatNumber(costsPerYear)} Euro pro Jahr und{" "}
-            {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index beträgt
-            damit: {numberperiotopiaIndex}/10
-          </p>
-        )}
-        <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
-      </StyledResultCard>
-    )
+    // costsPerYearID >= 0 && (
+
+    <StyledResultCard>
+      <h3>Dein Periotopia-Index</h3>
+      {/* {costsPerYear >= 0 && ( */}
+      <p>
+        Finanzen:
+        <br /> Für deine Menstruationsprodukte zahlst du {costsPerYearID}
+        {/* {formatNumber(costsPerYear)}  */}
+        Euro pro Jahr und{" "}
+        {/* {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index */}
+        beträgt damit:
+        {/* {numberperiotopiaIndexID}/10 */}
+      </p>
+      {/* )} */}
+      {/* <PeriotopiaIndex periotopiaIndexID={periotopiaIndexID} /> */}
+    </StyledResultCard>
   );
+  // );
 }

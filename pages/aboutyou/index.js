@@ -1,6 +1,8 @@
 import FormGeneral from "@/components/FormGeneral/index";
 import Answer from "@/components/Answer";
 import { useState } from "react";
+import Link from "next/link";
+import NavButton from "@/components/NavButton";
 
 export default function GeneralInfoPage({
   handleGeneralInfo,
@@ -42,26 +44,28 @@ export default function GeneralInfoPage({
   return (
     <>
       <h2>Periotopia</h2>
-      {!submittedForm && (
-        <FormGeneral
-          handleGeneralInfo={handleGeneralInfo}
-          handleSubmittedForm={handleSubmittedForm}
-          currentValue={currentValue}
-          updateCurrentValue={updateCurrentValue}
-        />
-      )}
-      {submittedForm && (
-        <Answer
-          personalAnswerText="Du menstruierst"
-          unit="Tage"
-          year={formatNumber(menstruationDaysPerYear)}
-          today={formatNumber(menstruationDaysTillNow)}
-          life={formatNumber(menstruationDaysInLife)}
-          periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
-          onPrevPage={handlePrevPage}
-          nextPage="/financials"
-        />
-      )}
+      {/* {!submittedForm && ( */}
+      <FormGeneral
+        handleGeneralInfo={handleGeneralInfo}
+        handleSubmittedForm={handleSubmittedForm}
+        currentValue={currentValue}
+        updateCurrentValue={updateCurrentValue}
+      />
+      {/* )} */}
+      {/* {submittedForm && ( */}
+      <Answer
+        personalAnswerText="Du menstruierst"
+        unit="Tage"
+        year={formatNumber(menstruationDaysPerYear)}
+        today={formatNumber(menstruationDaysTillNow)}
+        life={formatNumber(menstruationDaysInLife)}
+        periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
+        //onPrevPage={handlePrevPage}
+        // nextPage="/financials"
+      />
+      <Link href="/financials">hier</Link>
+      {/* <NavButton onPrevPage={handlePrevPage} nextPage="/financials" /> */}
+      {/* )} */}
     </>
   );
 }
