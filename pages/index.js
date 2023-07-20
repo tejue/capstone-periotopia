@@ -1,14 +1,7 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
-import { useState } from "react";
 
-export default function HomePage({
-  // costsPerYear,
-  formatNumber,
-
-  results,
-}) {
-  console.log("DASBITTEEINMAL", results);
+export default function HomePage({ formatNumber, results }) {
   return (
     <>
       <h1>Periotopia Overview</h1>
@@ -17,7 +10,6 @@ export default function HomePage({
         return (
           <ResultCard
             key={id}
-            resultID={id}
             formatNumber={formatNumber}
             costsPerYearID={costsPerYear}
             periotopiaIndexID={periotopiaIndex}

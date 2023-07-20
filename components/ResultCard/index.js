@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import PeriotopiaIndex from "../PeriotopiaIndex";
-import { uid } from "uid";
 
 const StyledResultCard = styled.div`
   display: flex;
@@ -15,38 +14,30 @@ export default function ResultCard({
   formatNumber,
   periotopiaIndexID,
   taxAmountID: financialsTaxAmountID,
-  results,
 }) {
-  // const financialsTaxAmount = taxAmount;
-
-  // const numberperiotopiaIndexID = parseInt(
-  //   periotopiaIndexID.toString().replace("%", "") / 10
-  // );
+  const numberPeriotopiaIndexID = parseInt(
+    periotopiaIndexID.toString().replace("%", "") / 10
+  );
   const taxAmountID = {
-    full: "volle Steuer",
-    none: "keine Steuer",
-    partial: "reduzierte Steuer",
+    full: "voller Steuer",
+    none: "keiner Steuer",
+    partial: "reduzierter Steuer",
   };
-
-  console.log("whats this???", costsPerYearID);
 
   return (
     // costsPerYearID >= 0 && (
-
     <StyledResultCard>
       <h3>Dein Periotopia-Index</h3>
       {/* {costsPerYear >= 0 && ( */}
       <p>
-        Finanzen:
-        <br /> Für deine Menstruationsprodukte zahlst du {costsPerYearID}
-        {/* {formatNumber(costsPerYear)}  */}
-        Euro pro Jahr und{" "}
-        {/* {taxAmount[financialsTaxAmount]}. Dieser Periotopia-Index */}
-        beträgt damit:
-        {/* {numberperiotopiaIndexID}/10 */}
+        Geld:
+        <br /> Für deine Menstruationsprodukte zahlst du{" "}
+        {formatNumber(costsPerYearID)} Euro pro Jahr bei{" "}
+        {taxAmountID[financialsTaxAmountID]}. Auf dem Periotopia-Index ist das
+        ein Score von {numberPeriotopiaIndexID}/10
       </p>
       {/* )} */}
-      {/* <PeriotopiaIndex periotopiaIndexID={periotopiaIndexID} /> */}
+      <PeriotopiaIndex periotopiaIndex={periotopiaIndexID} />
     </StyledResultCard>
   );
   // );

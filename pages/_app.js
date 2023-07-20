@@ -126,13 +126,7 @@ export default function App({ Component, pageProps }) {
         taxAmount: taxAmount,
       },
     ]);
-    console.log("updated results:", results); // Hinzugefügtes console.log
   }
-
-  console.log("HALLO", results);
-  // function handleAddResult(newResult) {
-  //   setResults((prevResults) => [...prevResults, newResult]);
-  // }
 
   return (
     <>
