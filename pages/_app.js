@@ -1,24 +1,51 @@
 import GlobalStyle from "../styles";
-import { useState } from "react";
-// import useLocalStorageState from "use-local-storage-state";
+// import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  //-----keeping both for training sessions during coding-----
-  const [generalInfo, setGeneralInfo] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
+  const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
+    defaultValue: {
+      age: "",
+      firstMenstruation: "",
+      cyclusLength: "",
+      menstruationLength: "",
+    },
   });
 
-  // const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
-  //   defaultValue: {
-  //     age: "",
-  //     firstMenstruation: "",
-  //     cyclusLength: "",
-  //     menstruationLength: "",
-  //   },
+  const [financials, setFinancials] = useLocalStorageState("financials", {
+    defaultValue: [
+      {
+        product: "",
+        packageCosts: "",
+        taxAmount: "",
+        taxes: "",
+        packageContent: "",
+        changeProduct: "",
+      },
+    ],
+  });
+
+  const [results, setResults] = useLocalStorageState("results", {
+    defaultValue: [],
+  });
+
+  //-----keeping for training sessions during coding-----
+  // const [generalInfo, setGeneralInfo] = useState({
+  //   age: "",
+  //   firstMenstruation: "",
+  //   cyclusLength: "",
+  //   menstruationLength: "",
+  // });
+
+  //-----keeping for training sessions during coding-----
+  // const [financials, setFinancials] = useState({
+  //   product: "",
+  //   packageCosts: "",
+  //   taxAmount: "",
+  //   taxes: "",
+  //   packageContent: "",
+  //   changeProduct: "",
   // });
 
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
@@ -33,29 +60,6 @@ export default function App({ Component, pageProps }) {
   const menstruationDaysPerYear = Math.round(
     (365 / cyclusLength) * menstruationLength
   );
-
-  //-----keeping both for training sessions during coding-----
-  const [financials, setFinancials] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
-  });
-
-  // const [financials, setFinancials] = useLocalStorageState("financials", {
-  //   defaultValue: [
-  //     {
-  //       product: "",
-  //       packageCosts: "",
-  //       taxAmount: "",
-  //       taxes: "",
-  //       packageContent: "",
-  //       changeProduct: "",
-  //     },
-  //   ],
-  // });
 
   const {
     product,
@@ -112,8 +116,6 @@ export default function App({ Component, pageProps }) {
   }
 
   const periotopiaIndex = periotopiaIndexCalc();
-
-  const [results, setResults] = useState([]);
 
   function handleAddResult(newResult) {
     newResult = { ...newResult, id: uid() };
