@@ -128,6 +128,10 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
+  function handleDeleteResultCard(id) {
+    setResults(results.filter((result) => result.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -143,6 +147,7 @@ export default function App({ Component, pageProps }) {
         periotopiaIndex={periotopiaIndex}
         results={results}
         handleAddResult={handleAddResult}
+        handleDeleteResultCard={handleDeleteResultCard}
       />
     </>
   );

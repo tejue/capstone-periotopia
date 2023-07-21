@@ -22,6 +22,8 @@ export default function ResultCard({
   formatNumber,
   periotopiaIndexID,
   taxAmountID: financialsTaxAmountID,
+  handleDeleteResultCard,
+  id,
 }) {
   const numberPeriotopiaIndexID = parseInt(
     periotopiaIndexID.toString().replace("%", "") / 10
@@ -37,9 +39,19 @@ export default function ResultCard({
     setIsResultVisible(!isResultVisible);
   }
 
+  function handleDelete() {
+    const confirmDelete = window.confirm(
+      "Willst du diese Karte wirklich löschen?"
+    );
+    if (confirmDelete) {
+      handleDeleteResultCard(id);
+    }
+  }
+
   return (
     // costsPerYearID >= 0 && (
     <>
+      <button onClick={handleDelete}>Delete</button>
       <button onClick={handleToggle}>click</button>
       <StyledList>
         <StyledResultCard>
