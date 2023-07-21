@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import { useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const StyledList = styled.ul`
   margin: 0;
@@ -22,6 +24,8 @@ export default function ResultCard({
   formatNumber,
   periotopiaIndexID,
   taxAmountID: financialsTaxAmountID,
+  handleDeleteResultCard,
+  id,
 }) {
   const numberPeriotopiaIndexID = parseInt(
     periotopiaIndexID.toString().replace("%", "") / 10
@@ -37,9 +41,28 @@ export default function ResultCard({
     setIsResultVisible(!isResultVisible);
   }
 
+  function handleDelete() {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Möchtest du diesen Periotopia-Index wirklich löschen?",
+      buttons: [
+        {
+          label: "Ja",
+          onClick: () => {
+            handleDeleteResultCard(id);
+          },
+        },
+        {
+          label: "Nein, doch nicht",
+        },
+      ],
+    });
+  }
+
   return (
     // costsPerYearID >= 0 && (
     <>
+      <button onClick={handleDelete}>X</button>
       <button onClick={handleToggle}>click</button>
       <StyledList>
         <StyledResultCard>
