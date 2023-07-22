@@ -109,6 +109,23 @@ export default function HygienePage({
     }
   }
 
+  function formatTime(time) {
+    const { days, hours, minutes } = time;
+    let formattedTime = "";
+
+    if (days > 0) {
+      formattedTime += `${days} Tag${days !== 1 ? "e" : ""}, `;
+    }
+    if (hours > 0) {
+      formattedTime += `${hours} Stunde${hours !== 1 ? "n" : ""}, `;
+    }
+    if (minutes > 0) {
+      formattedTime += `${minutes} Minute${minutes !== 1 ? "n" : ""}`;
+    }
+
+    return formattedTime;
+  }
+
   const hygperiotopiaIndex = hygperiotopiaIndexCalc();
 
   return (
