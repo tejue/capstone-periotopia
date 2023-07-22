@@ -14,6 +14,29 @@ const StyledLegend = styled.legend`
   margin-top: 20px;
 `;
 
+const RadioButtonInput = styled.input`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+
+  &:checked {
+    background-color: red;
+  }
+`;
+
+const RadioButtonLabel = styled.label`
+  margin-left: 8px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+`;
+
 export default function FormField({
   type,
   options,
@@ -45,8 +68,11 @@ export default function FormField({
         <StyledFieldset>
           <StyledLegend>{question}</StyledLegend>
           {options.map((option) => (
-            <label key={option.formFieldId} htmlFor={option.formFieldId}>
-              <input
+            <RadioButtonLabel
+              key={option.formFieldId}
+              htmlFor={option.formFieldId}
+            >
+              <RadioButtonInput
                 type="radio"
                 id={option.formFieldId}
                 name={name}
@@ -58,7 +84,7 @@ export default function FormField({
                 disabled={disabled}
               />
               {option.content}
-            </label>
+            </RadioButtonLabel>
           ))}
         </StyledFieldset>
       )}
