@@ -60,6 +60,14 @@ export default function HygienePage({
     router.push("/");
   }
 
+  function calculateTime(minutes) {
+    const days = Math.floor(minutes / (60 * 24));
+    const remainingMinutes = minutes % (60 * 24);
+    const hours = Math.floor(remainingMinutes / 60);
+    const minutesValue = remainingMinutes % 60;
+    return { days, hours, minutes: minutesValue };
+  }
+
   function minutesPerYearCalc() {
     if (access === "yes") {
       return menstruationDaysPerYear * changeProduct * minutes * 2;
@@ -70,32 +78,34 @@ export default function HygienePage({
   }
 
   const minutesPerYear = minutesPerYearCalc();
-
-  const daysPerYear = Math.floor(minutesPerYear / (60 * 24));
-  const remainingMinutesYear = minutesPerYear % (60 * 24);
-  const hoursPerYear = Math.floor(remainingMinutesYear / 60);
-  const minutesYear = remainingMinutesYear % 60;
-
   const minutesTillToday = minutesPerYear * (age - firstMenstruation);
-  const daysTillToday = Math.floor(minutesTillToday / (60 * 24));
-  const remainingMinutesToday = minutesTillToday % (60 * 24);
-  const hoursTillToday = Math.floor(remainingMinutesToday / 60);
-  const minutesToday = remainingMinutesToday % 60;
-
   const minutesInLife = minutesPerYear * 39;
-  const daysInLife = Math.floor(minutesInLife / (60 * 24));
-  const remainingMinutesLife = minutesInLife % (60 * 24);
-  const hoursInLife = Math.floor(remainingMinutesLife / 60);
-  const minutesLife = remainingMinutesLife % 60;
 
-  const acceptableValue =
-    minutesPerYear >= 0 && minutesTillToday >= 0 && minutesInLife >= 0;
+  const timeTillToday = calculateTime(minutesTillToday);
+  const timeInLife = calculateTime(minutesInLife);
 
   function handleHygiene(data) {
     setHygiene(data);
   }
 
-  function hygperiotopiaIndexCalc() {
+  function formatTime(time) {
+    const { days, hours, minutes } = time;
+    let formattedTime = "";
+
+    if (days > 0) formattedTime += `${days} Tag${days !== 1 ? "e" : ""}`;
+    if (hours > 0)
+      formattedTime += `${
+        formattedTime ? (minutes > 0 ? ", " : " und ") : ""
+      }${hours} Stunde${hours !== 1 ? "n" : ""}`;
+    if (minutes > 0)
+      formattedTime += `${formattedTime ? " und " : ""}${minutes} Minute${
+        minutes !== 1 ? "n" : ""
+      }`;
+
+    return formattedTime;
+  }
+
+  function periotopiaIndexHygieneCalc() {
     if (minutes === "1") {
       return "100%";
     }
@@ -108,60 +118,39 @@ export default function HygienePage({
       return "0%";
     }
   }
+  const periotopiaIndexHygiene = periotopiaIndexHygieneCalc();
 
-  function formatTime(time) {
-    const { days, hours, minutes } = time;
-    let formattedTime = "";
-
-    if (days > 0) {
-      formattedTime += `${days} Tag${days !== 1 ? "e" : ""}, `;
-    }
-    if (hours > 0) {
-      formattedTime += `${hours} Stunde${hours !== 1 ? "n" : ""}, `;
-    }
-    if (minutes > 0) {
-      formattedTime += `${minutes} Minute${minutes !== 1 ? "n" : ""}`;
-    }
-
-    return formattedTime;
-  }
-
-  const hygperiotopiaIndex = hygperiotopiaIndexCalc();
+  const acceptableValue =
+    minutesPerYear >= 0 && minutesTillToday >= 0 && minutesInLife >= 0;
 
   return (
     <>
       <h2>Periotopia</h2>
-      {/* {!submittedForm &&  */}
-      <FormHygiene
-        currentValue={currentValue}
-        handleHygiene={handleHygiene}
-        handleSubmittedForm={handleSubmittedForm}
-        updateCurrentValue={updateCurrentValue}
-      />
-      {/* }
-       {submittedForm && ( */}
-      <>
-        <Answer
-          personalAnswerText="Für den Weg für deine Menstruationshygiene benötigst du bis zu"
-          unit="Minuten"
-          year={formatNumber(minutesPerYear)}
-          today={formatNumber(minutesTillToday)}
-          life={formatNumber(minutesInLife)}
-          additionalYear={`das sind ${daysPerYear} Tage, ${formatNumber(
-            hoursPerYear
-          )} Stunden und ${minutesYear} Minuten`}
-          additionalToday={`das sind ${daysTillToday} Tage, ${formatNumber(
-            hoursTillToday
-          )} Stunden und ${minutesToday} Minuten`}
-          additionalLife={`das sind ${daysInLife} Tage, ${formatNumber(
-            hoursInLife
-          )} Stunden und ${minutesLife} Minuten`}
-          periotopiaInfoText="In Periotopia hätten alle Menschen Zugang zu sauberen Sanitäranlagen für ihre Menstruationshygiene"
-          periotopiaIndex={hygperiotopiaIndex}
+      {!submittedForm && (
+        <FormHygiene
+          currentValue={currentValue}
+          handleHygiene={handleHygiene}
+          handleSubmittedForm={handleSubmittedForm}
+          updateCurrentValue={updateCurrentValue}
         />
-        <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
-      </>
-      {/* )} */}
+      )}
+      {submittedForm && (
+        <>
+          <Answer
+            personalAnswerText="Für den Weg für deine Menstruationshygiene benötigst du bis zu"
+            unit="Minuten"
+            year={minutesPerYear}
+            today={minutesTillToday}
+            life={minutesInLife}
+            additionalYear={`das sind ${formatTime(timeTillToday)}`}
+            additionalToday={`das sind ${formatTime(timeInLife)} `}
+            additionalLife={`das sind ${formatTime(timeInLife)} `}
+            periotopiaInfoText="In Periotopia hätten alle Menschen Zugang zu sauberen Sanitäranlagen für ihre Menstruationshygiene"
+            periotopiaIndex={periotopiaIndexHygiene}
+          />
+          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
+        </>
+      )}
     </>
   );
 }
