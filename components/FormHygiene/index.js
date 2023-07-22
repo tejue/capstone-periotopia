@@ -11,24 +11,23 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-export default function FormHygiene() {
-  const access = [
+export default function FormHygiene({
+  handleGeneralInfo,
+  handleSubmittedForm,
+  currentValue,
+  updateCurrentValue,
+  handleHygiene,
+}) {
+  const optionsAccess = [
     { formFieldId: "yes", value: "yes", content: "ja" },
     { formFieldId: "no", value: "no", content: "nein" },
   ];
 
-  const minutes = [
+  const optionsMinutes = [
     { formFieldId: "1min", value: "1", content: "maximal 1 Minute" },
     { formFieldId: "15min", value: "15", content: "maximal 15 Minuten" },
     { formFieldId: "30min", value: "30", content: "maximal 30 Minuten" },
   ];
-
-  const [currentValue, setCurrentValue] = useState({
-    minutes: "",
-  });
-  function updateCurrentValue(newValue) {
-    setCurrentValue(newValue);
-  }
 
   function handleUserInput(event, fieldName) {
     const newValue = { ...currentValue, [fieldName]: event.target.value };
@@ -50,7 +49,7 @@ export default function FormHygiene() {
         question="Hast du Zugang zu einer hygienischen Sanitäranlage, bei der du in geschütztem Raum deine Menstruationshygiene durchführen kannst?"
         type="radio"
         name="access"
-        options={access}
+        options={optionsAccess}
         checked={currentValue.access}
         onChange={(event) => handleUserInput(event, "access")}
       />
@@ -58,7 +57,7 @@ export default function FormHygiene() {
         question="Wie weit ist dein (regulärerer) Weg zu der Sanitäranlage für deine Menstruationshygiene?"
         type="radio"
         name="minutes"
-        options={minutes}
+        options={optionsMinutes}
         checked={currentValue.minutes}
         onChange={(event) => handleUserInput(event, "minutes")}
         disabled={currentValue.access === "no"}
