@@ -54,7 +54,7 @@ export default function FinancialsPage({
 
   function handleNextPage() {
     handleAddResult(newResult);
-    router.push("/");
+    router.push("/hygiene");
   }
 
   const taxesPerYear = costsPerYear * (taxes / 100);
