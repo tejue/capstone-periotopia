@@ -12,11 +12,15 @@ const StyledForm = styled.form`
 `;
 
 export default function FormHygiene() {
+  const access = [
+    { formFieldId: "yes", value: "yes", content: "ja" },
+    { formFieldId: "no", value: "no", content: "nein" },
+  ];
+
   const minutes = [
     { formFieldId: "1min", value: "1", content: "maximal 1 Minute" },
     { formFieldId: "15min", value: "15", content: "maximal 15 Minuten" },
     { formFieldId: "30min", value: "30", content: "maximal 30 Minuten" },
-    { formFieldId: "31min", value: "31", content: "mehr als 30 Minuten" },
   ];
 
   const [currentValue, setCurrentValue] = useState({
@@ -42,34 +46,14 @@ export default function FormHygiene() {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      {/* <FormField
-        formFieldId="Test"
-        question="Wieviele Minuten brauchst du etwa zu dem Ort, an dem du deine Menstruationshygiene furchführen kannst?"
-        type="number"
-        // value={numericValue}
-        // onChange={handleNumberChange}
-        min={0}
-        max={100}
-      /> */}
       <FormField
-      // type="select"
-      // formId="minutes"
-      // question="Wieviele Minuten brauchst du etwa zu dem Ort, an dem du deine Menstruationshygiene furchführen kannst?"
-      // name="minutes"
-
-      // value="minutes"
-      // value={currentValue.minutes}
-      // onChange={(event) => handleUserInput(event, "minutes")}
-
-      // options={minutesToSanitary}
-      // placeholder="bitte wähle aus"
-
-      // options={selectOptions}
-      // value={selectedOption}
-      // onChange={handleSelectChange}
-      // className="my-select"
+        question="Hast du Zugang zu einer hygienischen Sanitäranlage, bei der du in geschütztem Raum deine Menstruationshygiene durchführen kannst?"
+        type="radio"
+        name="access"
+        options={access}
+        checked={currentValue.access}
+        onChange={(event) => handleUserInput(event, "access")}
       />
-
       <FormField
         question="Wie weit ist dein (regulärerer) Weg zu der Sanitäranlage für deine Menstruationshygiene?"
         type="radio"
@@ -77,6 +61,7 @@ export default function FormHygiene() {
         options={minutes}
         checked={currentValue.minutes}
         onChange={(event) => handleUserInput(event, "minutes")}
+        disabled={currentValue.access === "no"}
       />
       <ShowAnswerButton />
     </StyledForm>

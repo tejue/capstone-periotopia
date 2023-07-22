@@ -14,10 +14,6 @@ const StyledLegend = styled.legend`
   margin-top: 20px;
 `;
 
-const StyledInput = styled.input`
-  gap: 0;
-`;
-
 export default function FormField({
   type,
   options,
@@ -27,6 +23,7 @@ export default function FormField({
   name,
   placeholder,
   checked,
+  disabled,
   //   ...inputProps
 }) {
   return (
@@ -48,8 +45,8 @@ export default function FormField({
         <StyledFieldset>
           <StyledLegend>{question}</StyledLegend>
           {options.map((option) => (
-            <StyledLabel key={option.formFieldId} htmlFor={option.formFieldId}>
-              <StyledInput
+            <label key={option.formFieldId} htmlFor={option.formFieldId}>
+              <input
                 type="radio"
                 id={option.formFieldId}
                 name={name}
@@ -58,9 +55,10 @@ export default function FormField({
                 onChange={onChange}
                 // {...inputProps}
                 required
+                disabled={disabled}
               />
               {option.content}
-            </StyledLabel>
+            </label>
           ))}
         </StyledFieldset>
       )}
