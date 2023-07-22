@@ -22,14 +22,32 @@ const StyledResultCard = styled.li`
 export default function ResultCard({
   costsPerYearID,
   formatNumber,
-  periotopiaIndexID,
+  periotopiaIndexFinancialsID,
+  periotopiaIndexHygieneID,
   taxAmountID: financialsTaxAmountID,
   handleDeleteResultCard,
   id,
+  formatTime,
+  menstruationDaysPerYearID,
+  // timePerYearID,
 }) {
-  const numberPeriotopiaIndexID = parseInt(
-    periotopiaIndexID.toString().replace("%", "") / 10
+  const numberPeriotopiaIndexFinancialsID = parseInt(
+    periotopiaIndexFinancialsID.toString().replace("%", "") / 10
   );
+
+  const numberperiotopiaIndexHygieneID = parseInt(
+    periotopiaIndexHygieneID.toString().replace("%", "") / 10
+  );
+
+  const periotopiaIndexAverage =
+    (numberPeriotopiaIndexFinancialsID + numberperiotopiaIndexHygieneID) / 2;
+
+  function convertIndexAverage(number) {
+    return (number * 10).toString() + "%";
+  }
+
+  const periotopiaIndex = convertIndexAverage(periotopiaIndexAverage);
+
   const taxAmountID = {
     full: "voller Steuer",
     none: "keiner Steuer",
@@ -71,13 +89,26 @@ export default function ResultCard({
             //  {/* {costsPerYear >= 0 && ( */}
             <>
               <p>
+                Allgemein:
+                <br /> Du hast deine Menstruation an {
+                  menstruationDaysPerYearID
+                }{" "}
+                Tagen pro Jahr.
+              </p>
+              <p>
                 Geld:
                 <br /> Für deine Menstruationsprodukte zahlst du{" "}
                 {formatNumber(costsPerYearID)} Euro pro Jahr bei{" "}
                 {taxAmountID[financialsTaxAmountID]}. Auf dem Periotopia-Index
-                ist das ein Score von {numberPeriotopiaIndexID}/10
+                ist das ein Score von {numberPeriotopiaIndexFinancialsID}/10
               </p>
-              <PeriotopiaIndex periotopiaIndex={periotopiaIndexID} />
+              <p>
+                Hygiene:
+                <br /> Für deine Menstruationshygiene brauchst du pro Jahr. Auf
+                dem Periotopia-Index ist das ein Score von{" "}
+                {numberperiotopiaIndexHygieneID}/10
+              </p>
+              <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}
           )}

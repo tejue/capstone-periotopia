@@ -12,7 +12,7 @@ export default function FinancialsPage({
   formatNumber,
   menstruationDaysPerYear,
   costsPerYear,
-  periotopiaIndex,
+  periotopiaIndexFinancials,
   handleAddResult,
   newResult,
 }) {
@@ -53,7 +53,6 @@ export default function FinancialsPage({
   }
 
   function handleNextPage() {
-    handleAddResult(newResult);
     router.push("/hygiene");
   }
 
@@ -103,7 +102,7 @@ export default function FinancialsPage({
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-            periotopiaIndex={periotopiaIndex}
+            periotopiaIndex={periotopiaIndexFinancials}
           />
           <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
         </>

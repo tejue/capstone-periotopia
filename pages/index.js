@@ -3,6 +3,7 @@ import ResultCard from "@/components/ResultCard/index";
 
 export default function HomePage({
   formatNumber,
+  formatTime,
   results,
   handleDeleteResultCard,
 }) {
@@ -10,19 +11,31 @@ export default function HomePage({
     <>
       <h1>Periotopia Overview</h1>
       <NewIndex />
-      {results.map(({ id, costsPerYear, periotopiaIndex, taxAmount }) => {
-        return (
-          <ResultCard
-            key={id}
-            id={id}
-            formatNumber={formatNumber}
-            costsPerYearID={costsPerYear}
-            periotopiaIndexID={periotopiaIndex}
-            taxAmountID={taxAmount}
-            handleDeleteResultCard={handleDeleteResultCard}
-          />
-        );
-      })}
+      {results.map(
+        ({
+          id,
+          costsPerYear,
+          periotopiaIndexFinancials,
+          periotopiaIndexHygiene,
+          taxAmount,
+          menstruationDaysPerYear,
+        }) => {
+          return (
+            <ResultCard
+              key={id}
+              id={id}
+              formatNumber={formatNumber}
+              formatTime={formatTime}
+              costsPerYearID={costsPerYear}
+              periotopiaIndexHygieneID={periotopiaIndexHygiene}
+              periotopiaIndexFinancialsID={periotopiaIndexFinancials}
+              taxAmountID={taxAmount}
+              handleDeleteResultCard={handleDeleteResultCard}
+              menstruationDaysPerYearID={menstruationDaysPerYear}
+            />
+          );
+        }
+      )}
     </>
   );
 }

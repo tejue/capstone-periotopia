@@ -10,20 +10,16 @@ export default function HygienePage({
   financials,
   formatNumber,
   menstruationDaysPerYear,
-  periotopiaIndex,
+  periotopiaIndexHygiene,
   handleAddResult,
   newResult,
+  timePerYear,
+  minutesPerYear,
+  calculateTime,
+  handleHygiene,
+  formatTime,
 }) {
   const router = useRouter();
-
-  const [hygiene, setHygiene] = useLocalStorageState("hygiene", {
-    defaultValue: {
-      access: "",
-      minutes: "",
-    },
-  });
-
-  const { access, minutes } = hygiene;
 
   const { age, firstMenstruation, cyclusLength, menstruationLength } =
     generalInfo;
@@ -60,65 +56,11 @@ export default function HygienePage({
     router.push("/");
   }
 
-  function calculateTime(minutes) {
-    const days = Math.floor(minutes / (60 * 24));
-    const remainingMinutes = minutes % (60 * 24);
-    const hours = Math.floor(remainingMinutes / 60);
-    const minutesValue = remainingMinutes % 60;
-    return { days, hours, minutes: minutesValue };
-  }
-
-  function minutesPerYearCalc() {
-    if (access === "yes") {
-      return menstruationDaysPerYear * changeProduct * minutes * 2;
-    }
-    if (access === "no") {
-      return menstruationDaysPerYear * changeProduct * 31 * 2;
-    } else return NaN;
-  }
-
-  const minutesPerYear = minutesPerYearCalc();
   const minutesTillToday = minutesPerYear * (age - firstMenstruation);
   const minutesInLife = minutesPerYear * 39;
 
   const timeTillToday = calculateTime(minutesTillToday);
   const timeInLife = calculateTime(minutesInLife);
-
-  function handleHygiene(data) {
-    setHygiene(data);
-  }
-
-  function formatTime(time) {
-    const { days, hours, minutes } = time;
-    let formattedTime = "";
-
-    if (days > 0) formattedTime += `${days} Tag${days !== 1 ? "e" : ""}`;
-    if (hours > 0)
-      formattedTime += `${
-        formattedTime ? (minutes > 0 ? ", " : " und ") : ""
-      }${hours} Stunde${hours !== 1 ? "n" : ""}`;
-    if (minutes > 0)
-      formattedTime += `${formattedTime ? " und " : ""}${minutes} Minute${
-        minutes !== 1 ? "n" : ""
-      }`;
-
-    return formattedTime;
-  }
-
-  function periotopiaIndexHygieneCalc() {
-    if (minutes === "1") {
-      return "100%";
-    }
-    if (minutes === "15") {
-      return "66%";
-    }
-    if (minutes === "30") {
-      return "33%";
-    } else {
-      return "0%";
-    }
-  }
-  const periotopiaIndexHygiene = periotopiaIndexHygieneCalc();
 
   const acceptableValue =
     minutesPerYear >= 0 && minutesTillToday >= 0 && minutesInLife >= 0;
@@ -142,8 +84,8 @@ export default function HygienePage({
             year={minutesPerYear}
             today={minutesTillToday}
             life={minutesInLife}
-            additionalYear={`das sind ${formatTime(timeTillToday)}`}
-            additionalToday={`das sind ${formatTime(timeInLife)} `}
+            additionalYear={`das sind ${formatTime(timePerYear)}`}
+            additionalToday={`das sind ${formatTime(timeTillToday)} `}
             additionalLife={`das sind ${formatTime(timeInLife)} `}
             periotopiaInfoText="In Periotopia hätten alle Menschen Zugang zu sauberen Sanitäranlagen für ihre Menstruationshygiene"
             periotopiaIndex={periotopiaIndexHygiene}
