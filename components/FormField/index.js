@@ -1,30 +1,18 @@
-import styled from "styled-components";
-
-const StyledLabel = styled.label`
-  margin-top: 20px;
-`;
-
-const StyledFieldset = styled.fieldset`
-  //border: none;
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledLegend = styled.legend`
-  margin-top: 20px;
-`;
+import { StyledLabel, StyledFieldset, StyledLegend } from "./styles.js";
 
 export default function FormField({
-  type,
-  options,
-  onChange,
-  formFieldId,
   question,
+  type,
+  formFieldId,
   name,
-  placeholder,
+  min,
+  max,
+  step,
+  value,
+  options,
   checked,
+  onChange,
   disabled,
-  //   ...inputProps
 }) {
   return (
     <>
@@ -32,11 +20,14 @@ export default function FormField({
         <>
           <label htmlFor={formFieldId}>{question}</label>
           <input
-            id={formFieldId}
             type="number"
-            //   value={value}
-            //   onChange={(e) => onChange(e.target.value)}
-            //   {...inputProps}
+            id={formFieldId}
+            name={name}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={onChange}
             required
           />
         </>
@@ -53,9 +44,8 @@ export default function FormField({
                 value={option.value}
                 checked={checked === option.value}
                 onChange={onChange}
-                // {...inputProps}
-                required
                 disabled={disabled}
+                required
               />
               {option.content}
             </label>
@@ -64,31 +54,22 @@ export default function FormField({
       )}
       {type === "select" && (
         <>
-          <label htmlFor={formId}>{question}</label>
+          <label htmlFor={formFieldId}>{question}</label>
           <select
-            id={formId}
-            options={options}
-            placeholder={placeholder}
+            id={formFieldId}
+            name={name}
             onChange={onChange}
-            //   {...inputProps}
             required
+            //options={options}
           >
             {options.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option key={option.formFieldId} value={option.value}>
                 {option.content}
               </option>
             ))}
           </select>
         </>
       )}
-      {/* {["select", "number", "radio"].indexOf(type) === -1 && (
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          {...inputProps}
-        />
-      )}  */}
     </>
   );
 }
