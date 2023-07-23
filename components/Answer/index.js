@@ -14,6 +14,11 @@ export default function Answer({
   additionalLife,
   personalAnswerText,
 }) {
+  const numberPeriotopiaIndex =
+    periotopiaIndex !== undefined
+      ? Math.floor(parseInt(periotopiaIndex.replace("%", "")) / 10)
+      : undefined;
+
   return (
     <>
       <PersonalAnswer
@@ -29,7 +34,7 @@ export default function Answer({
       <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
       {periotopiaIndex && (
         <div>
-          <h2>Dein Periotopia-Index</h2>
+          <h2>Dein Periotopia-Index ist {numberPeriotopiaIndex}/10</h2>
           <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
         </div>
       )}

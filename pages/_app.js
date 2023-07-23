@@ -167,12 +167,12 @@ export default function App({ Component, pageProps }) {
         costsPerYear: costsPerYear,
         taxAmount: taxAmount,
         timePerYear: timePerYear,
+        access: access,
         periotopiaIndexFinancials: periotopiaIndexFinancials,
         periotopiaIndexHygiene: periotopiaIndexHygiene,
       },
     ]);
   }
-
   function handleDeleteResultCard(id) {
     setResults(results.filter((result) => result.id !== id));
   }

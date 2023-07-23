@@ -44,7 +44,7 @@ export default function FormHygiene({
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FormField
-        question="Hast du Zugang zu einer hygienischen Sanitäranlage, bei der du in geschütztem Raum deine Menstruationshygiene durchführen kannst?"
+        question="Hast du Zugang zu einer sauberen und sichere Sanitäranlage um dein Menstruationsprodukt zu wechseln?"
         type="radio"
         name="access"
         options={optionsAccess}
@@ -52,7 +52,7 @@ export default function FormHygiene({
         onChange={(event) => handleUserInput(event, "access")}
       />
       <FormField
-        question="Wie weit ist dein (regulärerer) Weg zu der Sanitäranlage für deine Menstruationshygiene?"
+        question="Wenn ja, wie lange läufst du, um diesen Ort zu erreichen?"
         type="radio"
         name="minutes"
         options={optionsMinutes}

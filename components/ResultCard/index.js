@@ -23,6 +23,7 @@ export default function ResultCard({
   menstruationDaysPerYearID,
   costsPerYearID,
   taxAmountID: financialsTaxAmountID,
+  accessID,
   timePerYearID,
   periotopiaIndexFinancialsID,
   periotopiaIndexHygieneID,
@@ -95,17 +96,21 @@ export default function ResultCard({
                 Für deine Menstruationsprodukte zahlst du{" "}
                 {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
                 {taxAmountID[financialsTaxAmountID]}. Für den Faktor Geld ist
-                das ein Periotopia-Index von {numberPeriotopiaIndexFinancialsID}
+                dein Periotopia-Index {numberPeriotopiaIndexFinancialsID}
                 /10.
               </p>
               <p>
-                Für deine Menstruationshygiene brauchst du ca.{" "}
-                {formatTime(timePerYearID)} im Jahr. Für den Faktor Hygiene ist
-                das ein Periotopia-Index von {numberperiotopiaIndexHygieneID}
-                /10.
+                {accessID === "yes"
+                  ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(
+                      timePerYearID
+                    )} im Jahr.`
+                  : `Du hast keinen Zugang zu einer sauberen und sicheren Sanitäranlage um deine Menstruationsprodukte zu wechseln oder brauchst für den Hin- und Rückweg mindestens ${formatTime(
+                      timePerYearID
+                    )} im Jahr.`}{" "}
+                Für den Faktor Hygiene ist dein Periotopia-Index{" "}
+                {numberperiotopiaIndexHygieneID}/10.
               </p>
-              Dein durchschnittlicher Periotopia-Index ist:{" "}
-              {periotopiaIndexAverage}/10:
+              Dein gesamter Periotopia-Index ist: {periotopiaIndexAverage}/10:
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}

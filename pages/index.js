@@ -14,12 +14,13 @@ export default function HomePage({
       {results.map(
         ({
           id,
+          menstruationDaysPerYear,
           costsPerYear,
+          taxAmount,
+          timePerYear,
+          access,
           periotopiaIndexFinancials,
           periotopiaIndexHygiene,
-          taxAmount,
-          menstruationDaysPerYear,
-          timePerYear,
         }) => {
           return (
             <ResultCard
@@ -31,6 +32,7 @@ export default function HomePage({
               periotopiaIndexHygieneID={periotopiaIndexHygiene}
               periotopiaIndexFinancialsID={periotopiaIndexFinancials}
               taxAmountID={taxAmount}
+              accessID={access}
               handleDeleteResultCard={handleDeleteResultCard}
               menstruationDaysPerYearID={menstruationDaysPerYear}
               timePerYearID={timePerYear}
