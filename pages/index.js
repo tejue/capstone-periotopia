@@ -19,6 +19,7 @@ export default function HomePage({
           periotopiaIndexHygiene,
           taxAmount,
           menstruationDaysPerYear,
+          timePerYear,
         }) => {
           return (
             <ResultCard
@@ -32,6 +33,7 @@ export default function HomePage({
               taxAmountID={taxAmount}
               handleDeleteResultCard={handleDeleteResultCard}
               menstruationDaysPerYearID={menstruationDaysPerYear}
+              timePerYearID={timePerYear}
             />
           );
         }

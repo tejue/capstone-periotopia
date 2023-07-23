@@ -29,7 +29,7 @@ export default function ResultCard({
   id,
   formatTime,
   menstruationDaysPerYearID,
-  // timePerYearID,
+  timePerYearID,
 }) {
   const numberPeriotopiaIndexFinancialsID = parseInt(
     periotopiaIndexFinancialsID.toString().replace("%", "") / 10
@@ -89,25 +89,24 @@ export default function ResultCard({
             //  {/* {costsPerYear >= 0 && ( */}
             <>
               <p>
-                Allgemein:
-                <br /> Du hast deine Menstruation an {
-                  menstruationDaysPerYearID
-                }{" "}
-                Tagen pro Jahr.
+                Du hast deine Menstruation an {menstruationDaysPerYearID} Tagen
+                im Jahr.
               </p>
               <p>
-                Geld:
-                <br /> Für deine Menstruationsprodukte zahlst du{" "}
-                {formatNumber(costsPerYearID)} Euro pro Jahr bei{" "}
-                {taxAmountID[financialsTaxAmountID]}. Auf dem Periotopia-Index
-                ist das ein Score von {numberPeriotopiaIndexFinancialsID}/10
+                Für deine Menstruationsprodukte zahlst du{" "}
+                {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
+                {taxAmountID[financialsTaxAmountID]}. Für den Faktor Geld ist
+                das ein Periotopia-Index von {numberPeriotopiaIndexFinancialsID}
+                /10.
               </p>
               <p>
-                Hygiene:
-                <br /> Für deine Menstruationshygiene brauchst du pro Jahr. Auf
-                dem Periotopia-Index ist das ein Score von{" "}
-                {numberperiotopiaIndexHygieneID}/10
+                Für deine Menstruationshygiene brauchst du ca.{" "}
+                {formatTime(timePerYearID)} im Jahr. Für den Faktor Hygiene ist
+                das ein Periotopia-Index von {numberperiotopiaIndexHygieneID}
+                /10.
               </p>
+              Dein durchschnittlicher Periotopia-Index ist:{" "}
+              {periotopiaIndexAverage}/10:
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}

@@ -81,9 +81,9 @@ export default function HygienePage({
           <Answer
             personalAnswerText="Für den Weg für deine Menstruationshygiene benötigst du bis zu"
             unit="Minuten"
-            year={minutesPerYear}
-            today={minutesTillToday}
-            life={minutesInLife}
+            year={formatNumber(minutesPerYear)}
+            today={formatNumber(minutesTillToday)}
+            life={formatNumber(minutesInLife)}
             additionalYear={`das sind ${formatTime(timePerYear)}`}
             additionalToday={`das sind ${formatTime(timeTillToday)} `}
             additionalLife={`das sind ${formatTime(timeInLife)} `}
