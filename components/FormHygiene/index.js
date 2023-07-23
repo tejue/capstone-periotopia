@@ -1,6 +1,5 @@
 import FormField from "../FormField/index";
 import ShowAnswerButton from "../ShowAnswerButton/index";
-import { useState } from "react";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -12,11 +11,10 @@ const StyledForm = styled.form`
 `;
 
 export default function FormHygiene({
-  handleGeneralInfo,
-  handleSubmittedForm,
   currentValue,
   updateCurrentValue,
   handleHygiene,
+  handleSubmittedForm,
 }) {
   const optionsAccess = [
     { formFieldId: "yes", value: "yes", content: "ja" },

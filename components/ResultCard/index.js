@@ -20,16 +20,16 @@ const StyledResultCard = styled.li`
 `;
 
 export default function ResultCard({
+  menstruationDaysPerYearID,
   costsPerYearID,
-  formatNumber,
+  taxAmountID: financialsTaxAmountID,
+  timePerYearID,
   periotopiaIndexFinancialsID,
   periotopiaIndexHygieneID,
-  taxAmountID: financialsTaxAmountID,
-  handleDeleteResultCard,
   id,
+  handleDeleteResultCard,
+  formatNumber,
   formatTime,
-  menstruationDaysPerYearID,
-  timePerYearID,
 }) {
   const numberPeriotopiaIndexFinancialsID = parseInt(
     periotopiaIndexFinancialsID.toString().replace("%", "") / 10
@@ -61,7 +61,6 @@ export default function ResultCard({
 
   function handleDelete() {
     confirmAlert({
-      title: "Confirm to submit",
       message: "Möchtest du diesen Periotopia-Index wirklich löschen?",
       buttons: [
         {

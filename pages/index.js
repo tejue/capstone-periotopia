@@ -2,10 +2,10 @@ import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
 
 export default function HomePage({
-  formatNumber,
-  formatTime,
   results,
   handleDeleteResultCard,
+  formatNumber,
+  formatTime,
 }) {
   return (
     <>

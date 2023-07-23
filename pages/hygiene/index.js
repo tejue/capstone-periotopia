@@ -3,35 +3,21 @@ import FormHygiene from "@/components/FormHygiene";
 import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
-import useLocalStorageState from "use-local-storage-state";
+// import useLocalStorageState from "use-local-storage-state";
 
 export default function HygienePage({
+  handleHygiene,
   generalInfo,
-  financials,
-  formatNumber,
-  menstruationDaysPerYear,
-  periotopiaIndexHygiene,
-  handleAddResult,
-  newResult,
-  timePerYear,
   minutesPerYear,
   calculateTime,
-  handleHygiene,
+  timePerYear,
+  newResult,
+  handleAddResult,
+  periotopiaIndexHygiene,
+  formatNumber,
   formatTime,
 }) {
   const router = useRouter();
-
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
-  const {
-    product,
-    packageCosts,
-    taxAmount,
-    taxes,
-    packageContent,
-    changeProduct,
-  } = financials;
 
   const [currentValue, setCurrentValue] = useState({
     access: "",
@@ -56,7 +42,8 @@ export default function HygienePage({
     router.push("/");
   }
 
-  const minutesTillToday = minutesPerYear * (age - firstMenstruation);
+  const minutesTillToday =
+    minutesPerYear * (generalInfo.age - generalInfo.firstMenstruation);
   const minutesInLife = minutesPerYear * 39;
 
   const timeTillToday = calculateTime(minutesTillToday);
@@ -67,7 +54,7 @@ export default function HygienePage({
 
   return (
     <>
-      <h2>Periotopia</h2>
+      <h2>Hygiene</h2>
       {!submittedForm && (
         <FormHygiene
           currentValue={currentValue}

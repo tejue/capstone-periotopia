@@ -36,8 +36,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
   const {
     product,
     packageCosts,
@@ -46,6 +44,7 @@ export default function App({ Component, pageProps }) {
     packageContent,
     changeProduct,
   } = financials;
+
   const { access, minutes } = hygiene;
 
   function handleGeneralInfo(data) {
@@ -63,14 +62,14 @@ export default function App({ Component, pageProps }) {
   }
 
   const menstruationDaysPerYear = Math.round(
-    (365 / cyclusLength) * menstruationLength
+    (365 / generalInfo.cyclusLength) * generalInfo.menstruationLength
   );
 
   function costsPerYearCalc() {
     if (product === "tampon" || product === "pad") {
       return (
         (packageCosts / packageContent) *
-        (changeProduct * menstruationLength) *
+        (changeProduct * generalInfo.menstruationLength) *
         menstruationDaysPerYear
       );
     } else if (product === "cup" || product === "disc") {
@@ -78,7 +77,7 @@ export default function App({ Component, pageProps }) {
     } else if (product === "schlueppi") {
       return (
         (packageCosts / packageContent / 2) *
-        (changeProduct * menstruationLength)
+        (changeProduct * generalInfo.menstruationLength)
       );
     } else return NaN;
   }
@@ -166,10 +165,10 @@ export default function App({ Component, pageProps }) {
         ...newResult,
         menstruationDaysPerYear: menstruationDaysPerYear,
         costsPerYear: costsPerYear,
+        taxAmount: taxAmount,
         timePerYear: timePerYear,
         periotopiaIndexFinancials: periotopiaIndexFinancials,
         periotopiaIndexHygiene: periotopiaIndexHygiene,
-        taxAmount: taxAmount,
       },
     ]);
   }
@@ -183,24 +182,24 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Component
         {...pageProps}
-        handleGeneralInfo={handleGeneralInfo}
         generalInfo={generalInfo}
-        handleFinancials={handleFinancials}
-        financials={financials}
-        formatNumber={formatNumber}
+        handleGeneralInfo={handleGeneralInfo}
         menstruationDaysPerYear={menstruationDaysPerYear}
+        financials={financials}
+        handleFinancials={handleFinancials}
         costsPerYear={costsPerYear}
-        periotopiaIndexFinancials={periotopiaIndexFinancials}
-        periotopiaIndexHygiene={periotopiaIndexHygiene}
+        hygiene={hygiene}
+        handleHygiene={handleHygiene}
+        minutesPerYear={minutesPerYear}
+        calculateTime={calculateTime}
+        timePerYear={timePerYear}
         results={results}
         handleAddResult={handleAddResult}
         handleDeleteResultCard={handleDeleteResultCard}
-        hygiene={hygiene}
+        formatNumber={formatNumber}
         formatTime={formatTime}
-        calculateTime={calculateTime}
-        minutesPerYear={minutesPerYear}
-        handleHygiene={handleHygiene}
-        timePerYear={timePerYear}
+        periotopiaIndexFinancials={periotopiaIndexFinancials}
+        periotopiaIndexHygiene={periotopiaIndexHygiene}
       />
     </>
   );

@@ -1,34 +1,18 @@
 import { useState } from "react";
 import FormFinancials from "@/components/FormFinancials";
 import Answer from "@/components/Answer";
-import Link from "next/link";
 import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
 
 export default function FinancialsPage({
-  generalInfo,
   financials,
   handleFinancials,
-  formatNumber,
-  menstruationDaysPerYear,
   costsPerYear,
+  generalInfo,
   periotopiaIndexFinancials,
-  handleAddResult,
-  newResult,
+  formatNumber,
 }) {
   const router = useRouter();
-
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
-  const {
-    product,
-    packageCosts,
-    taxAmount,
-    taxes,
-    packageContent,
-    changeProduct,
-  } = financials;
 
   const [currentValue, setCurrentValue] = useState({
     product: "",
@@ -56,20 +40,21 @@ export default function FinancialsPage({
     router.push("/hygiene");
   }
 
-  const taxesPerYear = costsPerYear * (taxes / 100);
+  const taxesPerYear = costsPerYear * (financials.taxes / 100);
 
-  const costsTillToday = costsPerYear * (age - firstMenstruation);
-  const taxesTillToday = costsTillToday * (taxes / 100);
+  const costsTillToday =
+    costsPerYear * (generalInfo.age - generalInfo.firstMenstruation);
+  const taxesTillToday = costsTillToday * (financials.taxes / 100);
 
   const costsInLife = costsPerYear * 39;
-  const taxesInLife = costsInLife * (taxes / 100);
+  const taxesInLife = costsInLife * (financials.taxes / 100);
 
   const acceptableValue =
     costsPerYear >= 0 && costsTillToday >= 0 && costsInLife >= 0;
 
   return (
     <>
-      <h2>Periotopia</h2>
+      <h2>Geld</h2>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}
