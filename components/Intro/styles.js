@@ -26,7 +26,7 @@ export const Footnote = styled.p`
 
 export const Startlink = styled(Link)`
   font-size: 25px;
-  background-color: #aa1146;
+  background-color: var(--primary-color);
   color: #fff7ff;
   text-decoration: none;
   padding: var(--padding-sides);
