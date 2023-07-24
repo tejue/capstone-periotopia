@@ -11,7 +11,7 @@ const roboto = Roboto({
 export default createGlobalStyle`
   
   :root {
-    --backgroun-color: #fff7ff;
+  --backgroun-color: #fff7ff;
   --primary-color: #e3005f;
   //--primary-color: #aa1146;
   --primary-color-text: #fff7ff;
