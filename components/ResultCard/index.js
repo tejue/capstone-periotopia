@@ -1,4 +1,9 @@
-import { StyledList, StyledResultCard } from "./styles";
+import {
+  StyledList,
+  StyledResultCard,
+  StyledCardHeading,
+  StyledCardButton,
+} from "./styles";
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
@@ -65,11 +70,11 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      <button onClick={handleDelete}>X</button>
-      <button onClick={handleToggle}>click</button>
+      <StyledCardButton onClick={handleDelete}>X</StyledCardButton>
+      <StyledCardButton onClick={handleToggle}>click</StyledCardButton>
       <StyledList>
         <StyledResultCard>
-          <h3>Dein Periotopia-Index</h3>
+          <StyledCardHeading>Dein Periotopia-Index</StyledCardHeading>
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>

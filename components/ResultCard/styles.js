@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const StyledCardHeading = styled.h2`
+  //font-size: 10px;
+  font-weight: lighter;
+`;
+
+export const StyledCardButton = styled.button``;
+
 export const StyledList = styled.ul`
   margin: 0;
   padding: 0;
@@ -12,7 +19,7 @@ export const StyledResultCard = styled.li`
   gap: 5px;
   background-color: var(--primary-color);
   color: var(--primary-color-text);
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 5px;
   box-shadow: var(--box-shadow);
 `;
