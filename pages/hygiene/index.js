@@ -41,7 +41,7 @@ export default function HygienePage({
 
   function handleNextPage() {
     handleAddResult(newResult);
-    router.push("/overview");
+    router.push("/periotopiaindex");
   }
 
   const minutesTillToday =
