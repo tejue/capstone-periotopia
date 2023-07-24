@@ -1,23 +1,8 @@
-import styled from "styled-components";
+import { StyledList, StyledResultCard } from "./styles";
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
-const StyledList = styled.ul`
-  margin: 0;
-  padding: 0;
-`;
-
-const StyledResultCard = styled.li`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background-color: lightcoral;
-  padding: 20px;
-  margin: 10px;
-`;
 
 export default function ResultCard({
   menstruationDaysPerYearID,

@@ -1,4 +1,10 @@
 import { createGlobalStyle } from "styled-components";
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  weight: "100",
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
   
@@ -23,7 +29,8 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: ${roboto.style.fontFamily}; 
+    //font-family: system-ui;
     background-color: var(--backgroun-color);
     color: var(--secondary-color-text);
     text-align: center; 
