@@ -20,16 +20,35 @@ const StyledResultCard = styled.li`
 `;
 
 export default function ResultCard({
+  menstruationDaysPerYearID,
   costsPerYearID,
-  formatNumber,
-  periotopiaIndexID,
   taxAmountID: financialsTaxAmountID,
-  handleDeleteResultCard,
+  accessID,
+  timePerYearID,
+  periotopiaIndexFinancialsID,
+  periotopiaIndexHygieneID,
   id,
+  handleDeleteResultCard,
+  formatNumber,
+  formatTime,
 }) {
-  const numberPeriotopiaIndexID = parseInt(
-    periotopiaIndexID.toString().replace("%", "") / 10
+  const numberPeriotopiaIndexFinancialsID = parseInt(
+    periotopiaIndexFinancialsID.toString().replace("%", "") / 10
   );
+
+  const numberperiotopiaIndexHygieneID = parseInt(
+    periotopiaIndexHygieneID.toString().replace("%", "") / 10
+  );
+
+  const periotopiaIndexAverage =
+    (numberPeriotopiaIndexFinancialsID + numberperiotopiaIndexHygieneID) / 2;
+
+  function convertIndexAverage(number) {
+    return (number * 10).toString() + "%";
+  }
+
+  const periotopiaIndex = convertIndexAverage(periotopiaIndexAverage);
+
   const taxAmountID = {
     full: "voller Steuer",
     none: "keiner Steuer",
@@ -43,7 +62,6 @@ export default function ResultCard({
 
   function handleDelete() {
     confirmAlert({
-      title: "Confirm to submit",
       message: "Möchtest du diesen Periotopia-Index wirklich löschen?",
       buttons: [
         {
@@ -71,13 +89,29 @@ export default function ResultCard({
             //  {/* {costsPerYear >= 0 && ( */}
             <>
               <p>
-                Geld:
-                <br /> Für deine Menstruationsprodukte zahlst du{" "}
-                {formatNumber(costsPerYearID)} Euro pro Jahr bei{" "}
-                {taxAmountID[financialsTaxAmountID]}. Auf dem Periotopia-Index
-                ist das ein Score von {numberPeriotopiaIndexID}/10
+                Du hast deine Menstruation an {menstruationDaysPerYearID} Tagen
+                im Jahr.
               </p>
-              <PeriotopiaIndex periotopiaIndex={periotopiaIndexID} />
+              <p>
+                Für deine Menstruationsprodukte zahlst du{" "}
+                {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
+                {taxAmountID[financialsTaxAmountID]}. Für den Faktor Geld ist
+                dein Periotopia-Index {numberPeriotopiaIndexFinancialsID}
+                /10.
+              </p>
+              <p>
+                {accessID === "yes"
+                  ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(
+                      timePerYearID
+                    )} im Jahr.`
+                  : `Du hast keinen Zugang zu einer sauberen und sicheren Sanitäranlage um deine Menstruationsprodukte zu wechseln oder brauchst für den Hin- und Rückweg mindestens ${formatTime(
+                      timePerYearID
+                    )} im Jahr.`}{" "}
+                Für den Faktor Hygiene ist dein Periotopia-Index{" "}
+                {numberperiotopiaIndexHygieneID}/10.
+              </p>
+              Dein gesamter Periotopia-Index ist: {periotopiaIndexAverage}/10:
+              <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}
           )}

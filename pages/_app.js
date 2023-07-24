@@ -1,61 +1,41 @@
 import GlobalStyle from "../styles";
-import { useState } from "react";
-// import useLocalStorageState from "use-local-storage-state";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  //-----keeping both for training sessions during coding-----
-  const [generalInfo, setGeneralInfo] = useState({
-    age: "",
-    firstMenstruation: "",
-    cyclusLength: "",
-    menstruationLength: "",
+  const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
+    defaultValue: {
+      age: "",
+      firstMenstruation: "",
+      cyclusLength: "",
+      menstruationLength: "",
+    },
   });
 
-  // const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
-  //   defaultValue: {
-  //     age: "",
-  //     firstMenstruation: "",
-  //     cyclusLength: "",
-  //     menstruationLength: "",
-  //   },
-  // });
+  const [financials, setFinancials] = useLocalStorageState("financials", {
+    defaultValue: [
+      {
+        product: "",
+        packageCosts: "",
+        taxAmount: "",
+        taxes: "",
+        packageContent: "",
+        changeProduct: "",
+      },
+    ],
+  });
 
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
+  const [hygiene, setHygiene] = useLocalStorageState("hygiene", {
+    defaultValue: {
+      access: "",
+      minutes: "",
+    },
+  });
 
-  function handleGeneralInfo(data) {
-    setGeneralInfo({
-      ...data,
+  const [collectedOverviewResults, setCollectedOverviewResults] =
+    useLocalStorageState("collectedOverviewResults", {
+      defaultValue: [],
     });
-  }
-
-  const menstruationDaysPerYear = Math.round(
-    (365 / cyclusLength) * menstruationLength
-  );
-
-  //-----keeping both for training sessions during coding-----
-  const [financials, setFinancials] = useState({
-    product: "",
-    packageCosts: "",
-    taxAmount: "",
-    taxes: "",
-    packageContent: "",
-    changeProduct: "",
-  });
-
-  // const [financials, setFinancials] = useLocalStorageState("financials", {
-  //   defaultValue: [
-  //     {
-  //       product: "",
-  //       packageCosts: "",
-  //       taxAmount: "",
-  //       taxes: "",
-  //       packageContent: "",
-  //       changeProduct: "",
-  //     },
-  //   ],
-  // });
 
   const {
     product,
@@ -66,15 +46,31 @@ export default function App({ Component, pageProps }) {
     changeProduct,
   } = financials;
 
+  const { access, minutes } = hygiene;
+
+  function handleGeneralInfo(data) {
+    setGeneralInfo({
+      ...data,
+    });
+  }
+
   function handleFinancials(data) {
     setFinancials(data);
   }
+
+  function handleHygiene(data) {
+    setHygiene(data);
+  }
+
+  const menstruationDaysPerYear = Math.round(
+    (365 / generalInfo.cyclusLength) * generalInfo.menstruationLength
+  );
 
   function costsPerYearCalc() {
     if (product === "tampon" || product === "pad") {
       return (
         (packageCosts / packageContent) *
-        (changeProduct * menstruationLength) *
+        (changeProduct * generalInfo.menstruationLength) *
         menstruationDaysPerYear
       );
     } else if (product === "cup" || product === "disc") {
@@ -82,12 +78,29 @@ export default function App({ Component, pageProps }) {
     } else if (product === "schlueppi") {
       return (
         (packageCosts / packageContent / 2) *
-        (changeProduct * menstruationLength)
+        (changeProduct * generalInfo.menstruationLength)
       );
     } else return NaN;
   }
-
   const costsPerYear = costsPerYearCalc();
+
+  function minutesPerYearCalc() {
+    if (access === "yes") {
+      return menstruationDaysPerYear * changeProduct * minutes * 2;
+    }
+    if (access === "no") {
+      return menstruationDaysPerYear * changeProduct * 31 * 2;
+    } else return NaN;
+  }
+  const minutesPerYear = minutesPerYearCalc();
+
+  function calculateTime(minutes) {
+    const days = Math.floor(minutes / (60 * 24));
+    const remainingMinutes = minutes % (60 * 24);
+    const hours = Math.floor(remainingMinutes / 60);
+    const minutesValue = remainingMinutes % 60;
+    return { days, hours, minutes: minutesValue };
+  }
 
   function formatNumber(number) {
     if (Math.abs(number) % 1 !== 0) {
@@ -99,7 +112,25 @@ export default function App({ Component, pageProps }) {
     return Math.trunc(number).toLocaleString("de-DE");
   }
 
-  function periotopiaIndexCalc() {
+  function formatTime(time) {
+    const { days, hours, minutes } = time;
+    let formattedTime = "";
+
+    if (days > 0) formattedTime += `${days} Tag${days !== 1 ? "e" : ""}`;
+    if (hours > 0)
+      formattedTime += `${
+        formattedTime ? (minutes > 0 ? ", " : " und ") : ""
+      }${hours} Stunde${hours !== 1 ? "n" : ""}`;
+    if (minutes > 0)
+      formattedTime += `${formattedTime ? " und " : ""}${minutes} Minute${
+        minutes !== 1 ? "n" : ""
+      }`;
+
+    return formattedTime;
+  }
+  const timePerYear = calculateTime(minutesPerYear);
+
+  function periotopiaIndexFinancialsCalc() {
     if (packageCosts === "0") {
       return "100%";
     } else if (packageCosts > "0" && taxAmount === "none") {
@@ -110,26 +141,45 @@ export default function App({ Component, pageProps }) {
       return "0%";
     }
   }
+  const periotopiaIndexFinancials = periotopiaIndexFinancialsCalc();
 
-  const periotopiaIndex = periotopiaIndexCalc();
-
-  const [results, setResults] = useState([]);
+  function periotopiaIndexHygieneCalc() {
+    if (minutes === "1") {
+      return "100%";
+    }
+    if (minutes === "15") {
+      return "66%";
+    }
+    if (minutes === "30") {
+      return "33%";
+    } else {
+      return "0%";
+    }
+  }
+  const periotopiaIndexHygiene = periotopiaIndexHygieneCalc();
 
   function handleAddResult(newResult) {
     newResult = { ...newResult, id: uid() };
-    setResults([
-      ...results,
+    setCollectedOverviewResults([
+      ...collectedOverviewResults,
       {
         ...newResult,
+        menstruationDaysPerYear: menstruationDaysPerYear,
         costsPerYear: costsPerYear,
-        periotopiaIndex: periotopiaIndex,
         taxAmount: taxAmount,
+        timePerYear: timePerYear,
+        access: access,
+        periotopiaIndexFinancials: periotopiaIndexFinancials,
+        periotopiaIndexHygiene: periotopiaIndexHygiene,
       },
     ]);
   }
-
   function handleDeleteResultCard(id) {
-    setResults(results.filter((result) => result.id !== id));
+    setCollectedOverviewResults(
+      collectedOverviewResults.filter(
+        (collectedOverviewResult) => collectedOverviewResult.id !== id
+      )
+    );
   }
 
   return (
@@ -137,17 +187,24 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Component
         {...pageProps}
-        handleGeneralInfo={handleGeneralInfo}
         generalInfo={generalInfo}
-        handleFinancials={handleFinancials}
-        financials={financials}
-        formatNumber={formatNumber}
+        handleGeneralInfo={handleGeneralInfo}
         menstruationDaysPerYear={menstruationDaysPerYear}
+        financials={financials}
+        handleFinancials={handleFinancials}
         costsPerYear={costsPerYear}
-        periotopiaIndex={periotopiaIndex}
-        results={results}
+        hygiene={hygiene}
+        handleHygiene={handleHygiene}
+        minutesPerYear={minutesPerYear}
+        calculateTime={calculateTime}
+        timePerYear={timePerYear}
+        collectedOverviewResults={collectedOverviewResults}
         handleAddResult={handleAddResult}
         handleDeleteResultCard={handleDeleteResultCard}
+        formatNumber={formatNumber}
+        formatTime={formatTime}
+        periotopiaIndexFinancials={periotopiaIndexFinancials}
+        periotopiaIndexHygiene={periotopiaIndexHygiene}
       />
     </>
   );

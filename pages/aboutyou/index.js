@@ -5,19 +5,17 @@ import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
 
 export default function GeneralInfoPage({
-  handleGeneralInfo,
   generalInfo,
-  formatNumber,
+  handleGeneralInfo,
   menstruationDaysPerYear,
+  formatNumber,
 }) {
   const router = useRouter();
 
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
   const menstruationDaysTillNow = Math.round(
-    age - firstMenstruation < 39
-      ? menstruationDaysPerYear * (age - firstMenstruation)
+    generalInfo.age - generalInfo.firstMenstruation < 39
+      ? menstruationDaysPerYear *
+          (generalInfo.age - generalInfo.firstMenstruation)
       : menstruationDaysPerYear * 39
   );
 
@@ -49,7 +47,7 @@ export default function GeneralInfoPage({
 
   return (
     <>
-      <h2>Periotopia</h2>
+      <h1>Allgemeines</h1>
       {!submittedForm && (
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}

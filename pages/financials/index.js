@@ -1,34 +1,18 @@
 import { useState } from "react";
 import FormFinancials from "@/components/FormFinancials";
 import Answer from "@/components/Answer";
-import Link from "next/link";
 import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
 
 export default function FinancialsPage({
-  generalInfo,
   financials,
   handleFinancials,
-  formatNumber,
-  menstruationDaysPerYear,
   costsPerYear,
-  periotopiaIndex,
-  handleAddResult,
-  newResult,
+  generalInfo,
+  periotopiaIndexFinancials,
+  formatNumber,
 }) {
   const router = useRouter();
-
-  const { age, firstMenstruation, cyclusLength, menstruationLength } =
-    generalInfo;
-
-  const {
-    product,
-    packageCosts,
-    taxAmount,
-    taxes,
-    packageContent,
-    changeProduct,
-  } = financials;
 
   const [currentValue, setCurrentValue] = useState({
     product: "",
@@ -53,24 +37,24 @@ export default function FinancialsPage({
   }
 
   function handleNextPage() {
-    handleAddResult(newResult);
-    router.push("/");
+    router.push("/hygiene");
   }
 
-  const taxesPerYear = costsPerYear * (taxes / 100);
+  const taxesPerYear = costsPerYear * (financials.taxes / 100);
 
-  const costsTillToday = costsPerYear * (age - firstMenstruation);
-  const taxesTillToday = costsTillToday * (taxes / 100);
+  const costsTillToday =
+    costsPerYear * (generalInfo.age - generalInfo.firstMenstruation);
+  const taxesTillToday = costsTillToday * (financials.taxes / 100);
 
   const costsInLife = costsPerYear * 39;
-  const taxesInLife = costsInLife * (taxes / 100);
+  const taxesInLife = costsInLife * (financials.taxes / 100);
 
   const acceptableValue =
     costsPerYear >= 0 && costsTillToday >= 0 && costsInLife >= 0;
 
   return (
     <>
-      <h2>Periotopia</h2>
+      <h1>Geld</h1>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}
@@ -103,7 +87,7 @@ export default function FinancialsPage({
       allem manche Universitäten, die kostenlose Produkte zur Verfügung stellen.
       Nur in wenigen Ländern sind Menstruationsprodukte von der Steuer befreit.
       In Deutschland ist sie seit 2020 zumindest reduziert"
-            periotopiaIndex={periotopiaIndex}
+            periotopiaIndex={periotopiaIndexFinancials}
           />
           <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
         </>
