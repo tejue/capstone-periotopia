@@ -47,7 +47,7 @@ export default function GeneralInfoPage({
 
   return (
     <>
-      <h2>Allgemeines</h2>
+      <h1>Allgemeines</h1>
       {!submittedForm && (
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}

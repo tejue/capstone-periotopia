@@ -2,7 +2,7 @@ import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
 
 export default function HomePage({
-  results,
+  collectedOverviewResults,
   handleDeleteResultCard,
   formatNumber,
   formatTime,
@@ -11,7 +11,7 @@ export default function HomePage({
     <>
       <h1>Periotopia Overview</h1>
       <NewIndex />
-      {results.map(
+      {collectedOverviewResults.map(
         ({
           id,
           menstruationDaysPerYear,

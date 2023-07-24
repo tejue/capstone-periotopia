@@ -48,6 +48,7 @@ export default function HygienePage({
     minutesPerYear * (generalInfo.age - generalInfo.firstMenstruation);
   const minutesInLife = minutesPerYear * 39;
 
+  console.log(minutesPerYear);
   const timeTillToday = calculateTime(minutesTillToday);
   const timeInLife = calculateTime(minutesInLife);
 
@@ -56,7 +57,7 @@ export default function HygienePage({
 
   return (
     <>
-      <h2>Hygiene</h2>
+      <h1>Hygiene</h1>
       {!submittedForm && (
         <FormHygiene
           currentValue={currentValue}

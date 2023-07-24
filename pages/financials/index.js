@@ -54,7 +54,7 @@ export default function FinancialsPage({
 
   return (
     <>
-      <h2>Geld</h2>
+      <h1>Geld</h1>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}

@@ -32,9 +32,10 @@ export default function App({ Component, pageProps }) {
     },
   });
 
-  const [results, setResults] = useLocalStorageState("results", {
-    defaultValue: [],
-  });
+  const [collectedOverviewResults, setCollectedOverviewResults] =
+    useLocalStorageState("collectedOverviewResults", {
+      defaultValue: [],
+    });
 
   const {
     product,
@@ -159,8 +160,8 @@ export default function App({ Component, pageProps }) {
 
   function handleAddResult(newResult) {
     newResult = { ...newResult, id: uid() };
-    setResults([
-      ...results,
+    setCollectedOverviewResults([
+      ...collectedOverviewResults,
       {
         ...newResult,
         menstruationDaysPerYear: menstruationDaysPerYear,
@@ -174,7 +175,11 @@ export default function App({ Component, pageProps }) {
     ]);
   }
   function handleDeleteResultCard(id) {
-    setResults(results.filter((result) => result.id !== id));
+    setCollectedOverviewResults(
+      collectedOverviewResults.filter(
+        (collectedOverviewResult) => collectedOverviewResult.id !== id
+      )
+    );
   }
 
   return (
@@ -193,7 +198,7 @@ export default function App({ Component, pageProps }) {
         minutesPerYear={minutesPerYear}
         calculateTime={calculateTime}
         timePerYear={timePerYear}
-        results={results}
+        collectedOverviewResults={collectedOverviewResults}
         handleAddResult={handleAddResult}
         handleDeleteResultCard={handleDeleteResultCard}
         formatNumber={formatNumber}
