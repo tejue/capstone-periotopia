@@ -5,12 +5,15 @@ import { confirmAlert } from "react-confirm-alert";
 import Icon from "@mdi/react";
 import { mdiChevronRightCircle } from "@mdi/js";
 import { mdiAlphaXCircle } from "@mdi/js";
+import { mdiBrush } from "@mdi/js";
+import { mdiBrushOff } from "@mdi/js";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   StyledList,
   StyledResultCard,
   StyledCardHeading,
   StyledCardButton,
+  IconWrapper,
 } from "./styles";
 
 export default function ResultCard({
@@ -89,13 +92,28 @@ export default function ResultCard({
     // costsPerYearID >= 0 && (
     <>
       <Icon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
-      <Icon path={mdiChevronRightCircle} size={1} onClick={handleToggle} />
+      <Icon
+        path={mdiChevronRightCircle}
+        size={1}
+        onClick={handleToggle}
+        rotate={isResultVisible ? 90 : 0}
+      />
 
       <StyledList>
         <StyledResultCard>
-          <StyledCardButton onClick={handleIndexTitleEditToggle}>
-            {editIndexTitle ? "Speichern" : "Bearbeiten"}{" "}
-          </StyledCardButton>
+          {editIndexTitle ? (
+            <Icon
+              path={mdiBrushOff}
+              size={1}
+              onClick={handleIndexTitleEditToggle}
+            />
+          ) : (
+            <Icon
+              path={mdiBrush}
+              size={1}
+              onClick={handleIndexTitleEditToggle}
+            />
+          )}
           {editIndexTitle ? (
             <FormField
               type="text"
