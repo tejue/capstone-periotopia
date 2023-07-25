@@ -38,6 +38,13 @@ export default function ResultCard({
     setIndexTitle(event.target.value);
   }
 
+  function handleKeyDownIndexNameChange(event) {
+    if (event.key === "Enter") {
+      setEditiIndexTitle(false);
+      setIndexTitle(editIndexTitle);
+    }
+  }
+
   const numberPeriotopiaIndexFinancialsID = parseInt(
     periotopiaIndexFinancialsID.toString().replace("%", "") / 10
   );
@@ -98,6 +105,7 @@ export default function ResultCard({
               type="text"
               value={indexTitle}
               onChange={handleIndexTitelChange}
+              onKeyDown={handleKeyDownIndexNameChange}
             />
           ) : (
             <StyledCardHeading>{indexTitle}</StyledCardHeading>
