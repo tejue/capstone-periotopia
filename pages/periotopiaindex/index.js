@@ -1,6 +1,5 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
-import { useState } from "react";
 
 export default function HomePage({
   collectedOverviewResults,

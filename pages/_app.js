@@ -180,29 +180,22 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
-  function handleIndexTitleChange(id, newValue) {
-    setCollectedOverviewResults((prevResults) => {
-      return prevResults.map((result) => {
-        if (result.id === id) {
-          return { ...result, indexTitle: newValue };
-        }
-        return result;
-      });
+  function handleIndexTitleChange(id, newTitle) {
+    setCollectedOverviewResults((prevCollectedOverviewResults) => {
+      const collectedOverviewResultExists = prevCollectedOverviewResults.find(
+        (collectedOverviewResult) => collectedOverviewResult.id === id
+      );
+
+      if (collectedOverviewResultExists) {
+        return prevCollectedOverviewResults.map((collectedOverviewResult) =>
+          collectedOverviewResult.id === id
+            ? { ...collectedOverviewResult, indexTitle: newTitle }
+            : collectedOverviewResult
+        );
+      }
+      return [...prevCollectedOverviewResults, { id, indexTitle: newTitle }];
     });
   }
-
-  // unction handleUpdateNote(artworkID, text) {
-  //   setNotes((notes) => {
-  //     const noteExists = notes.find((note) => note.artworkID === artworkID);
-
-  //     if (noteExists) {
-  //       return notes.map((note) =>
-  //         note.artworkID === artworkID ? { ...note, text } : note
-  //       );
-  //     }
-  //     return [...notes, { artworkID, text }];
-  //   });
-  // }
 
   function handleDeleteResultCard(id) {
     setCollectedOverviewResults(

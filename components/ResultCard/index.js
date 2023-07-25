@@ -31,7 +31,7 @@ export default function ResultCard({
   const [editIndexTitle, setEditIndexTitle] = useState(false);
   const [editedIndexTitle, setEditedIndexTitle] = useState(indexTitleID);
 
-  function handleIndexEditToggle() {
+  function handleIndexTitleEditToggle() {
     if (editIndexTitle) {
       handleIndexTitleChange(id, editedIndexTitle);
       setEditIndexTitle(false);
@@ -93,7 +93,7 @@ export default function ResultCard({
 
       <StyledList>
         <StyledResultCard>
-          <StyledCardButton onClick={handleIndexEditToggle}>
+          <StyledCardButton onClick={handleIndexTitleEditToggle}>
             {editIndexTitle ? "Speichern" : "Bearbeiten"}{" "}
           </StyledCardButton>
           {editIndexTitle ? (
@@ -101,8 +101,6 @@ export default function ResultCard({
               type="text"
               value={editedIndexTitle}
               onChange={(event) => setEditedIndexTitle(event.target.value)}
-
-              //onChange={handleIndexTitleChange}
             />
           ) : (
             <StyledCardHeading>{indexTitleID}</StyledCardHeading>
