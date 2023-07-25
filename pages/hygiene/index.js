@@ -48,7 +48,6 @@ export default function HygienePage({
     minutesPerYear * (generalInfo.age - generalInfo.firstMenstruation);
   const minutesInLife = minutesPerYear * 39;
 
-  console.log(minutesPerYear);
   const timeTillToday = calculateTime(minutesTillToday);
   const timeInLife = calculateTime(minutesInLife);
 

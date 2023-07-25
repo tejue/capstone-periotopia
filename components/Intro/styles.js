@@ -30,5 +30,5 @@ export const Startlink = styled(Link)`
   color: #fff7ff;
   text-decoration: none;
   padding: var(--padding-sides);
-  box-shadow: var(--box-shadow);
+  //box-shadow: var(--box-shadow);
 `;
