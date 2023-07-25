@@ -2,6 +2,9 @@ import PeriotopiaIndex from "../PeriotopiaIndex";
 import FormField from "../FormField";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
+import Icon from "@mdi/react";
+import { mdiChevronRightCircle } from "@mdi/js";
+import { mdiAlphaXCircle } from "@mdi/js";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   StyledList,
@@ -86,8 +89,10 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      <StyledCardButton onClick={handleDelete}>X</StyledCardButton>
-      <StyledCardButton onClick={handleToggle}>click</StyledCardButton>
+      {/* <StyledCardButton onClick={handleDelete}>X</StyledCardButton> */}
+      <Icon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
+      <Icon path={mdiChevronRightCircle} size={1} onClick={handleToggle} />
+
       <StyledList>
         <StyledResultCard>
           <StyledCardButton onClick={handleIndexEditToggle}>
