@@ -1,13 +1,13 @@
+import PeriotopiaIndex from "../PeriotopiaIndex";
+import { useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   StyledList,
   StyledResultCard,
   StyledCardHeading,
   StyledCardButton,
 } from "./styles";
-import PeriotopiaIndex from "../PeriotopiaIndex";
-import { useState } from "react";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default function ResultCard({
   menstruationDaysPerYearID,
@@ -22,6 +22,21 @@ export default function ResultCard({
   formatNumber,
   formatTime,
 }) {
+  const [editIndexTitle, setEditiIndexTitle] = useState(false);
+  const [indexTitle, setIndexTitle] = useState("Dein Periotopia-Index");
+
+  function handleIndexEditToggle() {
+    if (editIndexTitle) {
+      setEditiIndexTitle(false);
+    } else {
+      setEditiIndexTitle(true);
+    }
+  }
+
+  function handleIndexTitelChange(event) {
+    setIndexTitle(event.target.value);
+  }
+
   const numberPeriotopiaIndexFinancialsID = parseInt(
     periotopiaIndexFinancialsID.toString().replace("%", "") / 10
   );
@@ -74,7 +89,20 @@ export default function ResultCard({
       <StyledCardButton onClick={handleToggle}>click</StyledCardButton>
       <StyledList>
         <StyledResultCard>
-          <StyledCardHeading>Dein Periotopia-Index</StyledCardHeading>
+          <StyledCardButton onClick={handleIndexEditToggle}>
+            {editIndexTitle ? "Speichern" : "Bearbeiten"}{" "}
+          </StyledCardButton>
+          {editIndexTitle ? (
+            <div>
+              <input
+                type="text"
+                value={indexTitle}
+                onChange={handleIndexTitelChange}
+              />
+            </div>
+          ) : (
+            <StyledCardHeading>{indexTitle}</StyledCardHeading>
+          )}
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
