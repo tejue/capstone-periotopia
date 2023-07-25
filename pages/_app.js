@@ -191,6 +191,19 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  // unction handleUpdateNote(artworkID, text) {
+  //   setNotes((notes) => {
+  //     const noteExists = notes.find((note) => note.artworkID === artworkID);
+
+  //     if (noteExists) {
+  //       return notes.map((note) =>
+  //         note.artworkID === artworkID ? { ...note, text } : note
+  //       );
+  //     }
+  //     return [...notes, { artworkID, text }];
+  //   });
+  // }
+
   function handleDeleteResultCard(id) {
     setCollectedOverviewResults(
       collectedOverviewResults.filter(
