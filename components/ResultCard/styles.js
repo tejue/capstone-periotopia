@@ -21,5 +21,4 @@ export const StyledResultCard = styled.li`
   color: var(--primary-color-text);
   padding: 10px;
   margin-bottom: 5px;
-  //box-shadow: var(--box-shadow);
 `;

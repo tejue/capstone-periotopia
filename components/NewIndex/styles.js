@@ -7,7 +7,6 @@ export const StyledNewIndex = styled.div`
   align-items: center;
   background-color: var(--primary-color);
   padding: var(--padding-sides);
-  //box-shadow: var(--box-shadow);
   color: var(--primary-color-text);
   margin-bottom: 10px;
 `;
