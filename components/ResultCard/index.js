@@ -1,4 +1,5 @@
 import PeriotopiaIndex from "../PeriotopiaIndex";
+import FormField from "../FormField";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -93,13 +94,11 @@ export default function ResultCard({
             {editIndexTitle ? "Speichern" : "Bearbeiten"}{" "}
           </StyledCardButton>
           {editIndexTitle ? (
-            <div>
-              <input
-                type="text"
-                value={indexTitle}
-                onChange={handleIndexTitelChange}
-              />
-            </div>
+            <FormField
+              type="text"
+              value={indexTitle}
+              onChange={handleIndexTitelChange}
+            />
           ) : (
             <StyledCardHeading>{indexTitle}</StyledCardHeading>
           )}
