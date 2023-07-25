@@ -25,20 +25,19 @@ export default function ResultCard({
   handleDeleteResultCard,
   formatNumber,
   formatTime,
+  indexTitleID,
+  handleIndexTitleChange,
 }) {
-  const [editIndexTitle, setEditiIndexTitle] = useState(false);
-  const [indexTitle, setIndexTitle] = useState("Dein Periotopia-Index");
+  const [editIndexTitle, setEditIndexTitle] = useState(false);
+  const [editedIndexTitle, setEditedIndexTitle] = useState(indexTitleID);
 
   function handleIndexEditToggle() {
     if (editIndexTitle) {
-      setEditiIndexTitle(false);
+      handleIndexTitleChange(id, editedIndexTitle);
+      setEditIndexTitle(false);
     } else {
-      setEditiIndexTitle(true);
+      setEditIndexTitle(true);
     }
-  }
-
-  function handleIndexTitelChange(event) {
-    setIndexTitle(event.target.value);
   }
 
   const numberPeriotopiaIndexFinancialsID = parseInt(
@@ -89,7 +88,6 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      {/* <StyledCardButton onClick={handleDelete}>X</StyledCardButton> */}
       <Icon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
       <Icon path={mdiChevronRightCircle} size={1} onClick={handleToggle} />
 
@@ -101,11 +99,13 @@ export default function ResultCard({
           {editIndexTitle ? (
             <FormField
               type="text"
-              value={indexTitle}
-              onChange={handleIndexTitelChange}
+              value={editedIndexTitle}
+              onChange={(event) => setEditedIndexTitle(event.target.value)}
+
+              //onChange={handleIndexTitleChange}
             />
           ) : (
-            <StyledCardHeading>{indexTitle}</StyledCardHeading>
+            <StyledCardHeading>{indexTitleID}</StyledCardHeading>
           )}
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}

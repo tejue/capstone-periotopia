@@ -1,11 +1,13 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
+import { useState } from "react";
 
 export default function HomePage({
   collectedOverviewResults,
   handleDeleteResultCard,
   formatNumber,
   formatTime,
+  handleIndexTitleChange,
 }) {
   return (
     <>
@@ -21,6 +23,7 @@ export default function HomePage({
           access,
           periotopiaIndexFinancials,
           periotopiaIndexHygiene,
+          indexTitle,
         }) => {
           return (
             <ResultCard
@@ -36,6 +39,8 @@ export default function HomePage({
               handleDeleteResultCard={handleDeleteResultCard}
               menstruationDaysPerYearID={menstruationDaysPerYear}
               timePerYearID={timePerYear}
+              indexTitleID={indexTitle}
+              handleIndexTitleChange={handleIndexTitleChange}
             />
           );
         }
