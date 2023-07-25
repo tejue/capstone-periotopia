@@ -1,45 +1,16 @@
-import NewIndex from "@/components/NewIndex/index";
-import ResultCard from "@/components/ResultCard/index";
+import Intro from "@/components/Intro/index";
 
-export default function HomePage({
-  collectedOverviewResults,
-  handleDeleteResultCard,
-  formatNumber,
-  formatTime,
-}) {
+export default function HomePage() {
   return (
     <>
-      <h1>Periotopia Overview</h1>
-      <NewIndex />
-      {collectedOverviewResults.map(
-        ({
-          id,
-          menstruationDaysPerYear,
-          costsPerYear,
-          taxAmount,
-          timePerYear,
-          access,
-          periotopiaIndexFinancials,
-          periotopiaIndexHygiene,
-        }) => {
-          return (
-            <ResultCard
-              key={id}
-              id={id}
-              formatNumber={formatNumber}
-              formatTime={formatTime}
-              costsPerYearID={costsPerYear}
-              periotopiaIndexHygieneID={periotopiaIndexHygiene}
-              periotopiaIndexFinancialsID={periotopiaIndexFinancials}
-              taxAmountID={taxAmount}
-              accessID={access}
-              handleDeleteResultCard={handleDeleteResultCard}
-              menstruationDaysPerYearID={menstruationDaysPerYear}
-              timePerYearID={timePerYear}
-            />
-          );
-        }
-      )}
+      <Intro
+        introheading="Periotopia"
+        introtext="Täglich menstruieren mindestens 300 Millionen Menschen* weltweit. Und obwohl die Menstruation unweigerlich mit der Existenz der Menschheit
+        verbunden ist, ist sie noch immer ein riesiges Tabuthema - mit Folgen. In Periotopia, einer (peri)-utopischen Welt, wäre einiges anders..."
+        footnote="*Nicht alle Frauen menstruieren und nicht alle menstruierenden Menschen sind Frauen."
+        href="/periotopiaindex"
+        starttext="Let's talk red"
+      />
     </>
   );
 }

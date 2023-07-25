@@ -1,23 +1,13 @@
-import styled from "styled-components";
+import {
+  StyledList,
+  StyledResultCard,
+  StyledCardHeading,
+  StyledCardButton,
+} from "./styles";
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
-const StyledList = styled.ul`
-  margin: 0;
-  padding: 0;
-`;
-
-const StyledResultCard = styled.li`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background-color: lightcoral;
-  padding: 20px;
-  margin: 10px;
-`;
 
 export default function ResultCard({
   menstruationDaysPerYearID,
@@ -80,11 +70,11 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      <button onClick={handleDelete}>X</button>
-      <button onClick={handleToggle}>click</button>
+      <StyledCardButton onClick={handleDelete}>X</StyledCardButton>
+      <StyledCardButton onClick={handleToggle}>click</StyledCardButton>
       <StyledList>
         <StyledResultCard>
-          <h3>Dein Periotopia-Index</h3>
+          <StyledCardHeading>Dein Periotopia-Index</StyledCardHeading>
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
