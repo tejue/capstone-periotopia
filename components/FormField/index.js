@@ -13,7 +13,6 @@ export default function FormField({
   checked,
   onChange,
   disabled,
-  onKeyDown,
 }) {
   return (
     <>
@@ -72,12 +71,7 @@ export default function FormField({
         </>
       )}
       {["select", "number", "radio"].indexOf(type) === -1 && (
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-        />
+        <input type="text" value={value} onChange={onChange} />
       )}
     </>
   );
