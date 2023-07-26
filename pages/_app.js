@@ -1,6 +1,7 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {
@@ -159,7 +160,11 @@ export default function App({ Component, pageProps }) {
   const periotopiaIndexHygiene = periotopiaIndexHygieneCalc();
 
   function handleAddResult(newResult) {
-    newResult = { ...newResult, id: uid() };
+    newResult = {
+      ...newResult,
+      id: uid(),
+      indexTitle: "Dein Periotopia-Index",
+    };
     setCollectedOverviewResults([
       ...collectedOverviewResults,
       {
@@ -174,6 +179,24 @@ export default function App({ Component, pageProps }) {
       },
     ]);
   }
+
+  function handleIndexTitleChange(id, newTitle) {
+    setCollectedOverviewResults((prevCollectedOverviewResults) => {
+      const collectedOverviewResultExists = prevCollectedOverviewResults.find(
+        (collectedOverviewResult) => collectedOverviewResult.id === id
+      );
+
+      if (collectedOverviewResultExists) {
+        return prevCollectedOverviewResults.map((collectedOverviewResult) =>
+          collectedOverviewResult.id === id
+            ? { ...collectedOverviewResult, indexTitle: newTitle }
+            : collectedOverviewResult
+        );
+      }
+      return [...prevCollectedOverviewResults, { id, indexTitle: newTitle }];
+    });
+  }
+
   function handleDeleteResultCard(id) {
     setCollectedOverviewResults(
       collectedOverviewResults.filter(
@@ -205,6 +228,7 @@ export default function App({ Component, pageProps }) {
         formatTime={formatTime}
         periotopiaIndexFinancials={periotopiaIndexFinancials}
         periotopiaIndexHygiene={periotopiaIndexHygiene}
+        handleIndexTitleChange={handleIndexTitleChange}
       />
     </>
   );

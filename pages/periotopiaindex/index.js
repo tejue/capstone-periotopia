@@ -6,6 +6,7 @@ export default function HomePage({
   handleDeleteResultCard,
   formatNumber,
   formatTime,
+  handleIndexTitleChange,
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ export default function HomePage({
           access,
           periotopiaIndexFinancials,
           periotopiaIndexHygiene,
+          indexTitle,
         }) => {
           return (
             <ResultCard
@@ -36,6 +38,8 @@ export default function HomePage({
               handleDeleteResultCard={handleDeleteResultCard}
               menstruationDaysPerYearID={menstruationDaysPerYear}
               timePerYearID={timePerYear}
+              indexTitleID={indexTitle}
+              handleIndexTitleChange={handleIndexTitleChange}
             />
           );
         }

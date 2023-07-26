@@ -70,6 +70,9 @@ export default function FormField({
           </select>
         </>
       )}
+      {["select", "number", "radio"].indexOf(type) === -1 && (
+        <input type="text" value={value} onChange={onChange} />
+      )}
     </>
   );
 }

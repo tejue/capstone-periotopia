@@ -3,7 +3,6 @@ import FormHygiene from "@/components/FormHygiene";
 import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
-// import useLocalStorageState from "use-local-storage-state";
 
 export default function HygienePage({
   financials,
@@ -48,7 +47,6 @@ export default function HygienePage({
     minutesPerYear * (generalInfo.age - generalInfo.firstMenstruation);
   const minutesInLife = minutesPerYear * 39;
 
-  console.log(minutesPerYear);
   const timeTillToday = calculateTime(minutesTillToday);
   const timeInLife = calculateTime(minutesInLife);
 

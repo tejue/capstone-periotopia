@@ -1,13 +1,20 @@
+import PeriotopiaIndex from "../PeriotopiaIndex";
+import FormField from "../FormField";
+import { useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import Icon from "@mdi/react";
+import { mdiChevronRightCircle } from "@mdi/js";
+import { mdiAlphaXCircle } from "@mdi/js";
+import { mdiBrush } from "@mdi/js";
+import { mdiBrushOff } from "@mdi/js";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   StyledList,
   StyledResultCard,
   StyledCardHeading,
   StyledCardButton,
+  IconWrapper,
 } from "./styles";
-import PeriotopiaIndex from "../PeriotopiaIndex";
-import { useState } from "react";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default function ResultCard({
   menstruationDaysPerYearID,
@@ -21,7 +28,21 @@ export default function ResultCard({
   handleDeleteResultCard,
   formatNumber,
   formatTime,
+  indexTitleID,
+  handleIndexTitleChange,
 }) {
+  const [editIndexTitle, setEditIndexTitle] = useState(false);
+  const [editedIndexTitle, setEditedIndexTitle] = useState(indexTitleID);
+
+  function handleIndexTitleEditToggle() {
+    if (editIndexTitle) {
+      handleIndexTitleChange(id, editedIndexTitle);
+      setEditIndexTitle(false);
+    } else {
+      setEditIndexTitle(true);
+    }
+  }
+
   const numberPeriotopiaIndexFinancialsID = parseInt(
     periotopiaIndexFinancialsID.toString().replace("%", "") / 10
   );
@@ -70,11 +91,38 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      <StyledCardButton onClick={handleDelete}>X</StyledCardButton>
-      <StyledCardButton onClick={handleToggle}>click</StyledCardButton>
+      <Icon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
+      <Icon
+        path={mdiChevronRightCircle}
+        size={1}
+        onClick={handleToggle}
+        rotate={isResultVisible ? 90 : 0}
+      />
+
       <StyledList>
         <StyledResultCard>
-          <StyledCardHeading>Dein Periotopia-Index</StyledCardHeading>
+          {editIndexTitle ? (
+            <Icon
+              path={mdiBrushOff}
+              size={1}
+              onClick={handleIndexTitleEditToggle}
+            />
+          ) : (
+            <Icon
+              path={mdiBrush}
+              size={1}
+              onClick={handleIndexTitleEditToggle}
+            />
+          )}
+          {editIndexTitle ? (
+            <FormField
+              type="text"
+              value={editedIndexTitle}
+              onChange={(event) => setEditedIndexTitle(event.target.value)}
+            />
+          ) : (
+            <StyledCardHeading>{indexTitleID}</StyledCardHeading>
+          )}
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
