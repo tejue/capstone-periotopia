@@ -2,11 +2,6 @@ import PeriotopiaIndex from "../PeriotopiaIndex";
 import FormField from "../FormField";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import Icon from "@mdi/react";
-import { mdiChevronRightCircle } from "@mdi/js";
-import { mdiAlphaXCircle } from "@mdi/js";
-import { mdiBrush } from "@mdi/js";
-import { mdiBrushOff } from "@mdi/js";
 import IconSVG from "../IconSVG";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -14,11 +9,12 @@ import {
   StyledList,
   StyledResultCard,
   StyledCardHeading,
-  StyledIcon,
-  StyledCardIcon,
   StyledCardHeaderWrapper,
   CardParagraph,
   CardParagraphWrapper,
+  IconWrap,
+  IconWrapOpenClose,
+  IconWrapDelete,
 } from "./styles";
 
 export default function ResultCard({
@@ -98,13 +94,21 @@ export default function ResultCard({
     <>
       <StyledList>
         <StyledResultCard>
-          <StyledIcon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
-          <StyledIcon
-            path={mdiChevronRightCircle}
-            size={1}
-            onClick={handleToggle}
-            rotate={isResultVisible ? 90 : 0}
-          />
+          <IconWrapDelete>
+            <IconSVG
+              icon="x"
+              onClick={handleDelete}
+              color={`var(--secondary-highlight-color)`}
+            />
+          </IconWrapDelete>
+          <IconWrapOpenClose>
+            <IconSVG
+              icon="circle"
+              color={`var(--secondary-highlight-color)`}
+              onClick={handleToggle}
+              rotate={isResultVisible ? 90 : 0}
+            />{" "}
+          </IconWrapOpenClose>
           <StyledCardHeaderWrapper>
             {editIndexTitle ? (
               <FormField
@@ -116,15 +120,15 @@ export default function ResultCard({
               <StyledCardHeading>{indexTitleID}</StyledCardHeading>
             )}{" "}
             {editIndexTitle ? (
-              <Icon
-                path={mdiBrushOff}
-                size={1}
+              <IconSVG
+                icon="brushoff"
+                color={`var(--secondary-highlight-color)`}
                 onClick={handleIndexTitleEditToggle}
               />
             ) : (
-              <Icon
-                path={mdiBrush}
-                size={1}
+              <IconSVG
+                icon="brush"
+                color={`var(--secondary-highlight-color)`}
                 onClick={handleIndexTitleEditToggle}
               />
             )}
@@ -133,14 +137,18 @@ export default function ResultCard({
             //  {/* {costsPerYear >= 0 && ( */}
             <>
               <CardParagraphWrapper>
-                <IconSVG icon="water" size={28} />
+                <IconWrap>
+                  <IconSVG icon="water" />
+                </IconWrap>
                 <CardParagraph>
                   Du hast deine Menstruation an {menstruationDaysPerYearID}{" "}
                   Tagen im Jahr.
                 </CardParagraph>
               </CardParagraphWrapper>
               <CardParagraphWrapper>
-                <IconSVG icon="piggy" size={78} />
+                <IconWrap>
+                  <IconSVG icon="piggy" />
+                </IconWrap>
                 <CardParagraph>
                   Für deine Menstruationsprodukte zahlst du{" "}
                   {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
@@ -150,7 +158,9 @@ export default function ResultCard({
                 </CardParagraph>
               </CardParagraphWrapper>
               <CardParagraphWrapper>
-                <IconSVG icon="paper" size={142} />
+                <IconWrap>
+                  <IconSVG icon="paper" />
+                </IconWrap>
                 <CardParagraph>
                   {accessID === "yes"
                     ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(

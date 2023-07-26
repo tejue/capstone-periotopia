@@ -1,4 +1,3 @@
-import Icon from "@mdi/react";
 import { mdiChevronRightCircle } from "@mdi/js";
 import { mdiAlphaXCircle } from "@mdi/js";
 import { mdiBrush } from "@mdi/js";
@@ -7,7 +6,7 @@ import { mdiWater } from "@mdi/js";
 import { mdiPiggyBank } from "@mdi/js";
 import { mdiPaperRoll } from "@mdi/js";
 
-export default function IconSVG({ icon, size, color = "#fb9f26", ...rest }) {
+export default function IconSVG({ icon, color = "#fb9f26", ...rest }) {
   let pathData = "";
 
   if (icon === "circle") {
@@ -34,7 +33,7 @@ export default function IconSVG({ icon, size, color = "#fb9f26", ...rest }) {
 
   return (
     <svg
-      width={size}
+      width={24}
       height={24}
       viewBox="0 0 24 24"
       fill="none"

@@ -1,11 +1,4 @@
 import styled from "styled-components";
-import Icon from "@mdi/react";
-
-export const StyledIcon = styled(Icon)`
-  position: absolute;
-  left: 5px;
-  top: -10px;
-`;
 
 export const StyledList = styled.ul`
   margin: 0;
@@ -26,24 +19,38 @@ export const StyledResultCard = styled.li`
 export const StyledCardHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-right: 15px;
 `;
 
 export const StyledCardHeading = styled.h2`
   font-size: 1rem;
   font-weight: 500;
-  margin: 5px 0 8px 0;
+  margin: 5px 0;
 `;
 
 export const CardParagraphWrapper = styled.div`
   display: flex;
   gap: 15px;
-  font-size: 1rem;
   align-items: flex-start;
+  padding: 10px 0;
 `;
+
+export const IconWrap = styled.div``;
 
 export const CardParagraph = styled.p`
   font-weight: 100;
   line-height: 1.3;
   margin: 0;
-  padding-bottom: 15px;
+`;
+
+export const IconWrapDelete = styled.div`
+  position: absolute;
+  right: 5px;
+  top: -10px;
+`;
+
+export const IconWrapOpenClose = styled.div`
+  position: absolute;
+  left: 5px;
+  top: -10px;
 `;

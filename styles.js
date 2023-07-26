@@ -14,11 +14,13 @@ export default createGlobalStyle`
   --background-color: #fdfbfb;
   //--background-color: #fff7ff;
   //--primary-color: #e3005f;
-  --primary-color: #aa1146;
+ // --primary-color: #aa1146;
+  --primary-color: #b14784;
   --primary-color-text: #fff7ff;
   --secondary-color-text: #343a40;
   //--highlight-color: #343a40;
-  --highlight-color: #fb9f26;
+  --primary-highlight-color: #fb9f26;
+  --secondary-highlight-color: #343a40;
   //--box-shadow: 0px -7px 20px rgba(238, 88, 141, 0.1);
   }
 
