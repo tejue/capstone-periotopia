@@ -16,13 +16,13 @@ export const StyledResultCard = styled.li`
   position: relative;
 `;
 
-export const StyledCardHeaderWrapper = styled.div`
+export const CardHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-right: 15px;
 `;
 
-export const StyledCardHeading = styled.h2`
+export const CardHeading = styled.h2`
   font-size: 1rem;
   font-weight: 500;
   margin: 5px 0;
@@ -35,7 +35,7 @@ export const CardParagraphWrapper = styled.div`
   padding: 10px 0;
 `;
 
-export const IconWrap = styled.div``;
+export const IconWrapper = styled.div``;
 
 export const CardParagraph = styled.p`
   font-weight: 100;

@@ -1,18 +1,17 @@
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import FormField from "../FormField";
+import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import IconSVG from "../IconSVG";
-
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   StyledList,
   StyledResultCard,
-  StyledCardHeading,
-  StyledCardHeaderWrapper,
+  CardHeading,
+  CardHeaderWrapper,
   CardParagraph,
   CardParagraphWrapper,
-  IconWrap,
+  IconWrapper,
   IconWrapOpenClose,
   IconWrapDelete,
 } from "./styles";
@@ -109,7 +108,7 @@ export default function ResultCard({
               rotate={isResultVisible ? 90 : 0}
             />{" "}
           </IconWrapOpenClose>
-          <StyledCardHeaderWrapper>
+          <CardHeaderWrapper>
             {editIndexTitle ? (
               <FormField
                 type="text"
@@ -117,7 +116,7 @@ export default function ResultCard({
                 onChange={(event) => setEditedIndexTitle(event.target.value)}
               />
             ) : (
-              <StyledCardHeading>{indexTitleID}</StyledCardHeading>
+              <CardHeading>{indexTitleID}</CardHeading>
             )}{" "}
             {editIndexTitle ? (
               <IconSVG
@@ -132,23 +131,23 @@ export default function ResultCard({
                 onClick={handleIndexTitleEditToggle}
               />
             )}
-          </StyledCardHeaderWrapper>
+          </CardHeaderWrapper>
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
               <CardParagraphWrapper>
-                <IconWrap>
+                <IconWrapper>
                   <IconSVG icon="water" />
-                </IconWrap>
+                </IconWrapper>
                 <CardParagraph>
                   Du hast deine Menstruation an {menstruationDaysPerYearID}{" "}
                   Tagen im Jahr.
                 </CardParagraph>
               </CardParagraphWrapper>
               <CardParagraphWrapper>
-                <IconWrap>
+                <IconWrapper>
                   <IconSVG icon="piggy" />
-                </IconWrap>
+                </IconWrapper>
                 <CardParagraph>
                   Für deine Menstruationsprodukte zahlst du{" "}
                   {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
@@ -158,9 +157,9 @@ export default function ResultCard({
                 </CardParagraph>
               </CardParagraphWrapper>
               <CardParagraphWrapper>
-                <IconWrap>
+                <IconWrapper>
                   <IconSVG icon="paper" />
-                </IconWrap>
+                </IconWrapper>
                 <CardParagraph>
                   {accessID === "yes"
                     ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(
