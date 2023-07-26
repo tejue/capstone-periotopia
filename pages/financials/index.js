@@ -3,6 +3,8 @@ import FormFinancials from "@/components/FormFinancials";
 import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
+import styled from "styled-components";
+import IconSVG from "@/components/IconSVG";
 
 export default function FinancialsPage({
   financials,
@@ -54,7 +56,12 @@ export default function FinancialsPage({
 
   return (
     <>
-      <h1>Geld</h1>
+      <PageHeader>Geld</PageHeader>
+      <IconWrapper>
+        <IconSVG icon="piggy" />
+        <IconSVG icon="piggy" />
+        <IconSVG icon="piggy" />
+      </IconWrapper>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}
@@ -95,3 +102,12 @@ export default function FinancialsPage({
     </>
   );
 }
+
+const PageHeader = styled.h1`
+  text-align: center;
+  margin-bottom: 2px;
+`;
+
+const IconWrapper = styled.div`
+  text-align: center;
+`;

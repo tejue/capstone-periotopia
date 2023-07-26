@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import FormGeneral from "@/components/FormGeneral/index";
 import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
+import styled from "styled-components";
+import IconSVG from "@/components/IconSVG";
 
 export default function GeneralInfoPage({
   generalInfo,
@@ -47,7 +49,12 @@ export default function GeneralInfoPage({
 
   return (
     <>
-      <h1>Allgemeines</h1>
+      <PageHeader>Allgemein</PageHeader>
+      <IconWrapper>
+        <IconSVG icon="water" />
+        <IconSVG icon="water" />
+        <IconSVG icon="water" />
+      </IconWrapper>
       {!submittedForm && (
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}
@@ -72,3 +79,12 @@ export default function GeneralInfoPage({
     </>
   );
 }
+
+const PageHeader = styled.h1`
+  text-align: center;
+  margin-bottom: 2px;
+`;
+
+const IconWrapper = styled.div`
+  text-align: center;
+`;
