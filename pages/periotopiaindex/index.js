@@ -1,7 +1,7 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
 
-export default function HomePage({
+export default function PeriotopiaIndexPage({
   collectedOverviewResults,
   handleDeleteResultCard,
   formatNumber,
