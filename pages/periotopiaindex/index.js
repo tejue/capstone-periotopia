@@ -1,5 +1,6 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
+import styled from "styled-components";
 
 export default function PeriotopiaIndexPage({
   collectedOverviewResults,
@@ -10,7 +11,7 @@ export default function PeriotopiaIndexPage({
 }) {
   return (
     <>
-      <h1>Periotopia Overview</h1>
+      <PageHeader>Periotopia-Index</PageHeader>
       <NewIndex />
       {collectedOverviewResults.map(
         ({
@@ -47,3 +48,7 @@ export default function PeriotopiaIndexPage({
     </>
   );
 }
+
+const PageHeader = styled.h1`
+  text-align: center;
+`;

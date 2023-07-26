@@ -6,13 +6,15 @@ export const StyledNewIndex = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary-color);
-  padding: var(--padding-sides);
   color: var(--primary-color-text);
-  margin-bottom: 10px;
+  margin: 0 10px 30px 10px;
+  border-radius: 5px;
+  padding: 0 15px;
+  font-weight: 900;
 `;
 
 export const StyledLink = styled(Link)`
-  border: solid thin;
+  border: solid;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -20,5 +22,13 @@ export const StyledLink = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--primary-color-text);
+  color: var(--secondary-color-text);
+  font-weight: 900;
 `;
+
+// export const StyledResultCard = styled.li`
+//   list-style: none;
+//   background-color: var(--primary-color);
+//   color: var(--primary-color-text);
+//   padding: 15px;
+//   margin: 10px 10px;

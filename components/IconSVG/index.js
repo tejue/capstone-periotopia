@@ -6,7 +6,7 @@ import { mdiWater } from "@mdi/js";
 import { mdiPiggyBank } from "@mdi/js";
 import { mdiPaperRoll } from "@mdi/js";
 
-export default function IconSVG({ icon, color = "#fb9f26", ...rest }) {
+export default function IconSVG({ icon, color = "#fb9f26", size, ...rest }) {
   let pathData = "";
 
   if (icon === "circle") {
@@ -33,11 +33,11 @@ export default function IconSVG({ icon, color = "#fb9f26", ...rest }) {
 
   return (
     <svg
-      width={24}
+      width={size}
       height={24}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+      //xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
       <path d={pathData} fill={color} />

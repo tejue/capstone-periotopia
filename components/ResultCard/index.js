@@ -106,7 +106,7 @@ export default function ResultCard({
               color={`var(--secondary-highlight-color)`}
               onClick={handleToggle}
               rotate={isResultVisible ? 90 : 0}
-            />{" "}
+            />
           </IconWrapOpenClose>
           <CardHeaderWrapper>
             {editIndexTitle ? (
@@ -162,7 +162,7 @@ export default function ResultCard({
                 </IconWrapper>
                 <CardParagraph>
                   {accessID === "yes"
-                    ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(
+                    ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg brauchst du bis zu ${formatTime(
                         timePerYearID
                       )} im Jahr.`
                     : `Du hast keinen Zugang zu einer sauberen und sicheren Sanitäranlage um deine Menstruationsprodukte zu wechseln oder brauchst für den Hin- und Rückweg mindestens ${formatTime(
@@ -172,7 +172,11 @@ export default function ResultCard({
                   {numberperiotopiaIndexHygieneID}/10.
                 </CardParagraph>
               </CardParagraphWrapper>
-              Dein gesamter Periotopia-Index ist: {periotopiaIndexAverage}/10:
+              <CardHeading>
+                {" "}
+                Dein durchschnittlicher Periotopia-Index ist:{" "}
+                {periotopiaIndexAverage}/10
+              </CardHeading>
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}

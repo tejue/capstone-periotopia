@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { Roboto } from "@next/font/google";
 
 const roboto = Roboto({
-  weight: ["100", "300"],
+  weight: ["100", "500", "900"],
   style: ["normal"],
   subsets: ["latin"],
   display: "swap",

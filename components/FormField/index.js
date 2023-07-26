@@ -1,4 +1,10 @@
-import { StyledLabel, StyledFieldset, StyledLegend } from "./styles.js";
+import {
+  StyledFormField,
+  StyledLabel,
+  StyledFieldset,
+  StyledLegend,
+  StyledRadioLabel,
+} from "./styles.js";
 
 export default function FormField({
   question,
@@ -17,7 +23,7 @@ export default function FormField({
   return (
     <>
       {type === "number" && (
-        <>
+        <StyledFormField>
           <label htmlFor={formFieldId}>{question}</label>
           <input
             type="number"
@@ -30,30 +36,37 @@ export default function FormField({
             onChange={onChange}
             required
           />
-        </>
+        </StyledFormField>
       )}
+
       {type === "radio" && (
-        <StyledFieldset>
-          <StyledLegend>{question}</StyledLegend>
-          {options.map((option) => (
-            <label key={option.formFieldId} htmlFor={option.formFieldId}>
-              <input
-                type="radio"
-                id={option.formFieldId}
-                name={name}
-                value={option.value}
-                checked={checked === option.value}
-                onChange={onChange}
-                disabled={disabled}
-                required
-              />
-              {option.content}
-            </label>
-          ))}
-        </StyledFieldset>
+        <StyledFormField>
+          <StyledFieldset>
+            <StyledLegend>{question}</StyledLegend>
+            {options.map((option) => (
+              <StyledRadioLabel
+                key={option.formFieldId}
+                htmlFor={option.formFieldId}
+              >
+                <input
+                  type="radio"
+                  id={option.formFieldId}
+                  name={name}
+                  value={option.value}
+                  checked={checked === option.value}
+                  onChange={onChange}
+                  disabled={disabled}
+                  required
+                />
+                {option.content}
+              </StyledRadioLabel>
+            ))}
+          </StyledFieldset>
+        </StyledFormField>
       )}
+
       {type === "select" && (
-        <>
+        <StyledFormField>
           <label htmlFor={formFieldId}>{question}</label>
           <select
             id={formFieldId}
@@ -68,8 +81,9 @@ export default function FormField({
               </option>
             ))}
           </select>
-        </>
+        </StyledFormField>
       )}
+
       {["select", "number", "radio"].indexOf(type) === -1 && (
         <input type="text" value={value} onChange={onChange} />
       )}
