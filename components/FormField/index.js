@@ -1,9 +1,10 @@
 import {
   StyledFormField,
-  StyledLabel,
   StyledFieldset,
   StyledLegend,
+  StyledLabel,
   StyledRadioLabel,
+  StyledInput,
 } from "./styles.js";
 
 export default function FormField({
@@ -24,8 +25,8 @@ export default function FormField({
     <>
       {type === "number" && (
         <StyledFormField>
-          <label htmlFor={formFieldId}>{question}</label>
-          <input
+          <StyledLabel htmlFor={formFieldId}>{question}</StyledLabel>
+          <StyledInput
             type="number"
             id={formFieldId}
             name={name}
@@ -67,7 +68,7 @@ export default function FormField({
 
       {type === "select" && (
         <StyledFormField>
-          <label htmlFor={formFieldId}>{question}</label>
+          <StyledLegend htmlFor={formFieldId}>{question}</StyledLegend>
           <select
             id={formFieldId}
             name={name}

@@ -1,15 +1,6 @@
-import styled from "styled-components";
-import Question from "../Question/index";
-import InputNumber from "../InputNumber/index";
 import ShowAnswerButton from "../ShowAnswerButton/index";
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background-color: lightcoral;
-  padding: 20px;
-`;
+import FormField from "../FormField/index";
+import { StyledForm } from "./styles";
 
 export default function FormGeneral({
   handleGeneralInfo,
@@ -38,46 +29,39 @@ export default function FormGeneral({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <Question id="age" question="Wie alt bist du?" />
-        <InputNumber
-          id="age"
+        <FormField
+          question="Wie alt bist du?"
+          type="number"
+          formFieldId="age"
           name="age"
           min={minAge}
           max={maxAge}
           value={currentValue.age}
           onChange={(event) => handleUserInput(event, "age")}
         />
-        <Question
-          id="firstMenstruation"
+        <FormField
           question="Wie alt warst du bei deiner ersten Menstruation?"
-        />
-        <InputNumber
-          id="firstMenstruation"
+          type="number"
+          formFieldId="firstMenstruation"
           name="firstMenstruation"
           min={minAge - 1}
           max={currentValue.age}
           value={currentValue.firstMenstruation}
           onChange={(event) => handleUserInput(event, "firstMenstruation")}
         />
-        <Question
-          id="cyclusLength"
-          question="Wie oft beginnt deine Menstruation?"
-        />
-        Alle
-        <InputNumber
-          id="cyclusLength"
+        <FormField
+          question="Wieviele Tage dauert dein Zyklus?"
+          type="number"
+          formFieldId="cyclusLength"
           name="cyclusLength"
           min="1"
           value={currentValue.cyclusLength}
           onChange={(event) => handleUserInput(event, "cyclusLength")}
         />
-        Tage
-        <Question
-          id="menstruationLength"
+        <FormField
           question="Wieviele Tage dauert deine Menstruation?"
-        />
-        <InputNumber
-          id="menstruationLength"
+          type="number"
+          formFieldId="menstruationLength"
           name="menstruationLength"
           min="1"
           max={currentValue.cyclusLength - 1}
