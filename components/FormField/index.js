@@ -77,7 +77,7 @@ export default function FormField({
             options={options}
           >
             {options.map((option) => (
-              <option key={option.formFieldId} value={option.value}>
+              <option key={option.value} value={option.value}>
                 {option.content}
               </option>
             ))}

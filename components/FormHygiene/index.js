@@ -1,5 +1,7 @@
 import FormField from "../FormField/index";
 import ShowAnswerButton from "../ShowAnswerButton/index";
+import { StyledForm } from "./styles";
+import { ButtonWrapper } from "../ShowAnswerButton/index";
 
 export default function FormHygiene({
   currentValue,
@@ -33,7 +35,7 @@ export default function FormHygiene({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <FormField
         question="Hast du Zugang zu einer sauberen und sichere Sanitäranlage um dein Menstruationsprodukt zu wechseln?"
         type="radio"
@@ -51,7 +53,9 @@ export default function FormHygiene({
         onChange={(event) => handleUserInput(event, "minutes")}
         disabled={currentValue.access === "no"}
       />
-      <ShowAnswerButton />
-    </form>
+      <ButtonWrapper>
+        <ShowAnswerButton />
+      </ButtonWrapper>
+    </StyledForm>
   );
 }

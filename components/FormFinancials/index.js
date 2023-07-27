@@ -1,5 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton";
 import FormField from "../FormField";
+import { StyledForm } from "./styles";
+import { ButtonWrapper } from "../ShowAnswerButton";
 
 export default function FormFinancials({
   handleFinancials,
@@ -42,7 +44,7 @@ export default function FormFinancials({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <FormField
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
         type="select"
@@ -104,7 +106,9 @@ export default function FormFinancials({
         value={currentValue.changeProduct}
         onChange={(event) => handleUserInput(event, "changeProduct")}
       />
-      <ShowAnswerButton />
-    </form>
+      <ButtonWrapper>
+        <ShowAnswerButton />
+      </ButtonWrapper>
+    </StyledForm>
   );
 }
