@@ -1,20 +1,5 @@
-import styled from "styled-components";
-import Question from "../Question";
-import InputNumber from "../InputNumber";
 import ShowAnswerButton from "../ShowAnswerButton";
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background-color: lightcoral;
-  padding: 20px;
-`;
-
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-`;
+import FormField from "../FormField";
 
 export default function FormFinancials({
   handleFinancials,
@@ -22,6 +7,25 @@ export default function FormFinancials({
   currentValue,
   updateCurrentValue,
 }) {
+  const optionsProduct = [
+    { value: "", content: "-- Produkt auswählen --" },
+    { value: "tampon", content: "Tampon" },
+    { value: "pad", content: "Binde" },
+    { value: "cup", content: "Perioden-Cup" },
+    { value: "disc", content: "Perioden-Disc" },
+    { value: "schlueppi", content: "Perioden-Schlüppi" },
+  ];
+
+  const optionsTaxAmount = [
+    { formFieldId: "taxAmountFull", value: "full", content: "volle Steuer" },
+    {
+      formFieldId: "taxAmountPartial",
+      value: "partial",
+      content: "reduzierte Steuer",
+    },
+    { formFieldId: "taxAmountNone", value: "none", content: "keine Steuer" },
+  ];
+
   function handleUserInput(event, fieldName) {
     const newValue = { ...currentValue, [fieldName]: event.target.value };
     updateCurrentValue(newValue);
@@ -38,81 +42,40 @@ export default function FormFinancials({
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <Question
-        id="product"
+    <form onSubmit={handleSubmit}>
+      <FormField
         question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
-      />
-      <select
-        id="product"
+        type="select"
+        formFieldId="product"
         name="product"
+        options={optionsProduct}
         value={currentValue.product}
         onChange={(event) => handleUserInput(event, "product")}
-      >
-        <option value="">-- Produkt auswählen --</option>
-        <option value="tampon">Tampon</option>
-        <option value="pad">Binde</option>
-        <option value="cup">Perioden-Cup</option>
-        <option value="disc">Perioden-Disc</option>
-        <option value="schlueppi">Perioden-Schlüppi</option>
-      </select>
-      <Question id="packageCosts" question="Wieviel kostet eine Packung?" />
-      <InputNumber
-        id="packageCosts"
+      />
+      <FormField
+        question="Wieviel kostet eine Packung?"
+        type="number"
+        formFieldId="packageCosts"
         name="packageCosts"
         min="0"
         value={currentValue.packageCosts}
         onChange={(event) => handleUserInput(event, "packageCosts")}
       />
-      Euro
-      <StyledFieldset>
-        <legend>Wie wird dein Produkt besteuert?</legend>
-        <label htmlFor="taxAmountFull">
-          <input
-            id="taxAmountFull"
-            name="taxAmount"
-            type="radio"
-            value="full"
-            checked={currentValue.taxAmount === "full"}
-            onChange={(event) => handleUserInput(event, "taxAmount")}
-            disabled={
-              currentValue.packageCosts === "0" || currentValue.taxes === "0"
-            }
-          />
-          volle Steuer
-        </label>
-        <label htmlFor="taxAmountPartial">
-          <input
-            id="taxAmountPartial"
-            name="taxAmount"
-            type="radio"
-            value="partial"
-            checked={currentValue.taxAmount === "partial"}
-            onChange={(event) => handleUserInput(event, "taxAmount")}
-            disabled={
-              currentValue.packageCosts === "0" || currentValue.taxes === "0"
-            }
-          />
-          reduzierte Steuer
-        </label>
-        <label htmlFor="taxAmountNone">
-          <input
-            id="taxAmountNone"
-            name="taxAmount"
-            type="radio"
-            value="none"
-            checked={currentValue.taxAmount === "none"}
-            onChange={(event) => handleUserInput(event, "taxAmount")}
-          />
-          keine Steuer
-        </label>
-      </StyledFieldset>
-      <Question
-        id="taxes"
-        question="Wieviel Steuern zahlst du beim Kauf einer Packung?"
+      <FormField
+        question="Wie wird dein Produkt besteuert?"
+        type="radio"
+        name="taxAmount"
+        options={optionsTaxAmount}
+        checked={currentValue.taxAmount}
+        onChange={(event) => handleUserInput(event, "taxAmount")}
+        disabled={
+          currentValue.packageCosts === "0" || currentValue.taxes === "0"
+        }
       />
-      <InputNumber
-        id="taxes"
+      <FormField
+        question="Wieviel % Steuern zahlst du beim Kauf einer Packung?"
+        type="number"
+        formFieldId="taxes"
         name="taxes"
         min="0"
         max="60"
@@ -123,30 +86,25 @@ export default function FormFinancials({
         }
         onChange={(event) => handleUserInput(event, "taxes")}
       />
-      %
-      <Question
-        id="packageContent"
+      <FormField
         question="Wieviele Produkte sind in einer Packung enthalten?"
-      />
-      <InputNumber
-        id="packageContent"
+        type="number"
+        formFieldId="packageContent"
         name="packageContent"
         min="1"
         value={currentValue.packageContent}
         onChange={(event) => handleUserInput(event, "packageContent")}
       />
-      <Question
-        id="changeProduct"
+      <FormField
         question="Wie oft wechselst du dein Produkt an einem Tag?"
-      />
-      <InputNumber
-        id="changeProduct"
+        type="number"
+        formFieldId="changeProduct"
         name="changeProduct"
         min="1"
         value={currentValue.changeProduct}
         onChange={(event) => handleUserInput(event, "changeProduct")}
       />
       <ShowAnswerButton />
-    </StyledForm>
+    </form>
   );
 }
