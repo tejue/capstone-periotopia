@@ -1,5 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton/index";
 import FormField from "../FormField/index";
+import { StyledForm } from "./styles";
+import { ButtonWrapper } from "../ShowAnswerButton";
 
 export default function FormGeneral({
   handleGeneralInfo,
@@ -26,7 +28,7 @@ export default function FormGeneral({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <FormField
         question="Wie alt bist du?"
         type="number"
@@ -66,7 +68,9 @@ export default function FormGeneral({
         value={currentValue.menstruationLength}
         onChange={(event) => handleUserInput(event, "menstruationLength")}
       />
-      <ShowAnswerButton />
-    </form>
+      <ButtonWrapper>
+        <ShowAnswerButton />
+      </ButtonWrapper>
+    </StyledForm>
   );
 }

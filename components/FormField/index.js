@@ -74,7 +74,7 @@ export default function FormField({
             name={name}
             onChange={onChange}
             required
-            //options={options}
+            options={options}
           >
             {options.map((option) => (
               <option key={option.formFieldId} value={option.value}>
