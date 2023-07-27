@@ -4,20 +4,12 @@ import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-// import { mdiChevronRightCircle } from "@mdi/js";
-// import { mdiAlphaXCircle } from "@mdi/js";
-// import { mdiBrush } from "@mdi/js";
-// import { mdiBrushOff } from "@mdi/js";
-// import { mdiWater } from "@mdi/js";
-// import { mdiPiggyBank } from "@mdi/js";
-// import { mdiPaperRoll } from "@mdi/js";
-// import Icon from "@mdi/react";
 
 import {
   StyledList,
   StyledResultCard,
   CardHeading,
-  CardHeaderWrapper,
+  CardTitelWrapper,
   CardParagraph,
   CardParagraphWrapper,
   IconWrapper,
@@ -110,16 +102,15 @@ export default function ResultCard({
               size={30}
             />
           </IconWrapDelete>
-          <IconWrapOpenClose>
+          <IconWrapOpenClose rotate={isResultVisible ? 90 : 0}>
             <IconSVG
               icon="circle"
               color={`var(--primary-highlight-color)`}
               onClick={handleToggle}
-              rotate={isResultVisible ? 90 : 0}
               size={30}
             />
           </IconWrapOpenClose>
-          <CardHeaderWrapper>
+          <CardTitelWrapper>
             {editIndexTitle ? (
               <FormField
                 type="text"
@@ -144,7 +135,7 @@ export default function ResultCard({
                 size={30}
               />
             )}
-          </CardHeaderWrapper>
+          </CardTitelWrapper>
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
@@ -153,7 +144,7 @@ export default function ResultCard({
                   <IconSVG
                     icon="water"
                     color={`var(--tertier-highlight-color)`}
-                    size={20}
+                    size={30}
                   />
                 </IconWrapper>
                 <CardParagraph>
@@ -166,7 +157,7 @@ export default function ResultCard({
                   <IconSVG
                     icon="piggy"
                     color={`var(--tertier-highlight-color)`}
-                    size={20}
+                    size={30}
                   />
                 </IconWrapper>
                 <CardParagraph>
@@ -182,7 +173,7 @@ export default function ResultCard({
                   <IconSVG
                     icon="paper"
                     color={`var(--tertier-highlight-color)`}
-                    size={20}
+                    size={30}
                   />
                 </IconWrapper>
                 <CardParagraph>

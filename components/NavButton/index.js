@@ -1,16 +1,38 @@
-import styled from "styled-components";
-
-const NavButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+import {
+  NavButtonWrapper,
+  ButtonWrapperPrev,
+  ButtonWrapperNext,
+  IconWrapperPrev,
+  IconWrapperNext,
+  Button,
+} from "./styles";
+import IconSVG from "../IconSVG";
 
 export default function NavButton({ onPrevPage, onNextPage }) {
   return (
     <>
       <NavButtonWrapper>
-        <button onClick={onPrevPage}>zurück</button>
-        <button onClick={onNextPage}>weiter</button>
+        <ButtonWrapperPrev>
+          <Button onClick={onPrevPage}>.</Button>
+          <IconWrapperPrev>
+            <IconSVG
+              icon="prev"
+              color={`var(--primary-highlight-color)`}
+              size={50}
+            />
+          </IconWrapperPrev>{" "}
+        </ButtonWrapperPrev>
+
+        <ButtonWrapperNext>
+          <Button onClick={onNextPage}>.</Button>
+          <IconWrapperNext>
+            <IconSVG
+              icon="next"
+              color={`var(--primary-highlight-color)`}
+              size={50}
+            />
+          </IconWrapperNext>{" "}
+        </ButtonWrapperNext>
       </NavButtonWrapper>
     </>
   );

@@ -9,17 +9,16 @@ export const StyledResultCard = styled.li`
   list-style: none;
   background-color: var(--primary-color);
   color: var(--primary-color-text);
-  padding: 15px;
-  margin: 10px 10px;
+  padding: 25px 15px 15px 15px;
+  margin: 15px 10px;
   border: none;
   border-radius: 5px;
   position: relative;
 `;
 
-export const CardHeaderWrapper = styled.div`
+export const CardTitelWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-right: 15px;
+  gap: 15px;
 `;
 
 export const CardHeading = styled.h2`
@@ -35,8 +34,6 @@ export const CardParagraphWrapper = styled.div`
   padding: 10px 0;
 `;
 
-export const IconWrapper = styled.div``;
-
 export const CardParagraph = styled.p`
   font-weight: 100;
   line-height: 1.3;
@@ -45,12 +42,15 @@ export const CardParagraph = styled.p`
 
 export const IconWrapDelete = styled.div`
   position: absolute;
-  right: 5px;
-  top: -10px;
+  right: -5px;
+  top: -5px;
 `;
 
 export const IconWrapOpenClose = styled.div`
   position: absolute;
-  left: 5px;
-  top: -10px;
+  left: -5px;
+  top: -5px;
+  transform: rotate(${(props) => props.rotate}deg);
 `;
+
+export const IconWrapper = styled.div``;

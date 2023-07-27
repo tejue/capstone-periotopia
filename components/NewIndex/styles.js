@@ -16,8 +16,8 @@ export const StyledNewIndex = styled.div`
 export const StyledLink = styled(Link)`
   border: solid;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,10 +25,3 @@ export const StyledLink = styled(Link)`
   color: var(--primary-highlight-color);
   font-weight: 900;
 `;
-
-// export const StyledResultCard = styled.li`
-//   list-style: none;
-//   background-color: var(--primary-color);
-//   color: var(--primary-color-text);
-//   padding: 15px;
-//   margin: 10px 10px;

@@ -1,7 +1,6 @@
 import FormField from "../FormField/index";
 import ShowAnswerButton from "../ShowAnswerButton/index";
 import { StyledForm } from "./styles";
-import { ButtonWrapper } from "../ShowAnswerButton/index";
 
 export default function FormHygiene({
   currentValue,
@@ -53,9 +52,7 @@ export default function FormHygiene({
         onChange={(event) => handleUserInput(event, "minutes")}
         disabled={currentValue.access === "no"}
       />
-      <ButtonWrapper>
-        <ShowAnswerButton />
-      </ButtonWrapper>
+      <ShowAnswerButton />
     </StyledForm>
   );
 }

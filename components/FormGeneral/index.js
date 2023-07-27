@@ -1,7 +1,6 @@
 import ShowAnswerButton from "../ShowAnswerButton/index";
 import FormField from "../FormField/index";
 import { StyledForm } from "./styles";
-import { ButtonWrapper } from "../ShowAnswerButton";
 
 export default function FormGeneral({
   handleGeneralInfo,
@@ -68,9 +67,8 @@ export default function FormGeneral({
         value={currentValue.menstruationLength}
         onChange={(event) => handleUserInput(event, "menstruationLength")}
       />
-      <ButtonWrapper>
-        <ShowAnswerButton />
-      </ButtonWrapper>
+
+      <ShowAnswerButton />
     </StyledForm>
   );
 }

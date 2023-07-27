@@ -1,7 +1,6 @@
 import ShowAnswerButton from "../ShowAnswerButton";
 import FormField from "../FormField";
 import { StyledForm } from "./styles";
-import { ButtonWrapper } from "../ShowAnswerButton";
 
 export default function FormFinancials({
   handleFinancials,
@@ -106,9 +105,7 @@ export default function FormFinancials({
         value={currentValue.changeProduct}
         onChange={(event) => handleUserInput(event, "changeProduct")}
       />
-      <ButtonWrapper>
-        <ShowAnswerButton />
-      </ButtonWrapper>
+      <ShowAnswerButton />
     </StyledForm>
   );
 }
