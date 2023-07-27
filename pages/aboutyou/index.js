@@ -5,6 +5,7 @@ import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
 import styled from "styled-components";
 import IconSVG from "@/components/IconSVG";
+import Header from "@/components/Header";
 
 export default function GeneralInfoPage({
   generalInfo,
@@ -49,12 +50,13 @@ export default function GeneralInfoPage({
 
   return (
     <>
-      <PageHeader>Allgemein</PageHeader>
-      <IconWrapper>
-        <IconSVG icon="water" />
-        <IconSVG icon="water" />
-        <IconSVG icon="water" />
-      </IconWrapper>
+      <Header>
+        <IconSVG
+          icon="water"
+          color={`var(--tertier-highlight-color)`}
+          size={70}
+        />
+      </Header>
       {!submittedForm && (
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}
@@ -79,12 +81,3 @@ export default function GeneralInfoPage({
     </>
   );
 }
-
-const PageHeader = styled.h1`
-  text-align: center;
-  margin-bottom: 2px;
-`;
-
-const IconWrapper = styled.div`
-  text-align: center;
-`;

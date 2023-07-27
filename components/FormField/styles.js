@@ -41,8 +41,18 @@ export const StyledInput = styled.input`
   background-color: var(--background-color);
   color: var(--secondary-color-text);
   font-size: 1rem;
-  width: 70px;
+  width: 100px;
   font-weight: 100;
   border: solid thin var(--secondary-highlight-color);
-  text-align: end;
+  text-align: center;
+`;
+
+export const StyledSelect = styled.select`
+  background-color: var(--background-color);
+  color: var(--secondary-color-text);
+  font-size: 1rem;
+  width: 200px;
+  font-weight: 100;
+  border: solid thin var(--secondary-highlight-color);
+  text-align: center;
 `;

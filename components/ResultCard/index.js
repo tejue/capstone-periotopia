@@ -4,6 +4,15 @@ import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+// import { mdiChevronRightCircle } from "@mdi/js";
+// import { mdiAlphaXCircle } from "@mdi/js";
+// import { mdiBrush } from "@mdi/js";
+// import { mdiBrushOff } from "@mdi/js";
+// import { mdiWater } from "@mdi/js";
+// import { mdiPiggyBank } from "@mdi/js";
+// import { mdiPaperRoll } from "@mdi/js";
+// import Icon from "@mdi/react";
+
 import {
   StyledList,
   StyledResultCard,
@@ -97,15 +106,17 @@ export default function ResultCard({
             <IconSVG
               icon="x"
               onClick={handleDelete}
-              color={`var(--secondary-highlight-color)`}
+              color={`var(--primary-highlight-color)`}
+              size={30}
             />
           </IconWrapDelete>
           <IconWrapOpenClose>
             <IconSVG
               icon="circle"
-              color={`var(--secondary-highlight-color)`}
+              color={`var(--primary-highlight-color)`}
               onClick={handleToggle}
               rotate={isResultVisible ? 90 : 0}
+              size={30}
             />
           </IconWrapOpenClose>
           <CardHeaderWrapper>
@@ -121,14 +132,16 @@ export default function ResultCard({
             {editIndexTitle ? (
               <IconSVG
                 icon="brushoff"
-                color={`var(--secondary-highlight-color)`}
+                color={`var(--primary-highlight-color)`}
                 onClick={handleIndexTitleEditToggle}
+                size={30}
               />
             ) : (
               <IconSVG
                 icon="brush"
-                color={`var(--secondary-highlight-color)`}
+                color={`var(--primary-highlight-color)`}
                 onClick={handleIndexTitleEditToggle}
+                size={30}
               />
             )}
           </CardHeaderWrapper>
@@ -137,7 +150,11 @@ export default function ResultCard({
             <>
               <CardParagraphWrapper>
                 <IconWrapper>
-                  <IconSVG icon="water" />
+                  <IconSVG
+                    icon="water"
+                    color={`var(--tertier-highlight-color)`}
+                    size={20}
+                  />
                 </IconWrapper>
                 <CardParagraph>
                   Du hast deine Menstruation an {menstruationDaysPerYearID}{" "}
@@ -146,7 +163,11 @@ export default function ResultCard({
               </CardParagraphWrapper>
               <CardParagraphWrapper>
                 <IconWrapper>
-                  <IconSVG icon="piggy" />
+                  <IconSVG
+                    icon="piggy"
+                    color={`var(--tertier-highlight-color)`}
+                    size={20}
+                  />
                 </IconWrapper>
                 <CardParagraph>
                   Für deine Menstruationsprodukte zahlst du{" "}
@@ -158,7 +179,11 @@ export default function ResultCard({
               </CardParagraphWrapper>
               <CardParagraphWrapper>
                 <IconWrapper>
-                  <IconSVG icon="paper" />
+                  <IconSVG
+                    icon="paper"
+                    color={`var(--tertier-highlight-color)`}
+                    size={20}
+                  />
                 </IconWrapper>
                 <CardParagraph>
                   {accessID === "yes"

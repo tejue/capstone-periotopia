@@ -5,6 +5,7 @@ import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import IconSVG from "@/components/IconSVG";
+import Header from "@/components/Header";
 
 export default function FinancialsPage({
   financials,
@@ -56,12 +57,13 @@ export default function FinancialsPage({
 
   return (
     <>
-      <PageHeader>Geld</PageHeader>
-      <IconWrapper>
-        <IconSVG icon="piggy" />
-        <IconSVG icon="piggy" />
-        <IconSVG icon="piggy" />
-      </IconWrapper>
+      <Header>
+        <IconSVG
+          icon="piggy"
+          color={`var(--tertier-highlight-color)`}
+          size={70}
+        />
+      </Header>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}

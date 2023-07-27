@@ -22,7 +22,7 @@ export const StyledLink = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--secondary-color-text);
+  color: var(--primary-highlight-color);
   font-weight: 900;
 `;
 

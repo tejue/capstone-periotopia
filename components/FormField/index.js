@@ -5,6 +5,7 @@ import {
   StyledLabel,
   StyledRadioLabel,
   StyledInput,
+  StyledSelect,
 } from "./styles.js";
 
 export default function FormField({
@@ -69,19 +70,18 @@ export default function FormField({
       {type === "select" && (
         <StyledFormField>
           <StyledLegend htmlFor={formFieldId}>{question}</StyledLegend>
-          <select
+          <StyledSelect
             id={formFieldId}
             name={name}
             onChange={onChange}
             required
-            options={options}
           >
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.content}
               </option>
             ))}
-          </select>
+          </StyledSelect>
         </StyledFormField>
       )}
 

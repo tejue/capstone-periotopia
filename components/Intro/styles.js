@@ -10,15 +10,15 @@ export const IntroHeading = styled.h1`
 export const IntroWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  //gap: 5px;
   text-align: center;
   font-weight: 300;
   line-height: 2;
   background-color: var(--primary-color);
   color: var(--primary-color-text);
-  padding: 30px;
+  padding: 20px;
   margin: 0px 10px;
   border-radius: 5px;
+  position: relative;
 `;
 
 export const Footnote = styled.p`
@@ -30,8 +30,13 @@ export const Startlink = styled(Link)`
 `;
 
 export const IconWrapper = styled.div`
-  border: solid;
-  height: 80px;
-  text-align: center;
-  margin-top: 30px;
+  position: absolute;
+  bottom: -100px;
+  right: -10px;
+`;
+
+export const IconWrapperClick = styled.div`
+  position: absolute;
+  bottom: -100px;
+  right: 15px;
 `;

@@ -5,6 +5,7 @@ import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import IconSVG from "@/components/IconSVG";
+import Header from "@/components/Header";
 
 export default function HygienePage({
   hygiene,
@@ -56,12 +57,13 @@ export default function HygienePage({
 
   return (
     <>
-      <PageHeader>Hygiene</PageHeader>
-      <IconWrapper>
-        <IconSVG icon="paper" />
-        <IconSVG icon="paper" />
-        <IconSVG icon="paper" />
-      </IconWrapper>
+      <Header>
+        <IconSVG
+          icon="paper"
+          color={`var(--tertier-highlight-color)`}
+          size={70}
+        />
+      </Header>
       {!submittedForm && (
         <FormHygiene
           currentValue={currentValue}
