@@ -27,23 +27,25 @@ export const Button = styled.button`
 
   &:hover {
     background-color: var(--primary-highlight-color);
+    opacity: 50%;
   }
 
   &:active {
     background-color: var(--background-color);
+    opacity: 50%;
   }
 `;
 
 export const IconWrapperNext = styled.div`
   position: relative;
-  top: -50px;
-  right: 0;
+  top: -47px;
+  right: -5px;
   pointer-events: none;
 `;
 
 export const IconWrapperPrev = styled.div`
   position: relative;
-  top: -50px;
-  right: 0;
+  top: -47px;
+  right: -2px;
   pointer-events: none;
 `;

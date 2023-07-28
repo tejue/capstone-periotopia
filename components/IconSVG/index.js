@@ -3,8 +3,8 @@ import { mdiDeleteCircleOutline } from "@mdi/js";
 import { mdiBrush } from "@mdi/js";
 import { mdiBrushOff } from "@mdi/js";
 import { mdiWater } from "@mdi/js";
-import { mdiPiggyBank } from "@mdi/js";
-import { mdiPaperRoll } from "@mdi/js";
+import { mdiCurrencyUsd } from "@mdi/js";
+import { mdiHandWash } from "@mdi/js";
 import { mdiCursorDefaultClickOutline } from "@mdi/js";
 import { mdiChevronDoubleRight } from "@mdi/js";
 import { mdiChevronDoubleLeft } from "@mdi/js";
@@ -27,11 +27,11 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
   if (icon === "water") {
     pathData = mdiWater;
   }
-  if (icon === "piggy") {
-    pathData = mdiPiggyBank;
+  if (icon === "money") {
+    pathData = mdiCurrencyUsd;
   }
-  if (icon === "paper") {
-    pathData = mdiPaperRoll;
+  if (icon === "wash") {
+    pathData = mdiHandWash;
   }
   if (icon === "click") {
     pathData = mdiCursorDefaultClickOutline;

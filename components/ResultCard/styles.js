@@ -23,8 +23,14 @@ export const CardTitelWrapper = styled.div`
 
 export const CardHeading = styled.h2`
   font-size: 1rem;
-  font-weight: 500;
   margin: 5px 0;
+  font-weight: 900;
+`;
+
+export const CardEnding = styled.p`
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: end;
 `;
 
 export const CardParagraphWrapper = styled.div`

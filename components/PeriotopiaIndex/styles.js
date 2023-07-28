@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledPeriotopiaIndex = styled.section`
-  background-color: var(--highlight-color);
+  background-color: var(--tertier-highlight-color);
   margin: 20px 10px 5px 10px;
   padding: 0.5px;
 `;
@@ -9,11 +9,11 @@ export const StyledPeriotopiaIndex = styled.section`
 export const StyledIndex = styled.div`
   width: 100%;
   height: 20px;
-  background-color: var(--background-color);
+  background-color: #fbfbfb;
 `;
 
 export const StyledIndexFilled = styled.div`
   height: 100%;
-  background-color: #fb5c5b;
+  background-color: var(--tertier-highlight-color);
   width: ${(props) => props.width};
 `;

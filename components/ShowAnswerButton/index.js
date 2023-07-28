@@ -10,7 +10,7 @@ export default function ShowAnswerButton() {
           <IconSVG
             icon="next"
             color={`var(--primary-highlight-color)`}
-            size={50}
+            size={43}
           />
         </IconWrapper>{" "}
       </ButtonWrapper>

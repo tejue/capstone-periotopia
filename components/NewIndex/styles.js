@@ -25,3 +25,8 @@ export const StyledLink = styled(Link)`
   color: var(--primary-highlight-color);
   font-weight: 900;
 `;
+
+export const NewIndexTitle = styled.p`
+  font-size: 1.2em;
+  font-weight: 900;
+`;

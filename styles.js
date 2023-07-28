@@ -11,11 +11,11 @@ const roboto = Roboto({
 export default createGlobalStyle`
   
   :root {
-   --background-color: #fdfbfb;
-   --primary-color: #b14784;
+  --background-color: #eee7e7;
+  --primary-color: #7F5282;
   --primary-color-text: #fff7ff;
   --secondary-color-text: #343a40;
-  --primary-highlight-color: #fb9f26;
+  --primary-highlight-color: #E59329;
   --secondary-highlight-color: #343a40;
   --tertier-highlight-color: #fb5c5b;
   }
@@ -30,7 +30,7 @@ export default createGlobalStyle`
     margin: 0;
     font-family: ${roboto.style.fontFamily}; 
     color: var(--secondary-color-text);
-    background-color: #F0E5E5;
+    background-color: var(--background-color);
      }
 
   button {

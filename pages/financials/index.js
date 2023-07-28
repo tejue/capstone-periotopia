@@ -59,9 +59,9 @@ export default function FinancialsPage({
     <>
       <Header>
         <IconSVG
-          icon="piggy"
+          icon="money"
           color={`var(--tertier-highlight-color)`}
-          size={70}
+          size={60}
         />
       </Header>
       {!submittedForm && (

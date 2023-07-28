@@ -18,7 +18,7 @@ export default function NavButton({ onPrevPage, onNextPage }) {
             <IconSVG
               icon="prev"
               color={`var(--primary-highlight-color)`}
-              size={50}
+              size={43}
             />
           </IconWrapperPrev>{" "}
         </ButtonWrapperPrev>
@@ -29,7 +29,7 @@ export default function NavButton({ onPrevPage, onNextPage }) {
             <IconSVG
               icon="next"
               color={`var(--primary-highlight-color)`}
-              size={50}
+              size={43}
             />
           </IconWrapperNext>{" "}
         </ButtonWrapperNext>

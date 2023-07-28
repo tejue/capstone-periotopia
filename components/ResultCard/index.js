@@ -15,6 +15,7 @@ import {
   IconWrapper,
   IconWrapOpenClose,
   IconWrapDelete,
+  CardEnding,
 } from "./styles";
 
 export default function ResultCard({
@@ -155,7 +156,7 @@ export default function ResultCard({
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="piggy"
+                    icon="money"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />
@@ -171,7 +172,7 @@ export default function ResultCard({
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="paper"
+                    icon="wash"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />
@@ -188,11 +189,11 @@ export default function ResultCard({
                   {numberperiotopiaIndexHygieneID}/10.
                 </CardParagraph>
               </CardParagraphWrapper>
-              <CardHeading>
+              <CardEnding>
                 {" "}
                 Dein durchschnittlicher Periotopia-Index ist:{" "}
                 {periotopiaIndexAverage}/10
-              </CardHeading>
+              </CardEnding>
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}

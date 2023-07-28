@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import FormGeneral from "@/components/FormGeneral/index";
 import Answer from "@/components/Answer";
 import NavButton from "@/components/NavButton";
-import styled from "styled-components";
 import IconSVG from "@/components/IconSVG";
 import Header from "@/components/Header";
 
@@ -54,7 +53,7 @@ export default function GeneralInfoPage({
         <IconSVG
           icon="water"
           color={`var(--tertier-highlight-color)`}
-          size={70}
+          size={60}
         />
       </Header>
       {!submittedForm && (

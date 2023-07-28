@@ -5,12 +5,12 @@ export const StyledHeader = styled.header`
   align-items: center;
   justify-content: flex-end;
   position: sticky;
-  top: 50px;
+  top: 40px;
   z-index: 1;
   background-color: transparent;
   padding: 0px;
 `;
 
 export const HeaderWrapper = styled.div`
-  margin-top: -50px;
+  margin-top: -35px;
 `;

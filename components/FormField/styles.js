@@ -7,7 +7,6 @@ export const StyledFieldset = styled.fieldset`
 `;
 
 export const StyledLegend = styled.legend`
-  margin-top: 20px;
   text-align: center;
   line-height: 1.3;
   margin-bottom: 10px;
@@ -29,7 +28,7 @@ export const StyledRadioLabel = styled.label`
 export const StyledFormField = styled.div`
   background-color: var(--primary-color);
   color: var(--primary-color-text);
-  padding: 15px;
+  padding: 20px;
   margin: 10px 10px;
   border-radius: 5px;
   display: flex;

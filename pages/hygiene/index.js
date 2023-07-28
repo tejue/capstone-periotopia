@@ -59,9 +59,9 @@ export default function HygienePage({
     <>
       <Header>
         <IconSVG
-          icon="paper"
+          icon="wash"
           color={`var(--tertier-highlight-color)`}
-          size={70}
+          size={55}
         />
       </Header>
       {!submittedForm && (
