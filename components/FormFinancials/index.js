@@ -1,6 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton";
 import FormField from "../FormField";
-import { StyledForm } from "./styles";
+import { StyledForm, AverageWrapper } from "./styles";
+import Average from "../Average/index";
 
 export default function FormFinancials({
   handleFinancials,
@@ -42,17 +43,28 @@ export default function FormFinancials({
     handleSubmittedForm(true);
   }
 
+  function handleAverage(fieldName, averageValue) {
+    const updateAverageValue = {
+      ...currentValue,
+      [fieldName]: averageValue,
+    };
+    updateCurrentValue(updateAverageValue);
+  }
+
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <FormField
-        question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
-        type="select"
-        formFieldId="product"
-        name="product"
-        options={optionsProduct}
-        value={currentValue.product}
-        onChange={(event) => handleUserInput(event, "product")}
-      />
+      <AverageWrapper>
+        <FormField
+          question="Welches Produkt nutzt du hauptsächlich für deine Menstruation?"
+          type="select"
+          formFieldId="product"
+          name="product"
+          options={optionsProduct}
+          value={currentValue.product}
+          onChange={(event) => handleUserInput(event, "product")}
+        />
+        <Average onClick={() => handleAverage("product", "tampon")} />
+      </AverageWrapper>
       <FormField
         question="Wieviel kostet eine Packung?"
         type="number"

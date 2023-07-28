@@ -9,6 +9,7 @@ import {
   mdiCursorDefaultClickOutline,
   mdiChevronDoubleRight,
   mdiChevronDoubleLeft,
+  mdiGestureTap,
 } from "@mdi/js";
 
 export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
@@ -36,7 +37,7 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
     pathData = mdiHandWash;
   }
   if (icon === "click") {
-    pathData = mdiCursorDefaultClickOutline;
+    pathData = mdiGestureTap;
   }
   if (icon === "next") {
     pathData = mdiChevronDoubleRight;
