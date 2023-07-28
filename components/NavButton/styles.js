@@ -20,7 +20,7 @@ export const Button = styled.button`
   font-size: 16px;
   padding: 20px 20px;
   border-radius: 50%;
-  border: solid 5px;
+  border: solid 4px;
   width: 30px;
   height: 45px;
   text-decoration: none;
@@ -38,14 +38,14 @@ export const Button = styled.button`
 
 export const IconWrapperNext = styled.div`
   position: relative;
-  top: -47px;
-  right: -5px;
+  top: -46px;
+  right: -4px;
   pointer-events: none;
 `;
 
 export const IconWrapperPrev = styled.div`
   position: relative;
-  top: -47px;
+  top: -46px;
   right: -2px;
   pointer-events: none;
 `;

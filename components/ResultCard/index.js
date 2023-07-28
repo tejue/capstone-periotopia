@@ -16,6 +16,7 @@ import {
   IconWrapOpenClose,
   IconWrapDelete,
   CardEnding,
+  AverageSymbol,
 } from "./styles";
 
 export default function ResultCard({
@@ -100,7 +101,7 @@ export default function ResultCard({
               icon="x"
               onClick={handleDelete}
               color={`var(--primary-highlight-color)`}
-              size={30}
+              size={33}
             />
           </IconWrapDelete>
           <IconWrapOpenClose rotate={isResultVisible ? 90 : 0}>
@@ -108,7 +109,7 @@ export default function ResultCard({
               icon="circle"
               color={`var(--primary-highlight-color)`}
               onClick={handleToggle}
-              size={30}
+              size={33}
             />
           </IconWrapOpenClose>
           <CardTitelWrapper>
@@ -191,8 +192,8 @@ export default function ResultCard({
               </CardParagraphWrapper>
               <CardEnding>
                 {" "}
-                Dein durchschnittlicher Periotopia-Index ist:{" "}
-                {periotopiaIndexAverage}/10
+                Dein durchschnittlicher Periotopia-Index:{" "}
+                {periotopiaIndexAverage}/10{" "}
               </CardEnding>
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>

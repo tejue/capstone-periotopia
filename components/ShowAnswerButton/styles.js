@@ -6,7 +6,7 @@ export const Button = styled.button`
   font-size: 16px;
   padding: 20px 20px;
   border-radius: 50%;
-  border: solid 5px;
+  border: solid 4px;
   width: 30px;
   height: 45px;
   text-decoration: none;
@@ -30,7 +30,7 @@ export const ButtonWrapper = styled.div`
 
 export const IconWrapper = styled.div`
   position: relative;
-  top: -47px;
-  right: 2px;
+  top: -45px;
+  right: 1px;
   pointer-events: none;
 `;
