@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   top: 40px;
   z-index: 1;
   background-color: transparent;
-  padding: 0px;
+  //padding: 0px;
 `;
 
 export const HeaderWrapper = styled.div`
