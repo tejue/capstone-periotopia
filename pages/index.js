@@ -9,7 +9,7 @@ export default function HomePage() {
         verbunden ist, ist sie noch immer ein riesiges Tabuthema - mit Folgen. In Periotopia, einer (peri)-utopischen Welt, wäre einiges anders..."
         footnote="*Nicht alle Frauen menstruieren und nicht alle menstruierenden Menschen sind Frauen."
         href="/periotopiaindex"
-        starttext="Let's talk red"
+        starttext="Start"
       />
     </>
   );

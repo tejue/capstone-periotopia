@@ -1,7 +1,8 @@
 import NewIndex from "@/components/NewIndex/index";
 import ResultCard from "@/components/ResultCard/index";
+import styled from "styled-components";
 
-export default function HomePage({
+export default function PeriotopiaIndexPage({
   collectedOverviewResults,
   handleDeleteResultCard,
   formatNumber,
@@ -10,7 +11,7 @@ export default function HomePage({
 }) {
   return (
     <>
-      <h1>Periotopia Overview</h1>
+      <PageHeader>Periotopia-Index</PageHeader>
       <NewIndex />
       {collectedOverviewResults.map(
         ({
@@ -47,3 +48,7 @@ export default function HomePage({
     </>
   );
 }
+
+const PageHeader = styled.h1`
+  text-align: center;
+`;

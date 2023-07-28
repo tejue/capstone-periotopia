@@ -1,7 +1,6 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
-import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [generalInfo, setGeneralInfo] = useLocalStorageState("generalInfo", {

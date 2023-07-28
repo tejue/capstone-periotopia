@@ -1,28 +1,38 @@
 import {
   IntroHeading,
   IntroWrapper,
-  IntrotextWrapper,
   Footnote,
   Startlink,
+  IconWrapper,
+  IconWrapperClick,
 } from "./styles";
+import IconSVG from "../IconSVG";
 
-export default function Intro({
-  introheading,
-  introtext,
-  footnote,
-  href,
-  starttext,
-}) {
+export default function Intro({ introheading, introtext, footnote, href }) {
   return (
     <>
       <IntroHeading>{introheading}</IntroHeading>
-      <IntroWrapper>
-        <IntrotextWrapper>
+      <Startlink href={href}>
+        <IntroWrapper>
           <p>{introtext}</p>
           <Footnote>{footnote}</Footnote>
-        </IntrotextWrapper>
-        <Startlink href={href}>{starttext}</Startlink>
-      </IntroWrapper>
+
+          <IconWrapper>
+            <IconSVG
+              icon="water"
+              color={`var(--tertier-highlight-color)`}
+              size={150}
+            />
+          </IconWrapper>
+          <IconWrapperClick>
+            <IconSVG
+              icon="click"
+              color={`var(--primary-highlight-color)`}
+              size={70}
+            />
+          </IconWrapperClick>
+        </IntroWrapper>
+      </Startlink>
     </>
   );
 }

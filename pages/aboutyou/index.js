@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import FormGeneral from "@/components/FormGeneral/index";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
+import FormGeneral from "../../components/FormGeneral/index";
+import Header from "../../components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
+import IconSVG from "../../components/IconSVG";
 
 export default function GeneralInfoPage({
   generalInfo,
@@ -47,7 +49,13 @@ export default function GeneralInfoPage({
 
   return (
     <>
-      <h1>Allgemeines</h1>
+      <Header>
+        <IconSVG
+          icon="water"
+          color={`var(--tertier-highlight-color)`}
+          size={60}
+        />
+      </Header>
       {!submittedForm && (
         <FormGeneral
           handleGeneralInfo={handleGeneralInfo}

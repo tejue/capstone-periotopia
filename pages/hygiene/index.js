@@ -1,11 +1,12 @@
 import { useState } from "react";
-import FormHygiene from "@/components/FormHygiene";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
+import FormHygiene from "../../components/FormHygiene";
+import Header from "@/components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
+import IconSVG from "@/components/IconSVG";
 
 export default function HygienePage({
-  financials,
   hygiene,
   handleHygiene,
   generalInfo,
@@ -55,7 +56,13 @@ export default function HygienePage({
 
   return (
     <>
-      <h1>Hygiene</h1>
+      <Header>
+        <IconSVG
+          icon="wash"
+          color={`var(--tertier-highlight-color)`}
+          size={55}
+        />
+      </Header>
       {!submittedForm && (
         <FormHygiene
           currentValue={currentValue}

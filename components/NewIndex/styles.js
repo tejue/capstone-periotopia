@@ -6,19 +6,27 @@ export const StyledNewIndex = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary-color);
-  padding: var(--padding-sides);
   color: var(--primary-color-text);
-  margin-bottom: 10px;
+  margin: 0 10px 30px 10px;
+  border-radius: 5px;
+  padding: 0 15px;
+  font-weight: 900;
 `;
 
 export const StyledLink = styled(Link)`
-  border: solid thin;
+  border: solid;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--primary-color-text);
+  color: var(--primary-highlight-color);
+  font-weight: 900;
+`;
+
+export const NewIndexTitle = styled.p`
+  font-size: 1.2em;
+  font-weight: 900;
 `;

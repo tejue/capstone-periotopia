@@ -1,19 +1,21 @@
 import PeriotopiaIndex from "../PeriotopiaIndex";
 import FormField from "../FormField";
+import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import Icon from "@mdi/react";
-import { mdiChevronRightCircle } from "@mdi/js";
-import { mdiAlphaXCircle } from "@mdi/js";
-import { mdiBrush } from "@mdi/js";
-import { mdiBrushOff } from "@mdi/js";
 import "react-confirm-alert/src/react-confirm-alert.css";
+
 import {
   StyledList,
   StyledResultCard,
-  StyledCardHeading,
-  StyledCardButton,
+  CardHeading,
+  CardTitelWrapper,
+  CardParagraph,
+  CardParagraphWrapper,
   IconWrapper,
+  IconWrapOpenClose,
+  IconWrapDelete,
+  CardEnding,
 } from "./styles";
 
 export default function ResultCard({
@@ -91,64 +93,107 @@ export default function ResultCard({
   return (
     // costsPerYearID >= 0 && (
     <>
-      <Icon path={mdiAlphaXCircle} size={1} onClick={handleDelete} />
-      <Icon
-        path={mdiChevronRightCircle}
-        size={1}
-        onClick={handleToggle}
-        rotate={isResultVisible ? 90 : 0}
-      />
-
       <StyledList>
         <StyledResultCard>
-          {editIndexTitle ? (
-            <Icon
-              path={mdiBrushOff}
-              size={1}
-              onClick={handleIndexTitleEditToggle}
+          <IconWrapDelete>
+            <IconSVG
+              icon="x"
+              onClick={handleDelete}
+              color={`var(--primary-highlight-color)`}
+              size={33}
             />
-          ) : (
-            <Icon
-              path={mdiBrush}
-              size={1}
-              onClick={handleIndexTitleEditToggle}
+          </IconWrapDelete>
+          <IconWrapOpenClose rotate={isResultVisible ? 90 : 0}>
+            <IconSVG
+              icon="circle"
+              color={`var(--primary-highlight-color)`}
+              onClick={handleToggle}
+              size={33}
             />
-          )}
-          {editIndexTitle ? (
-            <FormField
-              type="text"
-              value={editedIndexTitle}
-              onChange={(event) => setEditedIndexTitle(event.target.value)}
-            />
-          ) : (
-            <StyledCardHeading>{indexTitleID}</StyledCardHeading>
-          )}
+          </IconWrapOpenClose>
+          <CardTitelWrapper>
+            {editIndexTitle ? (
+              <FormField
+                type="text"
+                value={editedIndexTitle}
+                onChange={(event) => setEditedIndexTitle(event.target.value)}
+              />
+            ) : (
+              <CardHeading>{indexTitleID}</CardHeading>
+            )}{" "}
+            {editIndexTitle ? (
+              <IconSVG
+                icon="brushoff"
+                color={`var(--primary-highlight-color)`}
+                onClick={handleIndexTitleEditToggle}
+                size={30}
+              />
+            ) : (
+              <IconSVG
+                icon="brush"
+                color={`var(--primary-highlight-color)`}
+                onClick={handleIndexTitleEditToggle}
+                size={30}
+              />
+            )}
+          </CardTitelWrapper>
           {isResultVisible && (
             //  {/* {costsPerYear >= 0 && ( */}
             <>
-              <p>
-                Du hast deine Menstruation an {menstruationDaysPerYearID} Tagen
-                im Jahr.
-              </p>
-              <p>
-                Für deine Menstruationsprodukte zahlst du{" "}
-                {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
-                {taxAmountID[financialsTaxAmountID]}. Für den Faktor Geld ist
-                dein Periotopia-Index {numberPeriotopiaIndexFinancialsID}
-                /10.
-              </p>
-              <p>
-                {accessID === "yes"
-                  ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg zu einer Sanitäranlage brauchst du bis zu ${formatTime(
-                      timePerYearID
-                    )} im Jahr.`
-                  : `Du hast keinen Zugang zu einer sauberen und sicheren Sanitäranlage um deine Menstruationsprodukte zu wechseln oder brauchst für den Hin- und Rückweg mindestens ${formatTime(
-                      timePerYearID
-                    )} im Jahr.`}{" "}
-                Für den Faktor Hygiene ist dein Periotopia-Index{" "}
-                {numberperiotopiaIndexHygieneID}/10.
-              </p>
-              Dein gesamter Periotopia-Index ist: {periotopiaIndexAverage}/10:
+              <CardParagraphWrapper>
+                <IconWrapper>
+                  <IconSVG
+                    icon="water"
+                    color={`var(--tertier-highlight-color)`}
+                    size={30}
+                  />
+                </IconWrapper>
+                <CardParagraph>
+                  Du hast deine Menstruation an {menstruationDaysPerYearID}{" "}
+                  Tagen im Jahr.
+                </CardParagraph>
+              </CardParagraphWrapper>
+              <CardParagraphWrapper>
+                <IconWrapper>
+                  <IconSVG
+                    icon="money"
+                    color={`var(--tertier-highlight-color)`}
+                    size={30}
+                  />
+                </IconWrapper>
+                <CardParagraph>
+                  Für deine Menstruationsprodukte zahlst du{" "}
+                  {formatNumber(costsPerYearID)} Euro pro Jahr mit{" "}
+                  {taxAmountID[financialsTaxAmountID]}. Für den Faktor Geld ist
+                  dein Periotopia-Index {numberPeriotopiaIndexFinancialsID}
+                  /10.
+                </CardParagraph>
+              </CardParagraphWrapper>
+              <CardParagraphWrapper>
+                <IconWrapper>
+                  <IconSVG
+                    icon="wash"
+                    color={`var(--tertier-highlight-color)`}
+                    size={30}
+                  />
+                </IconWrapper>
+                <CardParagraph>
+                  {accessID === "yes"
+                    ? `Du hast Zugang zu einer sauberen und sicheren Sanitäranlage um dein Menstruationsprodukt zu wechseln. Für den Hin- und Rückweg brauchst du bis zu ${formatTime(
+                        timePerYearID
+                      )} im Jahr.`
+                    : `Du hast keinen Zugang zu einer sauberen und sicheren Sanitäranlage um deine Menstruationsprodukte zu wechseln oder brauchst für den Hin- und Rückweg mindestens ${formatTime(
+                        timePerYearID
+                      )} im Jahr.`}{" "}
+                  Für den Faktor Hygiene ist dein Periotopia-Index{" "}
+                  {numberperiotopiaIndexHygieneID}/10.
+                </CardParagraph>
+              </CardParagraphWrapper>
+              <CardEnding>
+                {" "}
+                Dein durchschnittlicher Periotopia-Index:{" "}
+                {periotopiaIndexAverage}/10{" "}
+              </CardEnding>
               <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
             </>
             // )}

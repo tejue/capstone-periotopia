@@ -1,14 +1,6 @@
 import FormField from "../FormField/index";
 import ShowAnswerButton from "../ShowAnswerButton/index";
-import styled from "styled-components";
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background-color: lightcoral;
-  padding: 20px;
-`;
+import { StyledForm } from "./styles";
 
 export default function FormHygiene({
   currentValue,

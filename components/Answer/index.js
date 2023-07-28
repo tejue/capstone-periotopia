@@ -1,6 +1,7 @@
 import PersonalAnswer from "../PersonalAnswer";
 import PeriotopiaInfo from "../PeriotopiaInfo";
 import PeriotopiaIndex from "../PeriotopiaIndex";
+import { StyledAnswerIndex, IndexWrapper } from "./styles";
 
 export default function Answer({
   year,
@@ -33,10 +34,12 @@ export default function Answer({
       />
       <PeriotopiaInfo periotopiaInfoText={periotopiaInfoText} />
       {periotopiaIndex && (
-        <div>
-          <h2>Dein Periotopia-Index ist {numberPeriotopiaIndex}/10</h2>
+        <IndexWrapper>
+          <StyledAnswerIndex>
+            Dein Periotopia-Index ist {numberPeriotopiaIndex}/10
+          </StyledAnswerIndex>
           <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
-        </div>
+        </IndexWrapper>
       )}
     </>
   );

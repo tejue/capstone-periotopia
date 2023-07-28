@@ -1,8 +1,11 @@
 import { useState } from "react";
-import FormFinancials from "@/components/FormFinancials";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
+import FormFinancials from "../../components/FormFinancials/index";
+import Header from "../../components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
+import styled from "styled-components";
+import IconSVG from "../../components/IconSVG";
 
 export default function FinancialsPage({
   financials,
@@ -54,7 +57,13 @@ export default function FinancialsPage({
 
   return (
     <>
-      <h1>Geld</h1>
+      <Header>
+        <IconSVG
+          icon="money"
+          color={`var(--tertier-highlight-color)`}
+          size={60}
+        />
+      </Header>
       {!submittedForm && (
         <FormFinancials
           handleFinancials={handleFinancials}

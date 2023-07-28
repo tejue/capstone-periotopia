@@ -1,4 +1,12 @@
-import { StyledLabel, StyledFieldset, StyledLegend } from "./styles.js";
+import {
+  StyledFormField,
+  StyledFieldset,
+  StyledLegend,
+  StyledLabel,
+  StyledRadioLabel,
+  StyledInput,
+  StyledSelect,
+} from "./styles.js";
 
 export default function FormField({
   question,
@@ -17,9 +25,9 @@ export default function FormField({
   return (
     <>
       {type === "number" && (
-        <>
-          <label htmlFor={formFieldId}>{question}</label>
-          <input
+        <StyledFormField>
+          <StyledLabel htmlFor={formFieldId}>{question}</StyledLabel>
+          <StyledInput
             type="number"
             id={formFieldId}
             name={name}
@@ -30,46 +38,53 @@ export default function FormField({
             onChange={onChange}
             required
           />
-        </>
+        </StyledFormField>
       )}
+
       {type === "radio" && (
-        <StyledFieldset>
-          <StyledLegend>{question}</StyledLegend>
-          {options.map((option) => (
-            <label key={option.formFieldId} htmlFor={option.formFieldId}>
-              <input
-                type="radio"
-                id={option.formFieldId}
-                name={name}
-                value={option.value}
-                checked={checked === option.value}
-                onChange={onChange}
-                disabled={disabled}
-                required
-              />
-              {option.content}
-            </label>
-          ))}
-        </StyledFieldset>
+        <StyledFormField>
+          <StyledFieldset>
+            <StyledLegend>{question}</StyledLegend>
+            {options.map((option) => (
+              <StyledRadioLabel
+                key={option.formFieldId}
+                htmlFor={option.formFieldId}
+              >
+                <input
+                  type="radio"
+                  id={option.formFieldId}
+                  name={name}
+                  value={option.value}
+                  checked={checked === option.value}
+                  onChange={onChange}
+                  disabled={disabled}
+                  required
+                />
+                {option.content}
+              </StyledRadioLabel>
+            ))}
+          </StyledFieldset>
+        </StyledFormField>
       )}
+
       {type === "select" && (
-        <>
-          <label htmlFor={formFieldId}>{question}</label>
-          <select
+        <StyledFormField>
+          <StyledLegend htmlFor={formFieldId}>{question}</StyledLegend>
+          <StyledSelect
             id={formFieldId}
             name={name}
             onChange={onChange}
             required
-            //options={options}
           >
             {options.map((option) => (
-              <option key={option.formFieldId} value={option.value}>
+              <option key={option.value} value={option.value}>
                 {option.content}
               </option>
             ))}
-          </select>
-        </>
+          </StyledSelect>
+        </StyledFormField>
       )}
+
       {["select", "number", "radio"].indexOf(type) === -1 && (
         <input type="text" value={value} onChange={onChange} />
       )}
