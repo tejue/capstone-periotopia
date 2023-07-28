@@ -28,12 +28,8 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: ${roboto.style.fontFamily}; 
+       font-family: ${roboto.style.fontFamily};
     color: var(--secondary-color-text);
     background-color: var(--background-color);
      }
-
-  button {
-    font-family: ${roboto.style.fontFamily}; 
-  }
 `;
