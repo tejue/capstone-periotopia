@@ -12,7 +12,7 @@ export default function ShowAnswerButton() {
             color={`var(--primary-highlight-color)`}
             size={43}
           />
-        </IconWrapper>{" "}
+        </IconWrapper>
       </ButtonWrapper>
     </>
   );

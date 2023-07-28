@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import FormGeneral from "@/components/FormGeneral/index";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
-import IconSVG from "@/components/IconSVG";
-import Header from "@/components/Header";
+import FormGeneral from "../../components/FormGeneral/index";
+import Header from "../../components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
+import IconSVG from "../../components/IconSVG";
 
 export default function GeneralInfoPage({
   generalInfo,

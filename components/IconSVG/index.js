@@ -1,13 +1,15 @@
-import { mdiChevronRightCircleOutline } from "@mdi/js";
-import { mdiDeleteCircleOutline } from "@mdi/js";
-import { mdiBrush } from "@mdi/js";
-import { mdiBrushOff } from "@mdi/js";
-import { mdiWater } from "@mdi/js";
-import { mdiCurrencyUsd } from "@mdi/js";
-import { mdiHandWash } from "@mdi/js";
-import { mdiCursorDefaultClickOutline } from "@mdi/js";
-import { mdiChevronDoubleRight } from "@mdi/js";
-import { mdiChevronDoubleLeft } from "@mdi/js";
+import {
+  mdiChevronRightCircleOutline,
+  mdiDeleteCircleOutline,
+  mdiBrush,
+  mdiBrushOff,
+  mdiWater,
+  mdiCurrencyUsd,
+  mdiHandWash,
+  mdiCursorDefaultClickOutline,
+  mdiChevronDoubleRight,
+  mdiChevronDoubleLeft,
+} from "@mdi/js";
 
 export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
   let pathData = "";

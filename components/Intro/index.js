@@ -18,7 +18,11 @@ export default function Intro({ introheading, introtext, footnote, href }) {
           <Footnote>{footnote}</Footnote>
 
           <IconWrapper>
-            <IconSVG icon="water" color="#fb5c5b" size={150} />
+            <IconSVG
+              icon="water"
+              color={`var(--tertier-highlight-color)`}
+              size={150}
+            />
           </IconWrapper>
           <IconWrapperClick>
             <IconSVG

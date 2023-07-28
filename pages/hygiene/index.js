@@ -1,11 +1,10 @@
 import { useState } from "react";
-import FormHygiene from "@/components/FormHygiene";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
-import styled from "styled-components";
-import IconSVG from "@/components/IconSVG";
+import FormHygiene from "../../components/FormHygiene";
 import Header from "@/components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
+import IconSVG from "@/components/IconSVG";
 
 export default function HygienePage({
   hygiene,
@@ -96,12 +95,3 @@ export default function HygienePage({
     </>
   );
 }
-
-const PageHeader = styled.h1`
-  text-align: center;
-  margin-bottom: 2px;
-`;
-
-const IconWrapper = styled.div`
-  text-align: center;
-`;

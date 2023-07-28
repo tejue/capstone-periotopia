@@ -1,38 +1,28 @@
-import {
-  NavButtonWrapper,
-  ButtonWrapperPrev,
-  ButtonWrapperNext,
-  IconWrapperPrev,
-  IconWrapperNext,
-  Button,
-} from "./styles";
+import { NavButtonWrapper, IconWrapper, Button } from "./styles";
 import IconSVG from "../IconSVG";
 
 export default function NavButton({ onPrevPage, onNextPage }) {
   return (
     <>
       <NavButtonWrapper>
-        <ButtonWrapperPrev>
-          <Button onClick={onPrevPage}>.</Button>
-          <IconWrapperPrev>
+        <Button onClick={onPrevPage}>
+          <IconWrapper>
             <IconSVG
               icon="prev"
               color={`var(--primary-highlight-color)`}
               size={43}
             />
-          </IconWrapperPrev>{" "}
-        </ButtonWrapperPrev>
-
-        <ButtonWrapperNext>
-          <Button onClick={onNextPage}>.</Button>
-          <IconWrapperNext>
+          </IconWrapper>
+        </Button>
+        <Button onClick={onNextPage}>
+          <IconWrapper>
             <IconSVG
               icon="next"
               color={`var(--primary-highlight-color)`}
               size={43}
             />
-          </IconWrapperNext>{" "}
-        </ButtonWrapperNext>
+          </IconWrapper>
+        </Button>
       </NavButtonWrapper>
     </>
   );

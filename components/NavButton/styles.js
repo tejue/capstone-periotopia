@@ -2,16 +2,9 @@ import styled from "styled-components";
 
 export const NavButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 25px;
-`;
-
-export const ButtonWrapperNext = styled.div`
-  //margin: -35px 15px 0 0;
-`;
-
-export const ButtonWrapperPrev = styled.div`
-  //margin: -35px 15px 0 0;
+  justify-content: center;
+  gap: 50px;
+  margin: 25px 0;
 `;
 
 export const Button = styled.button`
@@ -21,9 +14,8 @@ export const Button = styled.button`
   padding: 20px 20px;
   border-radius: 50%;
   border: solid 4px;
-  width: 30px;
-  height: 45px;
   text-decoration: none;
+  position: relative;
 
   &:hover {
     background-color: var(--primary-highlight-color);
@@ -36,16 +28,9 @@ export const Button = styled.button`
   }
 `;
 
-export const IconWrapperNext = styled.div`
-  position: relative;
-  top: -46px;
-  right: -4px;
-  pointer-events: none;
-`;
-
-export const IconWrapperPrev = styled.div`
-  position: relative;
-  top: -46px;
-  right: -2px;
+export const IconWrapper = styled.div`
+  position: absolute;
+  top: -5%;
+  left: -3%;
   pointer-events: none;
 `;

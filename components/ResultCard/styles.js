@@ -32,7 +32,6 @@ export const CardEnding = styled.p`
   font-weight: 900;
   text-align: end;
   margin-right: 15px;
-  //white-space: nowrap;
   overflow-wrap: break-word;
 `;
 

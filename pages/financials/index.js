@@ -1,11 +1,11 @@
 import { useState } from "react";
-import FormFinancials from "@/components/FormFinancials";
-import Answer from "@/components/Answer";
-import NavButton from "@/components/NavButton";
 import { useRouter } from "next/router";
+import FormFinancials from "../../components/FormFinancials/index";
+import Header from "../../components/Header";
+import Answer from "../../components/Answer";
+import NavButton from "../../components/NavButton";
 import styled from "styled-components";
-import IconSVG from "@/components/IconSVG";
-import Header from "@/components/Header";
+import IconSVG from "../../components/IconSVG";
 
 export default function FinancialsPage({
   financials,
@@ -104,12 +104,3 @@ export default function FinancialsPage({
     </>
   );
 }
-
-const PageHeader = styled.h1`
-  text-align: center;
-  margin-bottom: 2px;
-`;
-
-const IconWrapper = styled.div`
-  text-align: center;
-`;
