@@ -11,3 +11,7 @@ export const StyledForm = styled.form`
     padding: 30px;
   }
 `;
+
+export const AverageWrapper = styled.div`
+  position: relative;
+`;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledPeriotopiaIndex = styled.section`
-  background-color: var(--tertier-highlight-color);
+  background-color: var(--background-color);
+  border: solid 0.1px var(--tertier-highlight-color);
   margin: 20px 10px 5px 10px;
   padding: 0.5px;
 `;

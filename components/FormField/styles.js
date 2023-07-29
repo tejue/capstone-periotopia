@@ -53,5 +53,6 @@ export const StyledSelect = styled.select`
   width: 200px;
   font-weight: 100;
   border: solid thin var(--secondary-highlight-color);
+  border-radius: 0;
   text-align: center;
 `;

@@ -4,11 +4,11 @@ import {
   mdiBrush,
   mdiBrushOff,
   mdiWater,
-  mdiCurrencyUsd,
   mdiHandWash,
-  mdiCursorDefaultClickOutline,
+  mdiCurrencyEur,
   mdiChevronDoubleRight,
   mdiChevronDoubleLeft,
+  mdiGestureTap,
 } from "@mdi/js";
 
 export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
@@ -30,13 +30,13 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
     pathData = mdiWater;
   }
   if (icon === "money") {
-    pathData = mdiCurrencyUsd;
+    pathData = mdiCurrencyEur;
   }
   if (icon === "wash") {
     pathData = mdiHandWash;
   }
   if (icon === "click") {
-    pathData = mdiCursorDefaultClickOutline;
+    pathData = mdiGestureTap;
   }
   if (icon === "next") {
     pathData = mdiChevronDoubleRight;

@@ -26,6 +26,7 @@ export const ButtonWrapper = styled.div`
   grid-column: 1 / -1;
   margin: -35px 15px 0 0;
   text-align: end;
+  z-index: 1;
 `;
 
 export const IconWrapper = styled.div`

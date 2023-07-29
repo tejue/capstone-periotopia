@@ -61,7 +61,7 @@ export default function FinancialsPage({
         <IconSVG
           icon="money"
           color={`var(--tertier-highlight-color)`}
-          size={60}
+          size={55}
         />
       </Header>
       {!submittedForm && (
