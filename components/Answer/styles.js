@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const StyledAnswerIndex = styled.h2`
-  margin: 30px 15px 0 15px;
+  margin: 30px 0 0 0;
   text-align: center;
 `;
 
-export const IndexWrapper = styled.div``;
+export const IndexWrapper = styled.div`
+  padding: 0 10px;
+`;

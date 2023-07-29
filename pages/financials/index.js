@@ -4,7 +4,6 @@ import FormFinancials from "../../components/FormFinancials/index";
 import Header from "../../components/Header";
 import Answer from "../../components/Answer";
 import NavButton from "../../components/NavButton";
-import styled from "styled-components";
 import IconSVG from "../../components/IconSVG";
 
 export default function FinancialsPage({
@@ -33,6 +32,7 @@ export default function FinancialsPage({
 
   function handleSubmittedForm(value) {
     setSubmittedForm(value);
+    window.scrollTo(0, 0);
   }
 
   function handlePrevPage() {
