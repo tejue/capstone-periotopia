@@ -22,16 +22,15 @@ export const CardTitelWrapper = styled.div`
 `;
 
 export const CardHeading = styled.h2`
-  font-size: 1rem;
+  font-size: 16px;
   margin: 5px 0;
   font-weight: 900;
 `;
 
 export const CardEnding = styled.p`
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 900;
   text-align: end;
-  margin-right: 15px;
   overflow-wrap: break-word;
 `;
 
@@ -43,9 +42,10 @@ export const CardParagraphWrapper = styled.div`
 `;
 
 export const CardParagraph = styled.p`
-  font-weight: 100;
+  font-size: 16px;
+  font-weight: 300;
   line-height: 1.3;
-  margin: 0;
+  margin: 0 0 0 0;
 `;
 
 export const IconWrapDelete = styled.div`

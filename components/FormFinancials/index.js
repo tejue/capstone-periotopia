@@ -92,6 +92,7 @@ export default function FormFinancials({
           value={currentValue.packageCosts}
           onChange={(event) => handleUserInput(event, "packageCosts")}
         />
+
         {selectTampon && !isAverageClicked && (
           <Average onClick={() => handleAverage("packageCosts", "4.95")} />
         )}

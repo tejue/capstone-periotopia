@@ -4,6 +4,7 @@ export const StyledFieldset = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
+  padding: 0;
 `;
 
 export const StyledLegend = styled.legend`
@@ -53,6 +54,6 @@ export const StyledSelect = styled.select`
   width: 200px;
   font-weight: 100;
   border: solid thin var(--secondary-highlight-color);
-  border-radius: 0;
+  border-radius: 5px;
   text-align: center;
 `;

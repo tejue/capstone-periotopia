@@ -9,11 +9,12 @@ export default function NewIndex({ costsPerYear, periotopiaIndex, taxAmount }) {
         href="/aboutyou"
         aria-label="Link to questionnaire for new periotopia-index"
       >
-        <IconSVG
+        {/* <IconSVG
           icon="next"
           color={`var(--primary-highlight-color)`}
           size={20}
-        />
+        /> */}
+        +
       </StyledLink>
     </StyledNewIndex>
   );
