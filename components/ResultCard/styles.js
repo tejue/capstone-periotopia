@@ -31,6 +31,7 @@ export const CardEnding = styled.p`
   font-size: 16px;
   font-weight: 900;
   text-align: end;
+  margin-right: 10px;
   overflow-wrap: break-word;
 `;
 
@@ -45,7 +46,7 @@ export const CardParagraph = styled.p`
   font-size: 16px;
   font-weight: 300;
   line-height: 1.3;
-  margin: 0 0 0 0;
+  margin: 0 10px 0 0;
 `;
 
 export const IconWrapDelete = styled.div`

@@ -5,6 +5,4 @@ export const StyledAnswerIndex = styled.h2`
   text-align: center;
 `;
 
-export const IndexWrapper = styled.div`
-  padding: 0 10px;
-`;
+export const IndexWrapper = styled.div``;
