@@ -9,20 +9,20 @@ export const StyledFieldset = styled.fieldset`
 
 export const StyledLegend = styled.legend`
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 500;
 `;
 
 export const StyledLabel = styled.label`
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 500;
 `;
 
 export const StyledRadioLabel = styled.label`
-  line-height: 1.3;
+  line-height: 1.5;
   font-weight: 100;
 `;
 

@@ -37,6 +37,7 @@ export default function FinancialsPage({
 
   function handlePrevPage() {
     setSubmittedForm(false);
+    window.scrollTo(0, 0);
   }
 
   function handleNextPage() {
@@ -70,6 +71,7 @@ export default function FinancialsPage({
           handleSubmittedForm={handleSubmittedForm}
           currentValue={currentValue}
           updateCurrentValue={updateCurrentValue}
+          // onPrevPage={handlePrevPage}
         />
       )}
       {submittedForm && (
@@ -98,7 +100,11 @@ export default function FinancialsPage({
       In Deutschland ist sie seit 2020 zumindest reduziert"
             periotopiaIndex={periotopiaIndexFinancials}
           />
-          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
+          <NavButton
+            type="button"
+            onPrevPage={handlePrevPage}
+            onNextPage={handleNextPage}
+          />
         </>
       )}
     </>

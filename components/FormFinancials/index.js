@@ -57,6 +57,7 @@ export default function FormFinancials({
 
     handleFinancials(data);
     handleSubmittedForm(true);
+    window.scrollTo(0, 0);
   }
 
   function handleAverage(fieldName, averageValue) {
@@ -157,7 +158,7 @@ export default function FormFinancials({
           <Average onClick={() => handleAverage("changeProduct", "4")} />
         )}
       </AverageWrapper>
-      <ShowAnswerButton />
+      <ShowAnswerButton type="submit" />
     </StyledForm>
   );
 }

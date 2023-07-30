@@ -1,11 +1,13 @@
 import IconSVG from "../IconSVG";
 import { Button, ButtonWrapper, IconWrapper } from "./styles";
 
-export default function ShowAnswerButton() {
+export default function ShowAnswerButton({ type, onClick }) {
   return (
     <>
       <ButtonWrapper>
-        <Button type="submit">.</Button>
+        <Button type={type} onClick={onClick}>
+          .
+        </Button>
         <IconWrapper>
           <IconSVG
             icon="next"
@@ -16,7 +18,4 @@ export default function ShowAnswerButton() {
       </ButtonWrapper>
     </>
   );
-}
-
-{
 }

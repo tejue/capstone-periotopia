@@ -7,5 +7,5 @@ export const StyledPeriotopiaInfo = styled.section`
   margin: 10px 10px;
   border-radius: 5px;
   font-weight: 300;
-  line-height: 1.3;
+  line-height: 1.5;
 `;
