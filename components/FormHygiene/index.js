@@ -52,7 +52,7 @@ export default function FormHygiene({
         onChange={(event) => handleUserInput(event, "minutes")}
         disabled={currentValue.access === "no"}
       />
-      <ShowAnswerButton />
+      <ShowAnswerButton type="submit" />
     </StyledForm>
   );
 }

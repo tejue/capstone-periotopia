@@ -23,7 +23,8 @@ export const StyledLink = styled(Link)`
   align-items: center;
   text-decoration: none;
   color: var(--primary-highlight-color);
-  font-weight: 900;
+  font-weight: 300;
+  font-size: 1.3em;
 `;
 
 export const NewIndexTitle = styled.p`

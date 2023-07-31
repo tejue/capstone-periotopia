@@ -4,7 +4,6 @@ import FormFinancials from "../../components/FormFinancials/index";
 import Header from "../../components/Header";
 import Answer from "../../components/Answer";
 import NavButton from "../../components/NavButton";
-import styled from "styled-components";
 import IconSVG from "../../components/IconSVG";
 
 export default function FinancialsPage({
@@ -33,10 +32,12 @@ export default function FinancialsPage({
 
   function handleSubmittedForm(value) {
     setSubmittedForm(value);
+    window.scrollTo(0, 0);
   }
 
   function handlePrevPage() {
     setSubmittedForm(false);
+    window.scrollTo(0, 0);
   }
 
   function handleNextPage() {
@@ -61,7 +62,7 @@ export default function FinancialsPage({
         <IconSVG
           icon="money"
           color={`var(--tertier-highlight-color)`}
-          size={55}
+          size={50}
         />
       </Header>
       {!submittedForm && (
@@ -70,6 +71,7 @@ export default function FinancialsPage({
           handleSubmittedForm={handleSubmittedForm}
           currentValue={currentValue}
           updateCurrentValue={updateCurrentValue}
+          // onPrevPage={handlePrevPage}
         />
       )}
       {submittedForm && (
@@ -98,7 +100,11 @@ export default function FinancialsPage({
       In Deutschland ist sie seit 2020 zumindest reduziert"
             periotopiaIndex={periotopiaIndexFinancials}
           />
-          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
+          <NavButton
+            type="button"
+            onPrevPage={handlePrevPage}
+            onNextPage={handleNextPage}
+          />
         </>
       )}
     </>

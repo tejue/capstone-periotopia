@@ -85,7 +85,7 @@ export default function FormGeneral({
         />
         <Average onClick={() => handleAverage("menstruationLength", 5)} />
       </AverageWrapper>
-      <ShowAnswerButton />
+      <ShowAnswerButton type="submit" />
     </StyledForm>
   );
 }

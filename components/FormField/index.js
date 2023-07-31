@@ -69,7 +69,7 @@ export default function FormField({
 
       {type === "select" && (
         <StyledFormField>
-          <StyledLegend htmlFor={formFieldId}>{question}</StyledLegend>
+          <StyledLabel htmlFor={formFieldId}>{question}</StyledLabel>
           <StyledSelect
             id={formFieldId}
             name={name}

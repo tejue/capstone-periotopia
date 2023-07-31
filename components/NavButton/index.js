@@ -1,11 +1,17 @@
 import { NavButtonWrapper, IconWrapper, Button } from "./styles";
 import IconSVG from "../IconSVG";
 
-export default function NavButton({ onPrevPage, onNextPage }) {
+export default function NavButton({
+  onPrevPage,
+  onNextPage,
+  typePrevPage,
+  typeNextPage,
+}) {
   return (
     <>
       <NavButtonWrapper>
-        <Button onClick={onPrevPage}>
+        <Button type={typePrevPage} onClick={onPrevPage}>
+          {/* <Button onClick={onPrevPage}> */}
           <IconWrapper>
             <IconSVG
               icon="prev"
@@ -14,7 +20,8 @@ export default function NavButton({ onPrevPage, onNextPage }) {
             />
           </IconWrapper>
         </Button>
-        <Button onClick={onNextPage}>
+        <Button type={typeNextPage} onClick={onNextPage}>
+          {/* <Button onClick={onNextPage}> */}
           <IconWrapper>
             <IconSVG
               icon="next"

@@ -4,24 +4,25 @@ export const StyledFieldset = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
+  padding: 0;
 `;
 
 export const StyledLegend = styled.legend`
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 500;
 `;
 
 export const StyledLabel = styled.label`
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 500;
 `;
 
 export const StyledRadioLabel = styled.label`
-  line-height: 1.3;
+  line-height: 1.5;
   font-weight: 100;
 `;
 
@@ -53,6 +54,6 @@ export const StyledSelect = styled.select`
   width: 200px;
   font-weight: 100;
   border: solid thin var(--secondary-highlight-color);
-  border-radius: 0;
+  border-radius: 5px;
   text-align: center;
 `;

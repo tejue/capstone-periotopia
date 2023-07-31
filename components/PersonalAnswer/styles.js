@@ -11,7 +11,7 @@ export const StyledPersonalAnswer = styled.section`
 
 export const AnswerText = styled.p`
   font-weight: 900;
-  line-height: 1.3;
+  line-height: 1.5;
 `;
 
 export const StyledResultBlock = styled.div`

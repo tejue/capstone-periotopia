@@ -66,15 +66,22 @@ export default function GeneralInfoPage({
       )}
       {submittedForm && (
         <>
-          <Answer
-            personalAnswerText="Du menstruierst"
-            unit="Tage"
-            year={formatNumber(menstruationDaysPerYear)}
-            today={formatNumber(menstruationDaysTillNow)}
-            life={formatNumber(menstruationDaysInLife)}
-            periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
+          <div id="result-section">
+            <Answer
+              personalAnswerText="Du menstruierst"
+              unit="Tage"
+              year={formatNumber(menstruationDaysPerYear)}
+              today={formatNumber(menstruationDaysTillNow)}
+              life={formatNumber(menstruationDaysInLife)}
+              periotopiaInfoText="Auch in Periotopia würdest du menstruieren. Ein paar Dinge wären aber anders..."
+            />
+          </div>
+          <NavButton
+            typePrevPage="button"
+            typeNextPage="button"
+            onPrevPage={handlePrevPage}
+            onNextPage={handleNextPage}
           />
-          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
         </>
       )}
     </>

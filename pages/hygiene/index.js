@@ -89,7 +89,11 @@ export default function HygienePage({
             periotopiaInfoText="In Periotopia hätten alle Menschen Zugang zu sauberen und sicheren Sanitäranlagen für eine würdevolle und gesunde Menstruationshygiene."
             periotopiaIndex={periotopiaIndexHygiene}
           />
-          <NavButton onPrevPage={handlePrevPage} onNextPage={handleNextPage} />
+          <NavButton
+            type="button"
+            onPrevPage={handlePrevPage}
+            onNextPage={handleNextPage}
+          />
         </>
       )}
     </>

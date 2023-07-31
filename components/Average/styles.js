@@ -13,6 +13,6 @@ export const StyledAverage = styled.div`
   color: var(--primary-highlight-color);
   background-color: rgba(238, 237, 237, 0.1);
   position: absolute;
-  bottom: 29px;
+  bottom: 30px;
   right: 100px;
 `;
