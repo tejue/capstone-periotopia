@@ -1,4 +1,4 @@
-import PeriotopiaIndex from "../PeriotopiaIndex";
+import IndexBar from "../IndexBar";
 import FormField from "../FormField";
 import IconSVG from "../IconSVG";
 import { useState } from "react";
@@ -194,7 +194,7 @@ export default function ResultCard({
                 Dein durchschnittlicher Periotopia-Index:{" "}
                 {periotopiaIndexAverage}/10{" "}
               </CardEnding>
-              <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
+              <IndexBar periotopiaIndex={periotopiaIndex} />
             </>
             // )}
           )}
