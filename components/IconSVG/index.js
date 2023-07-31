@@ -46,14 +46,7 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
   }
 
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      rotation={rest.rotation}
-      {...rest}
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...rest}>
       <path d={pathData} fill={color} width={size} />
     </svg>
   );

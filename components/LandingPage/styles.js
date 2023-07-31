@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-export const IntroHeading = styled.h1`
+export const LandingPageTitle = styled.h1`
   font-size: 40px;
   text-align: center;
   font-weight: 900;
 `;
 
-export const IntroWrapper = styled.div`
+export const LandingPageSection = styled.section`
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -15,28 +15,23 @@ export const IntroWrapper = styled.div`
   line-height: 2;
   background-color: var(--primary-color);
   color: var(--primary-color-text);
-  padding: 20px;
+  padding: 40px 20px;
   margin: 0px 10px;
   border-radius: 5px;
   position: relative;
 `;
 
 export const Footnote = styled.p`
+  margin-top: 40px;
   font-size: 0.7rem;
 `;
 
-export const Startlink = styled(Link)`
+export const StartLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const IconWrapper = styled.div`
+export const IconContainer = styled.div`
   position: absolute;
   bottom: -100px;
-  right: -10px;
-`;
-
-export const IconWrapperClick = styled.div`
-  position: absolute;
-  bottom: -100px;
-  right: 15px;
+  right: ${({ $click }) => ($click ? "15px" : "-10px")};
 `;

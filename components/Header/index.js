@@ -1,10 +1,10 @@
 import { StyledHeader, HeaderWrapper } from "./styles";
 
-export default function Header({ children, rotation }) {
+export default function Header({ children }) {
   return (
     <>
       <StyledHeader>
-        <HeaderWrapper rotation={rotation}>{children}</HeaderWrapper>
+        <HeaderWrapper>{children}</HeaderWrapper>
       </StyledHeader>
     </>
   );

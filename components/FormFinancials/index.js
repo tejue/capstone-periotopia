@@ -1,7 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton";
 import FormField from "../FormField";
-import { StyledForm, AverageWrapper } from "./styles";
 import AverageButton from "../AverageButton/index";
+import { StyledForm, AverageWrapper } from "./styles";
 import { useState } from "react";
 
 export default function FormFinancials({
@@ -49,6 +49,8 @@ export default function FormFinancials({
     updateCurrentValue(newValue);
   }
 
+  const selectTampon = currentValue.product === "tampon";
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -68,8 +70,6 @@ export default function FormFinancials({
     };
     updateCurrentValue(updateAverageValue);
   }
-
-  const selectTampon = currentValue.product === "tampon";
 
   return (
     <StyledForm onSubmit={handleSubmit}>

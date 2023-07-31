@@ -1,7 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton/index";
 import FormField from "../FormField/index";
-import { StyledForm, AverageWrapper } from "./styles";
 import AverageButton from "../AverageButton/index";
+import { StyledForm, AverageWrapper } from "./styles";
 
 export default function FormGeneral({
   handleGeneralInfo,
