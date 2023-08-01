@@ -71,7 +71,6 @@ export default function FinancialsPage({
           handleSubmittedForm={handleSubmittedForm}
           currentValue={currentValue}
           updateCurrentValue={updateCurrentValue}
-          // onPrevPage={handlePrevPage}
         />
       )}
       {submittedForm && (

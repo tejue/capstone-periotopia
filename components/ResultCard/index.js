@@ -4,7 +4,6 @@ import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
 import {
   StyledList,
   StyledResultCard,
@@ -91,7 +90,6 @@ export default function ResultCard({
   }
 
   return (
-    // costsPerYearID >= 0 && (
     <>
       <StyledList>
         <StyledResultCard>
@@ -138,7 +136,6 @@ export default function ResultCard({
             )}
           </CardTitelWrapper>
           {isResultVisible && (
-            //  {/* {costsPerYear >= 0 && ( */}
             <>
               <CardParagraphWrapper>
                 <IconWrapper>

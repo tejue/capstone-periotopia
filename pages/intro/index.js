@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
-import Answer from "../../components/Answer";
-import NavButton from "../../components/NavButton";
 import IconSVG from "../../components/IconSVG";
 import FormField from "@/components/FormField";
 import PeriotopiaInfo from "@/components/PeriotopiaInfo";

@@ -2,15 +2,15 @@
 
 Periotopia is a micro-learning app focussing on menstrual health. Explore diverse aspects and gain insights into its impact on individuals and society through various questionnaires. The Periotopia-Index serves as your compass, indicating your proximity to a utopian, period-positive world.
 
-> This is the final project for neuefische web dev bootcamp.
-
-Note: The App is optimized for mobile screen.
+This app is my final project for neuefische Web Development Bootcamp, summer 2023.
 
 ## Demo
 
-You can find the [hosted version](https://periotopia.vercel.app) on Vercel:
+You can find a [hosted version](https://periotopia.vercel.app) on Vercel
 
 ![App screens](./public/capstone-scrrenshot.png)
+
+Note: The App is optimized for mobile screen.
 
 ## Tech Stack
 
@@ -18,17 +18,12 @@ You can find the [hosted version](https://periotopia.vercel.app) on Vercel:
 - React Hooks
 - Next.js
 - styled-components
-- useLocalStorage
 - uid
 - mdi Pictogrammers
 - react-confirm-alert
-- npm
-- vercel
 
 ## Project Setup
 
 - Clone this repository
 - Install all dependencies using `npm install`
-- Run app in development mode using `npm run dev`, and open [http://localhost:3000/](http://localhost:3000/)
-- To build the project run `npm run build`
-- To run a production server use `npm run start`
+- Run the app in development mode using `npm run dev`, and open [http://localhost:3000/](http://localhost:3000/)
