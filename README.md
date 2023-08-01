@@ -8,7 +8,7 @@ This app is my final project for neuefische Web Development Bootcamp, summer 202
 
 You can find a [hosted version](https://periotopia.vercel.app) on Vercel
 
-![App screens](./public/capstone-scrrenshot.png)
+![App screens](./public/capstone-screenshot.png)
 
 Note: The App is optimized for mobile screen.
 
