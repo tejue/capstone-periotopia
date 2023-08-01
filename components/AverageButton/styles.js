@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledAverage = styled.div`
+export const Average = styled.button`
   display: inline-block;
   width: 25px;
   height: 25px;

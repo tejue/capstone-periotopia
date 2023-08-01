@@ -1,37 +1,29 @@
-# New Next Project
+# Periotopia
 
-This project was created from the neue fische `next` template.
+Periotopia is a micro-learning app focussing on menstrual health. Explore diverse aspects and gain insights into its impact on individuals and society through various questionnaires. The Periotopia-Index serves as your compass, indicating your proximity to a utopian, period-positive world.
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+This app is my final project for neuefische Web Development Bootcamp, summer 2023.
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+## Demo
 
-## Development
+You can find a [hosted version](https://periotopia.vercel.app) on Vercel
 
-### Local Development
+![App screens](./public/capstone-screenshot.png)
 
-To work locally, please install the dependencies using `npm i` first.
+Note: The App is optimized for mobile screen.
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+## Tech Stack
 
-Use `npm run test` to run the tests.
+- React
+- React Hooks
+- Next.js
+- styled-components
+- uid
+- mdi Pictogrammers
+- react-confirm-alert
 
-### CodeSandbox Cloud
+## Project Setup
 
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+- Clone this repository
+- Install all dependencies using `npm install`
+- Run the app in development mode using `npm run dev`, and open [http://localhost:3000/](http://localhost:3000/)

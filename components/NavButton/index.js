@@ -11,7 +11,6 @@ export default function NavButton({
     <>
       <NavButtonWrapper>
         <Button type={typePrevPage} onClick={onPrevPage}>
-          {/* <Button onClick={onPrevPage}> */}
           <IconWrapper>
             <IconSVG
               icon="prev"
@@ -21,7 +20,6 @@ export default function NavButton({
           </IconWrapper>
         </Button>
         <Button type={typeNextPage} onClick={onNextPage}>
-          {/* <Button onClick={onNextPage}> */}
           <IconWrapper>
             <IconSVG
               icon="next"

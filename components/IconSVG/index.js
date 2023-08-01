@@ -14,10 +14,10 @@ import {
 export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
   let pathData = "";
 
-  if (icon === "circle") {
+  if (icon === "openCloseSymbol") {
     pathData = mdiChevronRightCircleOutline;
   }
-  if (icon === "x") {
+  if (icon === "trashcan") {
     pathData = mdiDeleteCircleOutline;
   }
   if (icon === "brush") {
@@ -26,13 +26,13 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
   if (icon === "brushoff") {
     pathData = mdiBrushOff;
   }
-  if (icon === "water") {
+  if (icon === "drop") {
     pathData = mdiWater;
   }
   if (icon === "money") {
     pathData = mdiCurrencyEur;
   }
-  if (icon === "wash") {
+  if (icon === "handwash") {
     pathData = mdiHandWash;
   }
   if (icon === "click") {
@@ -51,8 +51,9 @@ export default function IconSVG({ icon, color = "#ffffff", size, ...rest }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      rotation={rest.rotation}
       {...rest}
+      alt={icon}
+      aria-label={`icon of a ${icon}`}
     >
       <path d={pathData} fill={color} width={size} />
     </svg>

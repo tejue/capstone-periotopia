@@ -8,7 +8,6 @@ export const StyledHeader = styled.header`
   top: 40px;
   z-index: 1;
   background-color: transparent;
-  //margin-top: -35px;
 `;
 
 export const HeaderWrapper = styled.div`

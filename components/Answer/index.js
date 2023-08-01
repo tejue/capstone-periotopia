@@ -1,6 +1,6 @@
 import PersonalAnswer from "../PersonalAnswer";
 import PeriotopiaInfo from "../PeriotopiaInfo";
-import PeriotopiaIndex from "../PeriotopiaIndex";
+import IndexBar from "../IndexBar";
 import { StyledAnswerIndex, IndexWrapper } from "./styles";
 
 export default function Answer({
@@ -38,7 +38,7 @@ export default function Answer({
           <StyledAnswerIndex>
             Dein Periotopia-Index ist {numberPeriotopiaIndex}/10
           </StyledAnswerIndex>
-          <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
+          <IndexBar periotopiaIndex={periotopiaIndex} />
         </IndexWrapper>
       )}
     </>

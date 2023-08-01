@@ -1,7 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton";
 import FormField from "../FormField";
+import AverageButton from "../AverageButton/index";
 import { StyledForm, AverageWrapper } from "./styles";
-import Average from "../Average/index";
 import { useState } from "react";
 
 export default function FormFinancials({
@@ -49,6 +49,8 @@ export default function FormFinancials({
     updateCurrentValue(newValue);
   }
 
+  const selectTampon = currentValue.product === "tampon";
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -68,8 +70,6 @@ export default function FormFinancials({
     };
     updateCurrentValue(updateAverageValue);
   }
-
-  const selectTampon = currentValue.product === "tampon";
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -95,7 +95,9 @@ export default function FormFinancials({
         />
 
         {selectTampon && !isAverageClicked && (
-          <Average onClick={() => handleAverage("packageCosts", "4.95")} />
+          <AverageButton
+            onClick={() => handleAverage("packageCosts", "4.95")}
+          />
         )}
       </AverageWrapper>
       <AverageWrapper>
@@ -110,7 +112,7 @@ export default function FormFinancials({
             currentValue.packageCosts === "0" || currentValue.taxes === "0"
           }
         />
-        <Average onClick={() => handleAverage("taxAmount", "partial")} />
+        <AverageButton onClick={() => handleAverage("taxAmount", "partial")} />
       </AverageWrapper>
       <AverageWrapper>
         <FormField
@@ -128,7 +130,7 @@ export default function FormFinancials({
           }
           onChange={(event) => handleUserInput(event, "taxes")}
         />{" "}
-        <Average onClick={() => handleAverage("taxes", "7")} />
+        <AverageButton onClick={() => handleAverage("taxes", "7")} />
       </AverageWrapper>
       <AverageWrapper>
         <FormField
@@ -141,7 +143,9 @@ export default function FormFinancials({
           onChange={(event) => handleUserInput(event, "packageContent")}
         />{" "}
         {selectTampon && !isAverageClicked && (
-          <Average onClick={() => handleAverage("packageContent", "64")} />
+          <AverageButton
+            onClick={() => handleAverage("packageContent", "64")}
+          />
         )}
       </AverageWrapper>{" "}
       <AverageWrapper>
@@ -155,7 +159,7 @@ export default function FormFinancials({
           onChange={(event) => handleUserInput(event, "changeProduct")}
         />
         {selectTampon && !isAverageClicked && (
-          <Average onClick={() => handleAverage("changeProduct", "4")} />
+          <AverageButton onClick={() => handleAverage("changeProduct", "4")} />
         )}
       </AverageWrapper>
       <ShowAnswerButton type="submit" />

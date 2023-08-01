@@ -1,7 +1,7 @@
 import ShowAnswerButton from "../ShowAnswerButton/index";
 import FormField from "../FormField/index";
+import AverageButton from "../AverageButton/index";
 import { StyledForm, AverageWrapper } from "./styles";
-import Average from "../Average/index";
 
 export default function FormGeneral({
   handleGeneralInfo,
@@ -58,7 +58,7 @@ export default function FormGeneral({
           value={currentValue.firstMenstruation}
           onChange={(event) => handleUserInput(event, "firstMenstruation")}
         />
-        <Average onClick={() => handleAverage("firstMenstruation", 13)} />
+        <AverageButton onClick={() => handleAverage("firstMenstruation", 13)} />
       </AverageWrapper>
       <AverageWrapper>
         <FormField
@@ -70,7 +70,7 @@ export default function FormGeneral({
           value={currentValue.cyclusLength}
           onChange={(event) => handleUserInput(event, "cyclusLength")}
         />
-        <Average onClick={() => handleAverage("cyclusLength", 28)} />
+        <AverageButton onClick={() => handleAverage("cyclusLength", 28)} />
       </AverageWrapper>
       <AverageWrapper>
         <FormField
@@ -83,7 +83,7 @@ export default function FormGeneral({
           value={currentValue.menstruationLength}
           onChange={(event) => handleUserInput(event, "menstruationLength")}
         />
-        <Average onClick={() => handleAverage("menstruationLength", 5)} />
+        <AverageButton onClick={() => handleAverage("menstruationLength", 5)} />
       </AverageWrapper>
       <ShowAnswerButton type="submit" />
     </StyledForm>

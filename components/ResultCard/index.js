@@ -1,10 +1,9 @@
-import PeriotopiaIndex from "../PeriotopiaIndex";
+import IndexBar from "../IndexBar";
 import FormField from "../FormField";
 import IconSVG from "../IconSVG";
 import { useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-
 import {
   StyledList,
   StyledResultCard,
@@ -91,13 +90,12 @@ export default function ResultCard({
   }
 
   return (
-    // costsPerYearID >= 0 && (
     <>
       <StyledList>
         <StyledResultCard>
           <IconWrapDelete>
             <IconSVG
-              icon="x"
+              icon="trashcan"
               onClick={handleDelete}
               color={`var(--primary-highlight-color)`}
               size={33}
@@ -105,7 +103,7 @@ export default function ResultCard({
           </IconWrapDelete>
           <IconWrapOpenClose rotate={isResultVisible ? 90 : 0}>
             <IconSVG
-              icon="circle"
+              icon="openCloseSymbol"
               color={`var(--primary-highlight-color)`}
               onClick={handleToggle}
               size={33}
@@ -138,12 +136,11 @@ export default function ResultCard({
             )}
           </CardTitelWrapper>
           {isResultVisible && (
-            //  {/* {costsPerYear >= 0 && ( */}
             <>
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="water"
+                    icon="drop"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />
@@ -172,7 +169,7 @@ export default function ResultCard({
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="wash"
+                    icon="handwash"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />
@@ -194,7 +191,7 @@ export default function ResultCard({
                 Dein durchschnittlicher Periotopia-Index:{" "}
                 {periotopiaIndexAverage}/10{" "}
               </CardEnding>
-              <PeriotopiaIndex periotopiaIndex={periotopiaIndex} />
+              <IndexBar periotopiaIndex={periotopiaIndex} />
             </>
             // )}
           )}
