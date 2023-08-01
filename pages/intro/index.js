@@ -39,7 +39,7 @@ export default function GeneralInfoPage({}) {
     <>
       <Header>
         <IconSVG
-          icon="water"
+          icon="drop"
           color={`var(--tertier-highlight-color)`}
           size={60}
         />

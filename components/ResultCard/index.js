@@ -97,7 +97,7 @@ export default function ResultCard({
         <StyledResultCard>
           <IconWrapDelete>
             <IconSVG
-              icon="x"
+              icon="trashcan"
               onClick={handleDelete}
               color={`var(--primary-highlight-color)`}
               size={33}
@@ -105,7 +105,7 @@ export default function ResultCard({
           </IconWrapDelete>
           <IconWrapOpenClose rotate={isResultVisible ? 90 : 0}>
             <IconSVG
-              icon="circle"
+              icon="openCloseSymbol"
               color={`var(--primary-highlight-color)`}
               onClick={handleToggle}
               size={33}
@@ -143,7 +143,7 @@ export default function ResultCard({
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="water"
+                    icon="drop"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />
@@ -172,7 +172,7 @@ export default function ResultCard({
               <CardParagraphWrapper>
                 <IconWrapper>
                   <IconSVG
-                    icon="wash"
+                    icon="handwash"
                     color={`var(--tertier-highlight-color)`}
                     size={30}
                   />

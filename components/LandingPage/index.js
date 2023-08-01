@@ -17,7 +17,7 @@ export default function Landingpage({ title, text, footnote, href }) {
           <Footnote>{footnote}</Footnote>
           <IconContainer>
             <IconSVG
-              icon="water"
+              icon="drop"
               color={`var(--tertier-highlight-color)`}
               size={150}
             />

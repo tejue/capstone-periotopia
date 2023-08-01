@@ -1,6 +1,6 @@
 import { StyledNewIndex, StyledLink, NewIndexTitle } from "./styles";
 
-export default function NewIndex({ costsPerYear, periotopiaIndex, taxAmount }) {
+export default function NewIndex() {
   return (
     <StyledNewIndex>
       <NewIndexTitle>Ermittle einen Periotopia-Index</NewIndexTitle>

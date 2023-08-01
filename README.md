@@ -1,6 +1,6 @@
 # Periotopia
 
-Periotopia is a micro-learning app focussing on menstrual health. Explore diverse aspects and gain insights into its impact on individuals and society through various questionnaires. The Periotopia-Index acts as your compass, indicating your proximity to a utopian, period-positive world.
+Periotopia is a micro-learning app focussing on menstrual health. Explore diverse aspects and gain insights into its impact on individuals and society through various questionnaires. The Periotopia-Index serves as your compass, indicating your proximity to a utopian, period-positive world.
 
 > This is the final project for neuefische web dev bootcamp.
 
